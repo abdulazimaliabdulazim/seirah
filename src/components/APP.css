@@ -1,0 +1,9 @@
+.parent-cards {
+    display: flex;
+    flex-direction: column;
+}
+.card {
+    width: 300px;
+    border: 2px solid;
+    margin: 20px auto;
+}
