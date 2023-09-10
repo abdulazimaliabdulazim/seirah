@@ -5,6 +5,7 @@ import Buttom from "../../../Buttom/Buttom";
 import ColInput from "../../Personal_data/Home/ColInput/ColInput";
 import DateQualifi from "./DateQualifi/DateQualifi";
 import { dargItem, dargEnd, dargOver, drop } from "./f_drag_drop/drag_drop";
+import { useSelector } from "react-redux";
 
 const Qualifications = ({
   dataJson,
@@ -16,6 +17,7 @@ const Qualifications = ({
   hedinDate = true,
 }) => {
   const [objState] = useState([dataJson]);
+
   const createqualifi = (ind) => {
     return (
       <div

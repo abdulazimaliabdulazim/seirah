@@ -18,6 +18,7 @@ const initState = {
   value: [" أعزب", "متزوج"],
   number: "/home-detuls/qualifications",
   textPage: "معلومات الشخصية, وبيانات الإتصال الضرورية",
+  personalsData: "",
 };
 
 const dataForm = (state = initState, action) => {
@@ -145,6 +146,13 @@ const dataForm = (state = initState, action) => {
       textPage: (state.textPage = "العنوان الوطني . بيانات العنوان الوطني"),
     };
   }
+  if (action.type) {
+    return {
+      ...state,
+      personalsData: (state.personalsData = action.type),
+    };
+  }
+
   return state;
 };
 
