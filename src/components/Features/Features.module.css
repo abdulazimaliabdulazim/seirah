@@ -1,0 +1,55 @@
+.parent {
+    margin-top: 100vh;
+    background-color: #f4f5f7;
+    padding: 50px 0;
+    font-size: 16px;
+}
+.parent span {
+    display: block;
+    width: fit-content;
+    margin: auto;
+    padding: 7px;
+    background-image: linear-gradient(to left, #afecef, transparent);
+    color: #0694a2;
+    font-size: 1.25em;    
+}
+.parent h3 {
+    margin: 20px auto 50px;
+    width: -moz-fit-content;
+    width: fit-content;
+    color: #1e429f;
+    font-size: 2em;
+    position: relative;
+}
+.parent h3::before {
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 4px;
+    background-color: #afecef;
+    bottom: 10px;
+    right: -45px;
+}
+
+.boxFeature {
+    display: flex;
+}
+.boxFeature .boxImg {
+    width: 170px;
+    height: 110px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+}
+.boxFeature img {
+    width: 70%;
+    height: 70%;
+}
+
+.parentCol {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* gap: 50px; */
+}

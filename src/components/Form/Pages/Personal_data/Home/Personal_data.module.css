@@ -1,0 +1,25 @@
+.parent {
+    width: 100%;
+    background-color: #f1f5f9;
+    font-size: 16px;
+}
+.box {
+    width: 90%;
+    margin: auto;
+    background-color: white;
+    padding: 30px 0;
+    position: relative;
+}
+.parent .box div {
+    width: calc(100% - 20%);
+    background-color: #f9fafb;
+}
+.parent .box div label {
+    width: 20%;
+    font-size: 1.15em;
+    margin-right: 5px;      
+    color: var(--color-opacity);
+}
+hr {
+    border: 1px solid #0000000f
+}

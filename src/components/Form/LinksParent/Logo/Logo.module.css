@@ -1,0 +1,28 @@
+.parent {
+    background-color: #cfd8e3;
+    overflow: hidden;
+}
+.parent .child {
+    position: relative;
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 65px;
+    width: 90%;
+    margin-right: 5%;
+}
+.parent .child .box {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.parent .child .logo img {
+    width: 80px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border: 2px solid var(--color-opacity);
+}

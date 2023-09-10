@@ -1,0 +1,64 @@
+.parebtTest {
+    width: 300px;
+    display: flex;
+}
+.test {
+    background-color: white;
+    border: 2px solid #ccc;
+    width: 50px;
+    height: 30px;
+    margin: auto;
+    position: relative;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    text-align: end;
+    padding-left: 14px;
+}
+.test div.one {
+    right: 4px;
+    transform: rotate(50deg);
+    -webkit-transform: rotate(35deg);
+    -moz-transform: rotate(50deg);
+    -ms-transform: rotate(50deg);
+    -o-transform: rotate(50deg);
+}
+.test div.two {
+    right: 10px;
+    transform: rotate(-50deg);
+    -webkit-transform: rotate(-35deg);
+    -moz-transform: rotate(-50deg);
+    -ms-transform: rotate(-50deg);
+    -o-transform: rotate(-50deg);
+}
+.test div.one,
+.test div.two {
+    position: absolute;
+    width: 3px;
+    height: 12px;
+    background-color: gray;
+    top: 2px;
+}
+.parentNumberDat {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 167px;
+    height: 300px;
+    overflow: auto;
+    direction: ltr;
+    margin-top: 30px;
+}
+.numberDay {
+    margin: 5px;
+    padding: 5px 10px;
+    color: black;
+    text-align: start;
+    font-size: 20pX;
+    margin-bottom: 10px;
+}
+.numberDay:hover {
+    background-color: var(--background-main-alt);
+}

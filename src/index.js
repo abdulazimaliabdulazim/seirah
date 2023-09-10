@@ -1,9 +1,15 @@
-import React from 'react';
-import ReactDom from 'react-dom';
-import App from './components/APP';
+import React, { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App/APP";
+import "normalize.css";
+import "./index.css";
+import { Provider } from "react-redux";
+import sliceStares from "./sliceStores/sliceStores";
 
-
-ReactDom.render(
-  <App />,
-  document.getElementById("root")
-)
+createRoot(document.getElementById("root")).render(
+  <Provider store={sliceStares}>
+    <StrictMode>
+      <App tab="home" />
+    </StrictMode>
+  </Provider>
+);

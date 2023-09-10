@@ -1,0 +1,18 @@
+.parent {
+    background-color: #fff;
+    min-height: 250px;
+    text-align: center;
+}
+.parent .col {
+    width: 75%;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    padding: 40px;
+    color: #6b7280;
+}
+.parent .col div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

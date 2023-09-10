@@ -1,0 +1,41 @@
+.parent_cards {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}    
+.parent-cards h1.head {
+    text-align: center;
+}
+
+.deldetBut {
+    background-color: black !important;
+}
+
+.block {
+    display: block;
+}
+.none {
+    display: none;
+}
+.input {
+    margin-top: 20px;
+}
+
+
+.continerBut {
+    display: flex;
+    height: 30px;
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.continerBut .butOne,
+.continerBut .butTwo {
+    background-color: green;
+    color: white;
+    border: navajowhite;
+    border-radius: 7px;
+    cursor: pointer;
+}

@@ -1,0 +1,17 @@
+.transfrom {
+    background-color: #ebf5ff;
+    display: flex;
+    border: 2px solid #c3ddfd;
+    color: #1a56db;
+    justify-content: space-between;
+    font-size: 16px;
+    margin: 20px;
+    padding: 8px;
+}
+.flex {
+    display: flex;
+    align-items: center;
+}
+.text {
+    font-size: .75em;
+}

@@ -1,0 +1,16 @@
+.parent {
+    position: absolute;
+    bottom: 0;
+    width: 2000px;
+    right: 0;
+    overflow: auto;
+}
+.parent nav {
+    display: flex;
+    background-color: white;
+}
+.parent nav a {
+    background-color: #e2e8f0;
+    color: #6b7280;
+    padding:  10px;
+}

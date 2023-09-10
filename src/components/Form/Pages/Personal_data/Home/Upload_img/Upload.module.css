@@ -1,0 +1,33 @@
+.parent .col {
+    display: flex;
+    align-items: center;
+    width: 100% !important;
+}
+.parent .img {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.parent .img img {
+    width: 80px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.parent .img button {
+    background-image: linear-gradient(to left, #27303f, transparent);
+    padding: 5px 15px;
+    margin-right: 10px;
+    color: white;
+    cursor: pointer;
+}
+.parent p {
+    margin-right: 20%;
+}
+.parent hr {
+    margin-bottom: 0.75rem;
+    margin-top: 0.75rem;
+    border: 1px solid #00000014;
+}

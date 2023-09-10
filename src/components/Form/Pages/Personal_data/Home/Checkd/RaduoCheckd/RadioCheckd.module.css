@@ -1,0 +1,42 @@
+input[type="radio"] {
+    -webkit-appearance: none;
+    appearance: none;
+}
+.parent_tog {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #c3ddfd;
+    width: fit-content !important;
+    height: 38px;
+    border: 2px solid #a4cafe;
+    border-radius: 5px;
+    padding: 0 5px; 
+    flex-direction: row-reverse;
+}
+.tog {
+    width: 15px !important;
+    height: 15px !important;
+    border: 2px solid #eee;
+    position: relative;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    margin-left: 8px;
+    background-color: white;
+}
+input[type="radio"]:checked + .tog {
+    border: 2px solid blue;
+}
+input[type="radio"]:checked + .tog::before {
+    content: "";
+    position: absolute;
+    width: 76%;
+    height: 76%;
+    background-color: blue;
+    border-radius: 50%;
+    margin-top: 11%;
+    margin-right: 11%;
+}

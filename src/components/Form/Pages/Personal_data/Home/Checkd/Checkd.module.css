@@ -1,0 +1,19 @@
+.parent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 7px;
+}
+.checkd {
+    width: 80%;
+    background-color: #f4f5f7;
+}
+.col {
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    display: flex;
+    justify-content: flex-start;
+}
