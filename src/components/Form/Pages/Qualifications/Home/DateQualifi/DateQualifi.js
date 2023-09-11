@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import style from "./DateQualifi.module.css";
-import ColInput from "../../../Personal_data/Home/ColInput/ColInput";
+import ParentInput from "../../../Personal_data/Home/ParentInput/ParentInput";
 
-const DateQualifi = ({ date, keyword }) => {
+const DateQualifi = ({ hendlerQuali }) => {
   const dayEmpty = [];
   const [dayState] = useState(dayEmpty);
   for (let i = 1; i <= 31; i++) dayEmpty.push(i);
@@ -42,12 +42,16 @@ const DateQualifi = ({ date, keyword }) => {
   ) => {
     return (
       <div
+        id="date"
         className={style.test}
         onClick={() => funSetCheckdday(!funCheckdDay)}>
         <div className={style.one}></div>
         <div className={style.two}></div>
         {funCheckdDay && (
-          <div className={style.parentNumberDat}>
+          <div
+            onClick={(e) => hendlerQuali(e)}
+            onChange={(e) => hendlerQuali(e)}
+            className={style.parentNumberDat}>
             {funDayState.map((ele, ind) => (
               <span
                 onClick={(e) => funSetCheckddayText(e.target.innerHTML)}
@@ -64,7 +68,7 @@ const DateQualifi = ({ date, keyword }) => {
   };
 
   return (
-    <ColInput label={date} hedingInp={false} yse={false}>
+    <ParentInput hedinSpan={false}>
       <div className={style.parebtTest}>
         اليوم
         {colDataParent(
@@ -92,7 +96,7 @@ const DateQualifi = ({ date, keyword }) => {
         )}
       </div>
       <p>في حال عدم رغبتك باظهار تاريخ اليوم اتركه فارغا</p>
-    </ColInput>
+    </ParentInput>
   );
 };
 
