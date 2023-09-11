@@ -16,6 +16,7 @@ const Qualifications = ({
 }) => {
   const [dataQualificaions, setDataQualificaions] = useState([]);
   const hendlerDataQualificaions = (e) => {
+    console.log(e.target.value);
     let idName = e.target.id;
     setDataQualificaions((prev) => {
       return { ...prev, [idName]: e.target.value };
@@ -30,6 +31,24 @@ const Qualifications = ({
     setDataQualificaions(
       JSON.parse(window.localStorage.getItem("dataQualificaions"))
     );
+  }
+
+  let coun = 0;
+  let getCoun = 0;
+  const [isn, sein] = useState([]);
+
+  // console.log(isn[`input${coun++}`]);
+
+  const hen = (e) => {
+    let id = e.target.id;
+    let value = e.target.value;
+    sein((pre) => {
+      return { ...pre, [id]: value };
+    });
+  };
+
+  if (isn.length <= 0) {
+    sein(JSON.parse(window.localStorage.getItem("henQualificaions")));
   }
 
   const createqualifi = (ind) => {
@@ -52,9 +71,9 @@ const Qualifications = ({
             "اسم الجامعة أو الجهة التعليمية التي حصلت على الشهادة منها."
           }>
           <input
-            onChange={(e) => hendlerDataQualificaions(e)}
-            value={dataQualificaions.educational_entity}
-            id="educational_entity"
+            onChange={(e) => hen(e)}
+            id={coun++}
+            value={isn[getCoun++]}
             type="text"
             placeholder="الجهة التعليمية"
           />
@@ -99,8 +118,9 @@ const Qualifications = ({
       </div>
     );
   };
+
   // Click Add Qualification
-  const [qualifiNumber, setQualifiNumber] = useState([0]);
+  let [qualifiNumber, setQualifiNumber] = useState([0, 1]);
   const qualifiNumberHendlre = () => setQualifiNumber((pre) => [...pre, 1]);
 
   return (
@@ -119,8 +139,8 @@ const Qualifications = ({
           onClick={() => {
             dindlerAction();
             window.localStorage.setItem(
-              "dataQualificaions",
-              JSON.stringify(dataQualificaions)
+              "henQualificaions",
+              JSON.stringify(isn)
             );
           }}
           text={saveBut}
