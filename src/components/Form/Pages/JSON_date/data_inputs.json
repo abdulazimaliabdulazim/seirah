@@ -252,26 +252,27 @@
         ],
         [
             {
-                "id": 1,
+                "id": "six",
                 "labels":"الجنس",
                 "nameRad": [{ "statis": "رجل" }, { "statis": "أنثى" }],
                 "typeRad": "six"
+                
             },
             {
-                "id": 2,
+                "id": "stits",
                 "labels": "الحالة الزوجية",
                 "nameRad": [{ "statis": "selector[0]" }, { "statis": "selector[1]" }],
                 "typeRad": "stits"
             },
             {
-                "id": 3,
+                "id": "setHalth",
                 "labels": "♿️ الحالة الصحية",
                 "nameRad": [{ "statis": "سليم" }, { "statis": "لدي حالة" }],
                 "typeRad": "statis_health",
                 "setHalth": "setHalth"
             },
             {
-                "id": 4,
+                "id": "health",
                 "labels": "الخدمة العسكرية",
                 "nameRad": [{ "statis": "نعم" }, { "statis": "لا" }, { "statis": "إخفاء" }],
                 "typeRad": "health"
@@ -279,7 +280,7 @@
         ],
         [
             {
-                "id": 1,
+                "id": "type_health",
                 "labels": "نوع الحالة الصحية",
                 "nameRad": [
                     { "statis": " إعاقة حركية" },

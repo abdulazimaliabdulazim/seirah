@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import style from "./Personal_data.module.css";
-import ColInput from "./ColInput/ColInput";
 import Checkd from "./Checkd/Checkd";
 import { useDispatch, useSelector } from "react-redux";
 import Upload from "./Upload_img/Upload";
@@ -14,6 +13,7 @@ const Inputs = () => {
   const [allData] = useState(dataPersonal);
   allData[10][1][1].nameRad[0].statis = selector[0];
   allData[10][1][1].nameRad[1].statis = selector[1];
+
   const [dataPersonals, setDataPersonal] = useState([]);
 
   const hendlerDataPersonal = (e) => {
@@ -26,8 +26,9 @@ const Inputs = () => {
   const dispatch = useDispatch();
   const dindlerAction = () => dispatch({ type: dataPersonals });
 
-  const dataPersonalsInStory = useSelector((state) => state.personalsData);
-  console.log(dataPersonalsInStory.name);
+  if (dataPersonals.length <= 0) {
+    setDataPersonal(JSON.parse(window.localStorage.getItem("dataPersonal")));
+  }
 
   return (
     <div className={style.parent}>
@@ -37,8 +38,8 @@ const Inputs = () => {
           <div className={style.detulsInput}>
             <Spans />
             <input
-              value={dataPersonalsInStory.name}
               onChange={(e) => hendlerDataPersonal(e)}
+              value={dataPersonals.name}
               id="name"
               type="text"
               placeholder="اسمك بالكامل..."
@@ -50,9 +51,9 @@ const Inputs = () => {
           <div className={style.detulsInput}>
             <Spans />
             <input
-              value={dataPersonalsInStory.position}
               onChange={(e) => hendlerDataPersonal(e)}
               id="position"
+              value={dataPersonals.position}
               type="text"
               placeholder="مسمى الوظيفة"
             />
@@ -63,9 +64,9 @@ const Inputs = () => {
           <div className={style.detulsInput}>
             <Spans />
             <input
-              value={dataPersonalsInStory.overview}
               onChange={(e) => hendlerDataPersonal(e)}
               id="overview"
+              value={dataPersonals.overview}
               type="text"
               placeholder="نبذة بسيطة"
             />
@@ -78,6 +79,7 @@ const Inputs = () => {
             <input
               onChange={(e) => hendlerDataPersonal(e)}
               id="date"
+              value={dataPersonals.date}
               type="text"
               placeholder="مثال: 2000/9/23"
             />
@@ -89,6 +91,7 @@ const Inputs = () => {
             <input
               onChange={(e) => hendlerDataPersonal(e)}
               id="personal_website"
+              value={dataPersonals.personal_website}
               type="text"
               placeholder="https://abdulazimaliabdulazim.github.io/Tamplat-3/"
             />
@@ -105,6 +108,7 @@ const Inputs = () => {
             <input
               onChange={(e) => hendlerDataPersonal(e)}
               id="city"
+              value={dataPersonals.city}
               type="text"
               placeholder="الرياض"
             />
@@ -116,6 +120,7 @@ const Inputs = () => {
             <input
               onChange={(e) => hendlerDataPersonal(e)}
               id="country"
+              value={dataPersonals.country}
               type="text"
               placeholder="مصر"
             />
@@ -127,6 +132,7 @@ const Inputs = () => {
             <input
               onChange={(e) => hendlerDataPersonal(e)}
               id="nationality"
+              value={dataPersonals.nationality}
               type="text"
               placeholder="مصري"
             />
@@ -146,6 +152,7 @@ const Inputs = () => {
             <input
               onChange={(e) => hendlerDataPersonal(e)}
               id="email"
+              value={dataPersonals.email}
               type="text"
               placeholder="lybdh295@gmail.com"
             />
@@ -156,6 +163,7 @@ const Inputs = () => {
           <div
             onChange={(e) => hendlerDataPersonal(e)}
             id="phone_number"
+            value={dataPersonals.phone_number}
             className={style.detulsInput}>
             <input type="text" placeholder="01141629495" />
           </div>
@@ -167,6 +175,8 @@ const Inputs = () => {
             typeRad={data.typeRad}
             setHalth={setHalth}
             key={ind}
+            id={data.id}
+            onClick={(e) => console.log(e.target.id)}
           />
         ))}
         <hr />
@@ -186,7 +196,16 @@ const Inputs = () => {
           p={"الصوره يجب ان تكون بحجم 300*300 بكسل"}
         />
         <hr />
-        <Buttom onClick={dindlerAction} text={"حفظ البيانات الشخصية"} />
+        <Buttom
+          onClick={() => {
+            dindlerAction();
+            window.localStorage.setItem(
+              "dataPersonal",
+              JSON.stringify(dataPersonals)
+            );
+          }}
+          text={"حفظ البيانات الشخصية"}
+        />
       </div>
     </div>
   );

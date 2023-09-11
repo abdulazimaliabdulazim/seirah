@@ -2,7 +2,7 @@ import React from "react";
 import style from "./RadioCheckd.module.css";
 import { useDispatch } from "react-redux";
 
-const RadioCheckd = ({ nameRad, typeRad, setHalth }) => {
+const RadioCheckd = ({ nameRad, typeRad, setHalth, id, onClick }) => {
   const dispatch = useDispatch();
   const man = () => dispatch({ type: nameRad });
   const woman = () => dispatch({ type: nameRad });
@@ -21,7 +21,7 @@ const RadioCheckd = ({ nameRad, typeRad, setHalth }) => {
           : ""
       }
       className={style.parent_tog}>
-      <input type="radio" name={typeRad} />
+      <input onChange={onClick} id={id} type="radio" name={typeRad} />
       {nameRad}
       <div className={style.tog}></div>
     </label>

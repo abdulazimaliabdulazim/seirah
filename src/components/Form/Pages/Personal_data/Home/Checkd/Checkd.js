@@ -2,7 +2,7 @@ import React from "react";
 import style from "./Checkd.module.css";
 import RadioCheckd from "./RaduoCheckd/RadioCheckd";
 
-const Checkd = ({ lab, nameRad, typeRad, setHalth, paraghraph }) => {
+const Checkd = ({ lab, nameRad, typeRad, setHalth, id, onClick }) => {
   return (
     <div className={style.parent}>
       <label>{lab}</label>
@@ -14,6 +14,8 @@ const Checkd = ({ lab, nameRad, typeRad, setHalth, paraghraph }) => {
               key={ind}
               nameRad={ele.statis}
               typeRad={typeRad}
+              id={id}
+              onClick={onClick}
             />
           ))}
         </div>
