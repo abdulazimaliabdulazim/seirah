@@ -8,7 +8,7 @@ const Links = () => {
     <header className={style.parent}>
       <Container>
         <nav>
-          <Link to="#">
+          <Link to="">
             <span>بيانات السيرة</span>
           </Link>
           <Link to="#">

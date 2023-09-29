@@ -8,7 +8,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Form from "../components/Form/Form";
 import PersonalData from "../components/Form/Pages/Personal_data/Home/Personal_data";
 import Qualifications from "../components/Form/Pages/Qualifications/Home/Qualifications";
-import dataJson from "../components/Form/Pages/JSON_date/data_inputs.json";
 import Experiences from "../components/Form/Pages/Experiences/Experiences";
 import Coursess from "../components/Form/Pages/Coursess/Coursess";
 import Skils from "../components/Form/Pages/Skils/Skils";
@@ -18,47 +17,70 @@ import Languages from "../components/Form/Pages/Langutch/Langutch";
 import Hobbies from "../components/Form/Pages/Hobbies/Hobbies";
 import Address from "../components/Form/Pages/Address/Address";
 import LinksPage from "../components/Form/Pages/LinksPage/LinksPage";
+import { ContextProvider } from "../components/Auth/Auth";
+import Register from "../components/Register/Register";
+import Dashboard from "../components/Dashboard/Dashboard";
+import Cvs from "../components/Cvs/Cvs";
+import RequireAuth from "../components/RequireAuth/RequireAuth";
+import Templet1 from "../components/Templets/Templet1/Templet1";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Fragment>
-              <Header />
-              <Section />
-              <Features />
-              <SecMan />
-              <Footer />
-            </Fragment>
-          }
-        />
-        <Route path="/home-detuls" element={<Form />}>
-          <Route path="home-data" element={<PersonalData />} />
+    <ContextProvider>
+      <BrowserRouter>
+        <Routes>
           <Route
-            path="qualifications"
+            path="/"
             element={
-              <Qualifications
-                dataJson={dataJson[0]}
-                addBtu={"أضف مؤهل جديد"}
-                saveBut={"حفظ المؤهلات"}
-              />
+              <Fragment>
+                <Header />
+                <Section />
+                <Features />
+                <SecMan />
+                <Footer />
+              </Fragment>
             }
           />
-          <Route path="experiences" element={<Experiences />} />
-          <Route path="coursess" element={<Coursess />} />
-          <Route path="skils" element={<Skils />} />
-          <Route path="projects" element={<Projects />} />
-          <Route path="return" element={<Return />} />
-          <Route path="langutch" element={<Languages />} />
-          <Route path="links" element={<LinksPage />} />
-          <Route path="hobbies" element={<Hobbies />} />
-          <Route path="address" element={<Address />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+          <Route
+            path="dashboard/cvs/home-detuls"
+            element={
+              <RequireAuth>
+                <Form />
+              </RequireAuth>
+            }>
+            <Route path="home-data" element={<PersonalData />} />
+            <Route path="qualifications" element={<Qualifications />} />
+            <Route path="experiences" element={<Experiences />} />
+            <Route path="coursess" element={<Coursess />} />
+            <Route path="skils" element={<Skils />} />
+            <Route path="projects" element={<Projects />} />
+            <Route path="return" element={<Return />} />
+            <Route path="langutch" element={<Languages />} />
+            <Route path="links" element={<LinksPage />} />
+            <Route path="hobbies" element={<Hobbies />} />
+            <Route path="address" element={<Address />} />
+          </Route>
+          <Route path="register" element={<Register />} />
+          <Route
+            path="dashboard"
+            element={
+              <RequireAuth>
+                <Dashboard />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="dashboard/cvs"
+            element={
+              <RequireAuth>
+                <Cvs />
+              </RequireAuth>
+            }
+          />
+          <Route path="abdo" element={<Templet1 />} />
+        </Routes>
+      </BrowserRouter>
+    </ContextProvider>
   );
 };
 

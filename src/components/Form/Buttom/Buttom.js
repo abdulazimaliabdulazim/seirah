@@ -5,6 +5,7 @@ const Buttom = (props) => {
   return (
     <button onClick={props.onClick} className={style.mani}>
       {props.text}
+      {props.children}
     </button>
   );
 };

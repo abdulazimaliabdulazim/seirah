@@ -1,18 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "./NewTranfrom.module.css";
 import Icons from "../../../Icons/Icons";
 import Button from "../../Buttom/Buttom";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-// Two Click
-export const twoClick = (e) => e.target.click();
-
-const NewTranfrom = ({ text }) => {
-  const number = useSelector((state) => state.number);
+const NewTranfrom = () => {
   const textPage = useSelector((state) => state.textPage);
+  const url = useSelector((state) => state.url);
   const dispatch = useDispatch();
-
   return (
     <div className={style.transfrom}>
       <div className={style.flex}>
@@ -27,12 +23,13 @@ const NewTranfrom = ({ text }) => {
         </div>
       </div>
       <Link
-        onClick={(e) => {
-          twoClick(e);
-          dispatch({ type: window.location.pathname });
+        onClick={() => {
+          dispatch({
+            type: { urls: window.location.pathname },
+          });
         }}
-        to={number}>
-        <Button text={"التالي"}></Button>
+        to={url}>
+        <Button text={"التالي"} />
       </Link>
     </div>
   );

@@ -1,0 +1,32 @@
+.dashboard {
+    font-size: 16px;
+}   
+.detulsPersonal .detuls {
+    width: 600px;
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+}
+.detuls .box {
+    margin-right: 20px;
+}
+.detuls .box h2 span, .detuls .box .name .date  {
+    color: #64748b;
+}
+.detuls .box .name {
+    display: flex;
+    justify-content: space-around;
+    width: 85%;
+}
+.detuls .box .name .date, .paca,.email {
+    display: flex;
+}
+.detuls .box .name .paca {
+    color: #e74694;
+}
+.detuls .box .name .email {
+    color: #31c48d;
+}
+.detuls .box .name .email span {
+    color: initial;
+}

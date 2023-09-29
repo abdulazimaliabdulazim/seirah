@@ -5,8 +5,8 @@
     color: #1a56db;
     justify-content: space-between;
     font-size: 16px;
-    margin: 20px;
-    padding: 8px;
+    margin: 20px 0 0 0;
+    padding: 8px 70px;
 }
 .flex {
     display: flex;

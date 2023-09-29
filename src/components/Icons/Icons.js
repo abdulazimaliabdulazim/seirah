@@ -3,7 +3,7 @@ import React from "react";
 function Icons({ path, viewBox }) {
   return (
     <svg
-      style={{ width: "20px", marginLeft: "5px" }}
+      style={{ width: "18px", margin: "0 5px" }}
       fill="none"
       stroke="currentColor"
       viewBox={viewBox}
@@ -13,6 +13,7 @@ function Icons({ path, viewBox }) {
         strokeLinejoin="round"
         strokeWidth="2"
         d={path}></path>
+      السير الذاتية
     </svg>
   );
 }

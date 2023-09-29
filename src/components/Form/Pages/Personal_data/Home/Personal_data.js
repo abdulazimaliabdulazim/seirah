@@ -1,106 +1,113 @@
 import React, { useState } from "react";
 import style from "./Personal_data.module.css";
-import Checkd from "./Checkd/Checkd";
 import { useDispatch, useSelector } from "react-redux";
 import Upload from "./Upload_img/Upload";
 import Buttom from "../../../Buttom/Buttom";
-import dataPersonal from "../../JSON_date/data_inputs.json";
 import ParentInput from "./ParentInput/ParentInput";
+import Checkd from "./Checkd/Checkd";
+import hendlerData, {
+  getFormValues,
+  sendActionData,
+} from "../../hendlerData/hendlerData";
 
 const Inputs = () => {
+  document.title = "البيانات الشخصية";
   const selector = useSelector((state) => state.value);
   const [halth, setHalth] = useState(false);
-  const [allData] = useState(dataPersonal);
-  allData[10][1][1].nameRad[0].statis = selector[0];
-  allData[10][1][1].nameRad[1].statis = selector[1];
-
-  const [dataPersonals, setDataPersonal] = useState([]);
-
-  const hendlerDataPersonal = (e) => {
-    let idName = e.target.id;
-    setDataPersonal((prev) => {
-      return { ...prev, [idName]: e.target.value };
-    });
-  };
+  const [dataPersonal, setDataPersonal] = useState(
+    getFormValues("dataPersonal", true, false, {
+      city: "",
+      country: "",
+      date: "",
+      email: "",
+      name: "",
+      personal_website: "",
+      nationality: "",
+      overview: "",
+      phone_number: "",
+      position: "",
+      service: "",
+      six: "",
+      tatis_health: "",
+      stits: "",
+      thamnal: "",
+    })
+  );
   // Send Personals Data In Story
   const dispatch = useDispatch();
-  const dindlerAction = () => dispatch({ type: dataPersonals });
-
-  if (dataPersonals.length <= 0) {
-    setDataPersonal(JSON.parse(window.localStorage.getItem("dataPersonal")));
-  }
+  const hindlerAction = () =>
+    dispatch({ type: { dataPersonal: dataPersonal } });
 
   return (
     <div className={style.parent}>
       <div className={style.box}>
-        <ParentInput label={"اسمك"}>
+        <ParentInput forId={"name"} label={"اسمك"}>
           <input
-            onChange={(e) => hendlerDataPersonal(e)}
-            value={dataPersonals.name}
+            onChange={(e) => hendlerData(e, setDataPersonal)}
+            value={dataPersonal.name}
             id="name"
             type="text"
             placeholder="اسمك بالكامل..."
           />
         </ParentInput>
-        <ParentInput label={"مسمى الوظيفة"}>
+        <ParentInput forId={"position"} label={"مسمى الوظيفة"}>
           <input
-            onChange={(e) => hendlerDataPersonal(e)}
+            onChange={(e) => hendlerData(e, setDataPersonal)}
             id="position"
-            value={dataPersonals.position}
+            value={dataPersonal.position}
             type="text"
             placeholder="مسمى الوظيفة"
           />
         </ParentInput>
-        <ParentInput label={"نبذة بسيطة"}>
-          <input
-            onChange={(e) => hendlerDataPersonal(e)}
-            id="overview"
-            value={dataPersonals.overview}
-            type="text"
+        <ParentInput forId={"overview"} label={"نبذة بسيطة"}>
+          <textarea
+            onChange={(e) => hendlerData(e, setDataPersonal)}
+            id="iam"
+            value={dataPersonal.iam}
             placeholder="نبذة بسيطة"
-          />
+            typeof="text"></textarea>
         </ParentInput>
-        <ParentInput label={"تاريخ الميلاد"}>
+        <ParentInput forId={"date"} label={"تاريخ الميلاد"}>
           <input
-            onChange={(e) => hendlerDataPersonal(e)}
+            onChange={(e) => hendlerData(e, setDataPersonal)}
             id="date"
-            value={dataPersonals.date}
+            value={dataPersonal.date}
             type="text"
             placeholder="مثال: 2000/9/23"
           />
         </ParentInput>
-        <ParentInput label={"موقعك الشخصي"}>
+        <ParentInput forId={"personal_website"} label={"موقعك الشخصي"}>
           <input
-            onChange={(e) => hendlerDataPersonal(e)}
+            onChange={(e) => hendlerData(e, setDataPersonal)}
             id="personal_website"
-            value={dataPersonals.personal_website}
+            value={dataPersonal.personal_website}
             type="text"
             placeholder="https://abdulazimaliabdulazim.github.io/Tamplat-3/"
           />
         </ParentInput>
-        <ParentInput label={"المدينة"}>
+        <ParentInput forId={"city"} label={"المدينة"}>
           <input
-            onChange={(e) => hendlerDataPersonal(e)}
+            onChange={(e) => hendlerData(e, setDataPersonal)}
             id="city"
-            value={dataPersonals.city}
+            value={dataPersonal.city}
             type="text"
             placeholder="الرياض"
           />
         </ParentInput>
-        <ParentInput label={"الدولة"}>
+        <ParentInput forId={"country"} label={"الدولة"}>
           <input
-            onChange={(e) => hendlerDataPersonal(e)}
+            onChange={(e) => hendlerData(e, setDataPersonal)}
             id="country"
-            value={dataPersonals.country}
+            value={dataPersonal.country}
             type="text"
             placeholder="مصر"
           />
         </ParentInput>
-        <ParentInput label={"الجنسية"}>
+        <ParentInput forId={"nationality"} label={"الجنسية"}>
           <input
-            onChange={(e) => hendlerDataPersonal(e)}
+            onChange={(e) => hendlerData(e, setDataPersonal)}
             id="nationality"
-            value={dataPersonals.nationality}
+            value={dataPersonal.nationality}
             type="text"
             placeholder="مصري"
           />
@@ -110,59 +117,191 @@ const Inputs = () => {
           para={
             "معلومات تخص بعض الدول العربية، قم بتعبئة ما يتناسب مع قوانين بلدك."
           }></ParentInput>
-        <ParentInput label={"ايميلك"}>
+        <ParentInput forId={"email"} label={"ايميلك"}>
           <input
-            onChange={(e) => hendlerDataPersonal(e)}
+            onChange={(e) => hendlerData(e, setDataPersonal)}
             id="email"
-            value={dataPersonals.email}
+            value={dataPersonal.email}
             type="text"
             placeholder="lybdh295@gmail.com"
           />
         </ParentInput>
-        <ParentInput label={"رقم الجوال"}>
+        <ParentInput forId={"phone_number"} label={"رقم الجوال"}>
           <input
-            onChange={(e) => hendlerDataPersonal(e)}
+            onChange={(e) => hendlerData(e, setDataPersonal)}
             id="phone_number"
-            value={dataPersonals.phone_number}
+            value={dataPersonal.phone_number}
             type="text"
             placeholder="01141629495"
           />
         </ParentInput>
-        {allData[10][1].map((data, ind) => (
-          <Checkd
-            lab={data.labels}
-            nameRad={data.nameRad.map((ele) => ele)}
-            typeRad={data.typeRad}
-            setHalth={setHalth}
-            key={ind}
-            id={data.id}
-            onClick={(e) => console.log(e.target.id)}
-          />
-        ))}
-        <hr />
-        {halth &&
-          allData[10][2].map((data, ind) => (
-            <Checkd
-              lab={data.labels}
-              nameRad={data.nameRad.map((ele) => ele)}
-              typeRad={data.typeRad}
-              setHalth={setHalth}
-              key={ind}
+        <Checkd forID={"six"} label={"الجنس"}>
+          <label onClick={() => dispatch({ type: "رجل" })}>
+            <input
+              onChange={(e) => {
+                hendlerData(e, setDataPersonal);
+              }}
+              value={"رجل"}
+              id="six"
+              type="radio"
+              name="six"
             />
-          ))}
+            رجل
+            <div></div>
+          </label>
+          <label onClick={() => dispatch({ type: "أنثى" })}>
+            <input
+              onChange={(e) => {
+                hendlerData(e, setDataPersonal);
+              }}
+              value={"أنثى"}
+              id="six"
+              type="radio"
+              name="six"
+            />
+            أنثى
+            <div></div>
+          </label>
+        </Checkd>
+        <Checkd forID={"stits"} label={"الحالة الزوجية"}>
+          <label>
+            <input
+              onChange={(e) => hendlerData(e, setDataPersonal)}
+              id="stits"
+              type="radio"
+              name="stits"
+              value={selector[0]}
+            />
+            {selector[0]}
+            <div></div>
+          </label>
+          <label>
+            <input
+              onChange={(e) => hendlerData(e, setDataPersonal)}
+              id="stits"
+              type="radio"
+              name="stits"
+              value={selector[1]}
+            />
+            {selector[1]}
+            <div></div>
+          </label>
+        </Checkd>
+        <Checkd forID={"statis_health"} label={"♿️ الحالة الصحية"}>
+          <label onClick={() => setHalth(false)}>
+            <input
+              onChange={(e) => hendlerData(e, setDataPersonal)}
+              id="statis_health"
+              type="radio"
+              name="statis_health"
+              value={"سليم"}
+            />
+            سليم
+            <div></div>
+          </label>
+          <label onClick={() => setHalth(true)}>
+            <input
+              onChange={(e) => hendlerData(e, setDataPersonal)}
+              id="statis_health"
+              type="radio"
+              name="statis_health"
+              value={"لدي حالة"}
+            />
+            لدي حالة
+            <div></div>
+          </label>
+        </Checkd>
+        {halth && (
+          <Checkd forID={"health"} label={"نوع الحالة الصحية"}>
+            <label>
+              <input
+                onChange={(e) => hendlerData(e, setDataPersonal)}
+                value={"إعاقة حركية"}
+                id="health"
+                type="radio"
+                name="health"
+              />
+              إعاقة حركية
+              <div></div>
+            </label>
+            <label>
+              <input
+                onChange={(e) => hendlerData(e, setDataPersonal)}
+                value={"إعاقة سمعية"}
+                id="health"
+                type="radio"
+                name="health"
+              />
+              إعاقة سمعية
+              <div></div>
+            </label>
+            <label>
+              <input
+                onChange={(e) => hendlerData(e, setDataPersonal)}
+                value={"إعاقة بصرية"}
+                id="health"
+                type="radio"
+                name="health"
+              />
+              إعاقة بصرية
+              <div></div>
+            </label>
+            <label>
+              <input
+                onChange={(e) => hendlerData(e, setDataPersonal)}
+                value={"إعاقة ذهنية"}
+                id="health"
+                type="radio"
+                name="health"
+              />
+              إعاقة ذهنية
+              <div></div>
+            </label>
+            <label>
+              <input
+                onChange={(e) => hendlerData(e, setDataPersonal)}
+                value={"أخرى"}
+                id="health"
+                type="radio"
+                name="health"
+              />
+              أخرى
+              <div></div>
+            </label>
+          </Checkd>
+        )}
+        <Checkd forID={"service"} label={"الخدمة العسكرية"}>
+          <label>
+            <input
+              onChange={(e) => hendlerData(e, setDataPersonal)}
+              id="service"
+              type="radio"
+              name="service"
+              value={"الخدمة العسكرية: تم"}
+            />
+            نعم
+            <div></div>
+          </label>
+          <label>
+            <input
+              onChange={(e) => hendlerData(e, setDataPersonal)}
+              id="service"
+              type="radio"
+              name="service"
+              value={"الخدمة العسكرية: لا"}
+            />
+            لا
+            <div></div>
+          </label>
+        </Checkd>
         <hr />
         <Upload
           text={"الصورة الشخصية"}
-          p={"الصوره يجب ان تكون بحجم 300*300 بكسل"}
-        />
+          p={"الصوره يجب ان تكون بحجم 300*300 بكسل"}></Upload>
         <hr />
         <Buttom
           onClick={() => {
-            dindlerAction();
-            window.localStorage.setItem(
-              "dataPersonal",
-              JSON.stringify(dataPersonals)
-            );
+            sendActionData(hindlerAction, "dataPersonal", dataPersonal);
           }}
           text={"حفظ البيانات الشخصية"}
         />
@@ -172,4 +311,4 @@ const Inputs = () => {
 };
 
 export default Inputs;
-//61
+// Update 326

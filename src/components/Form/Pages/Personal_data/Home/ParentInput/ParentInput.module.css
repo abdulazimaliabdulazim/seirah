@@ -22,8 +22,7 @@
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
 }
-
-.colInput .detulsInput input {
+.colInput .detulsInput input,textarea {
     width: 100%;
     padding: 8px;
     border: 1px solid #33333357;
@@ -33,20 +32,24 @@
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
 }
-.colInput input:focus {
+.colInput input:focus,textarea {
     outline: 2px solid transparent;
     outline-offset: 2px;
     border-color: #a4cafe;
     box-shadow: 0 0 0 3px rgba(164,202,254,.45);
 }
-.colInput .detulsInput input::placeholder {
+.colInput .detulsInput input::placeholder,textarea {
     color: var(--coloring);
     font-size: .90em;
 }
-.colInput .detulsInput input:focus {
+.colInput .detulsInput input:focus,textarea:focus {
     background-color: #ebf5ff;
 }
 .colInput p {
     color: var(--coloring);
     font-size: .875rem;
 }
+label {
+    cursor: pointer;
+}
+

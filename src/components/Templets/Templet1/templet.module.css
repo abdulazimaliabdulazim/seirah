@@ -1,0 +1,98 @@
+.templetOne {
+    background-color: #aa3333;
+    height: 100vh;
+}
+.templetOne .header {
+    background-color: var(--black);
+    color: white;
+}
+.templetOne .header div {
+    display: flex;
+    align-items: center;
+}
+.templetOne .header img {
+    width: 30px;
+    height: 30px;
+    margin: 0 20px;
+}
+.templetOne .header a {
+    color: inherit;
+    margin: 0 20px;
+}
+.templetOne .box {
+    margin-top: 80px;
+    background-color: white;
+    padding: 40px 25px;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    border: 5px solid #852c2c;
+}
+.templetOne .box .colOne {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+.templetOne .box .colOne h1 {
+    margin-bottom: 5px;
+}
+.templetOne .box .colOne span {
+    color: #c81e1e;
+}
+.box .colTwo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px 30px;
+}
+.box .colOne img {
+    border: 4px solid white;
+}
+.box .colOne img {
+    outline: 2px solid #c81e1e;
+}
+.box .colTwo .col span {
+    padding: 10px 0;
+    text-wrap: nowrap;
+}
+.box .colTwo .col svg {
+    width: 15px !important;
+    margin: auto !important;
+}
+.box .colTwo .col span.icon {
+    background-color: #c81e1e;
+    color: white;
+    display: inline-block;
+    width: 10%;
+}
+.box .colTwo .col span {
+    display: inline-block;
+    width: 90%;
+    background-color:  #fdf2f2;
+    color: #73230d;
+    padding-right: 10px;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;  
+}
+.box .colTwo .col:nth-of-type(3) span:last-of-type {
+    direction: ltr;
+    padding-left: 10px;
+    cursor: pointer;
+}
+.box .colTwo .col:nth-of-type(3) span:last-of-type:hover {
+    color: var(--main-background);
+}
+
+
+.textAria {
+    background-color: #fdf2f2;
+    margin: 50px 0;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+.textAria p {
+    font-size: .90rem;
+    font-weight: bold;
+}

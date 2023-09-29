@@ -1,14 +1,13 @@
-.parent {
-    width: 100%;
-    display: flex;
+.section {
+    background-color: #000b76;
+    height: 100vh;
 }
-.child_parent {
+.section .child_parent {
     width: fit-content;
-    position: absolute;
-    bottom: 0;
+    margin-top: 130px;
     font-size: 16px;
 }
-.child_parent a.link {
+.section .child_parent a.link {
     background-color: #1a202e80;
     color: white;
     padding: 4px 6px;
@@ -19,7 +18,7 @@
     -ms-border-radius: 1em;
     -o-border-radius: 1em;
 }
-.child_parent a.link span:first-of-type {
+.section .child_parent a.link span:first-of-type {
     display: inline-block;
     background-color: var(--background-main-alt);
     padding: 2px 15px;
@@ -30,30 +29,29 @@
     -o-border-radius: 10px;
     
 }
-.child_parent a.link span:nth-of-type(2) {
+.section .child_parent a.link span:nth-of-type(2) {
     color: var(--color-ylo);
 }
-
-.child_parent h1 {
+.section .child_parent h1 {
     color: white;
     line-height: 3.5rem;
     font-size: 3em;
 }
-.child_parent h1 span {
+.section .child_parent h1 span {
     color: var(--color-ylo);
 }
-.child_parent ul li {
+.section .child_parent ul li {
     line-height: 1.5rem;
     color: #8da2fb;
     padding: 1px 2px;
     display: flex;
 }
-.child_parent ul li span {
+.section .child_parent ul li span {
     color: var(--color-ylo);
     font-weight: bold;
     margin-right: 5px;
 }
-.child_parent button.butManger {
+.section .child_parent button.butManger {
     background-color: #faca15;
     color: #8e4b10;
     font-size: 1.125em;
@@ -66,14 +64,13 @@
     -ms-transition: var(--transform-s);
     -o-transition: var(--transform-s);
 }
-.child_parent button.butManger:hover {
+.section .child_parent button.butManger:hover {
     background-color: #e3a008;
 }
-
-.parent .image {
+.section .image {
     position: absolute;
     width: 35%;
-    bottom: 0;
+    bottom: 30px;
     left: 100px;
     border-radius: 15px;
     -webkit-border-radius: 15px;
@@ -82,7 +79,7 @@
     -o-border-radius: 15px;
     border: 8px solid var(--color-opacity);
 }
-.parent .image img {
+.section .image img {
     width: 100%;
     border-radius: 8px;
     -webkit-border-radius: 8px;

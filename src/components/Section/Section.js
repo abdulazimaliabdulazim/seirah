@@ -4,10 +4,12 @@ import Container from "../Container/Container";
 import Icons from "../Icons/Icons";
 import img_home from "../../images/home-img/home-image.png";
 import { Link } from "react-router-dom";
+import { useAuth } from "../Auth/Auth";
 
 const Section = () => {
+  const auth = useAuth();
   return (
-    <div className={style.parent}>
+    <div className={style.section}>
       <Container>
         <div className={style.child_parent}>
           <a className={style.link} href="#s">
@@ -48,9 +50,15 @@ const Section = () => {
               <span>مجّاناً</span>.
             </li>
           </ul>
-          <Link to="home-detuls/home-data">
-            <button className={style.butManger}>إدارة سيرك الذاتية</button>
-          </Link>
+          {auth.user === null ? (
+            <Link to="/register">
+              <button className={style.butManger}>أنشئ سيرتك الآن</button>
+            </Link>
+          ) : (
+            <Link to="/dashboard">
+              <button className={style.butManger}>إدارة سيرك الذاتية</button>
+            </Link>
+          )}
         </div>
         <div className={style.image}>
           <img src={img_home} alt="home" />

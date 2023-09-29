@@ -2,10 +2,16 @@ import React from "react";
 import style from "./ParentInput.module.css";
 import Spans from "../Spans/Spans";
 
-const ParentInput = ({ label, hedinSpan = true, children, paraghrap }) => {
+const ParentInput = ({
+  label,
+  hedinSpan = true,
+  children,
+  paraghrap,
+  forId,
+}) => {
   return (
     <div className={style.colInput}>
-      <label>{label}</label>
+      <label htmlFor={forId}>{label}</label>
       <div className={style.detulsInput}>
         {hedinSpan && <Spans />}
         {children}

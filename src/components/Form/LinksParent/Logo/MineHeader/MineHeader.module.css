@@ -7,7 +7,6 @@
 }
 .parent nav {
     display: flex;
-    background-color: white;
 }
 .parent nav a {
     background-color: #e2e8f0;

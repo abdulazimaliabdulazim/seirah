@@ -1,0 +1,106 @@
+.cvs  {
+    background-color: #f1f5f9;
+    font-size: 16px;
+    min-height: 100vh;
+}
+.cvs .listSeirah {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    border-bottom: 1px dashed #cfd8e3;
+    padding: 10px 0;
+}
+.cvs .listSeirah > span {
+    font-size: 1rem;
+    font-weight: bold;
+}
+.cvs .box {
+    margin-top: 15px;
+    color: #64748B;
+}
+.cvs .box .parent {
+    width: 35%;
+    background-color: white;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.cvs .box .parent a.img {
+    display: flex;
+    padding: 15px;
+    color: inherit;
+}
+.cvs .box .parent a.img img {
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    width: 70px;
+    height: 70px;
+}
+.cvs .box .parent a.img h4 {
+    color: black;
+}
+.cvs .box .parent a.img:hover {
+    background-color: #e2e8f0;
+}
+.cvs .box .parent a img {
+    width: 80px;
+    height: 80px;
+    margin-left: 30px;
+}
+.cvs .box .parent p {
+    width: 100%;
+    background-color: #f8fafc;
+    font-size: 12px;
+    padding: 10px;
+}
+.line {
+    background-color: #F8FAFC;
+    padding: 20px;
+    position: relative;
+}
+.line .havi {
+    position: absolute;
+    width: 94%;
+    height: 70%;
+    background-color: #f1f5f9;
+    bottom: 15%;
+    left: 3%;
+}
+.line .havi .infuk {
+    color: white;
+    background-image: linear-gradient(45deg, #9292ff, #2a2a83);
+    height: 100%;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+}
+.pareControl {
+    display: flex;
+    border-top: 2px solid #f1f5f9;
+}
+.pareControl a {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: .8rem;
+    color: inherit;
+    padding: 20px 0;
+    border-right: 2px solid #f1f5f9;
+}
+.pareControl a:hover {
+    color: #1c64f2;
+}
+.col span {
+    font-size: .85rem;
+}

@@ -1,13 +1,20 @@
 .parebtTest {
     width: 300px;
     display: flex;
+    justify-content: space-between;
+}
+.parebtTest .colDate {
+    text-align: center;
+}
+.parebtTest .colDate > span {
+    margin-bottom: 5px;
+    display: block;
 }
 .test {
     background-color: white;
     border: 2px solid #ccc;
-    width: 50px;
+    width: 75px;
     height: 30px;
-    margin: auto;
     position: relative;
     border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -15,7 +22,8 @@
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     text-align: end;
-    padding-left: 14px;
+    padding-left: 8px;
+    z-index: 100;
 }
 .test div.one {
     right: 4px;
@@ -41,7 +49,7 @@
     background-color: gray;
     top: 2px;
 }
-.parentNumberDat {
+.test div {
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -49,9 +57,9 @@
     height: 300px;
     overflow: auto;
     direction: ltr;
-    margin-top: 30px;
+    margin-top: 10px;
 }
-.numberDay {
+.test div span {
     margin: 5px;
     padding: 5px 10px;
     color: black;
@@ -59,6 +67,6 @@
     font-size: 20pX;
     margin-bottom: 10px;
 }
-.numberDay:hover {
+.test div span:hover {
     background-color: var(--background-main-alt);
 }

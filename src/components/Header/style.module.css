@@ -1,69 +1,41 @@
-.parent {
+.header {
+    background-color: #000b76;
+    padding: 20px 0;
+}
+.header div {
     display: flex;
     justify-content: space-between;
 }
-.parent .maniger {
-    /* width: 30vh; */
+.header .maniger {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    flex-direction: row-reverse;
     color: white;
     font-size: 1.25rem;
 }
-.parent .maniger a {
+.header .maniger a {
     transition: .2s;
     -webkit-transition: var(--transform-s);
     -moz-transition: var(--transform-s);
     -ms-transition: var(--transform-s);
     -o-transition: var(--transform-s);
     color: inherit;
-}
-.parent .maniger a:last-of-type:hover {
-    color: var(--color-opacity);
-}
-.parent .maniger a:first-of-type:hover {
-    background-color: #1a56db;
-}
-.parent .maniger a:first-of-type {
-    background-color: #1c64f2;
-    padding: 8px 12px;
-    border-radius: 30px;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
-    margin-left: 20px;
+    padding: 10px 12px;
     font-size: 1rem;
-}
-.parent .logo {
     display: flex;
+    justify-content: center;
     align-items: center;
 }
-.parent .logo h1 {
-    position: relative;
-    color: white;
-    margin-right: 5px
+.header .maniger a:last-of-type {
+    background-color: #233876;
 }
-.parent .logo h1::before {
-    content: '';
-    position: absolute;
-    width: .375rem;
-    height: .375rem;
-    background-color: #faca15;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    top: 50%;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-    left: -10px;
+.header .maniger a:last-of-type:hover {
+    color: var(--color-opacity);
 }
-.parent .logo img {
-    width: 50px;
-    height: 30px;
+.header .maniger a:first-of-type:hover {
+    background-color: #1a56db;
+}
+.header .maniger a:first-of-type {
+    background-color: #1c64f2;
 }

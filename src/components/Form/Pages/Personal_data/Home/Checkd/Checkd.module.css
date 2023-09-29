@@ -1,14 +1,14 @@
-.parent {
+.parentCheckd {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 7px;
 }
-.checkd {
+.parentCheckd .checkd {
     width: 80%;
     background-color: #f4f5f7;
 }
-.col {
+.parentCheckd .checkd .col {
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -16,4 +16,47 @@
     -o-border-radius: 5px;
     display: flex;
     justify-content: flex-start;
+}
+.parentCheckd .checkd .col input[type="radio"] {
+    -webkit-appearance: none;
+    appearance: none;
+}
+.parentCheckd .checkd .col label {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #c3ddfd;
+    width: fit-content !important;
+    height: 38px;
+    border: 2px solid #a4cafe;
+    border-radius: 5px;
+    padding: 0 5px; 
+    flex-direction: row-reverse;
+}
+.parentCheckd .checkd .col label div {
+    width: 15px !important;
+    height: 15px !important;
+    border: 2px solid #eee;
+    position: relative;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    margin-left: 8px;
+    background-color: white;
+}
+.parentCheckd .checkd .col input[type="radio"]:checked + div {
+    border: 2px solid blue;
+    
+}
+.parentCheckd .checkd .col input[type="radio"]:checked + div::before {
+    content: "";
+    position: absolute;
+    width: 76%;
+    height: 76%;
+    background-color: blue;
+    border-radius: 50%;
+    margin-top: 11%;
+    margin-right: 11%;
 }

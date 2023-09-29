@@ -2,55 +2,26 @@ import React, { useState } from "react";
 import style from "./Qualifications.module.css";
 import styleBut from "../../../Buttom/Buttom.module.css";
 import Buttom from "../../../Buttom/Buttom";
-import DateQualifi from "./DateQualifi/DateQualifi";
+import DateQualifi from "../Home/DateQualifi/DateQualifi";
 import { dargItem, dargEnd, dargOver, drop } from "./f_drag_drop/drag_drop";
 import ParentInput from "../../Personal_data/Home/ParentInput/ParentInput";
 import { useDispatch } from "react-redux";
+import hendlerData, {
+  getFormValues,
+  sendActionData,
+} from "../../hendlerData/hendlerData";
+import dataJson from "../../JSON_date/data_inputs.json";
+import { Day, Manth, Yar } from "./DateQualifi/LettersNmbers";
 
-const Qualifications = ({
-  children,
-  addBtu,
-  saveBut,
-  butAdd = true,
-  hedinDate = true,
-}) => {
-  const [dataQualificaions, setDataQualificaions] = useState([]);
-  const hendlerDataQualificaions = (e) => {
-    console.log(e.target.value);
-    let idName = e.target.id;
-    setDataQualificaions((prev) => {
-      return { ...prev, [idName]: e.target.value };
-    });
-  };
-
+const Qualifications = () => {
+  document.title = "المؤهلات العلمية";
+  const [dataQualifi, setDataQualifi] = useState(
+    getFormValues("dataQualifi", true, false, dataJson[1][0])
+  );
   // Send Personals Data In Story
   const dispatch = useDispatch();
-  const dindlerAction = () => dispatch({ type: dataQualificaions });
-
-  if (dataQualificaions.length <= 0) {
-    setDataQualificaions(
-      JSON.parse(window.localStorage.getItem("dataQualificaions"))
-    );
-  }
-
-  let coun = 0;
-  let getCoun = 0;
-  const [isn, sein] = useState([]);
-
-  // console.log(isn[`input${coun++}`]);
-
-  const hen = (e) => {
-    let id = e.target.id;
-    let value = e.target.value;
-    sein((pre) => {
-      return { ...pre, [id]: value };
-    });
-  };
-
-  if (isn.length <= 0) {
-    sein(JSON.parse(window.localStorage.getItem("henQualificaions")));
-  }
-
+  const hindlerAction = () => dispatch({ type: { dataQualifi: dataQualifi } });
+  let coun = [1, 1, 1, 1, 1];
   const createqualifi = (ind) => {
     return (
       <div
@@ -59,6 +30,7 @@ const Qualifications = ({
         onDragOver={(e) => dargOver(e.target)}
         draggable={true}
         className={style.qualificBox}
+        id={ind}
         key={ind}>
         <span className={style.numberQuali}>{ind + 1}</span>
         <div className={style.controlBut}>
@@ -66,31 +38,36 @@ const Qualifications = ({
           <div draggable={true} type="button"></div>
         </div>
         <ParentInput
+          forId={coun[1]++}
           label={"الجهة التعليمية"}
           paraghrap={
             "اسم الجامعة أو الجهة التعليمية التي حصلت على الشهادة منها."
           }>
           <input
-            onChange={(e) => hen(e)}
-            id={coun++}
-            value={isn[getCoun++]}
+            onChange={(e) => hendlerData(e, setDataQualifi)}
+            id={coun[0]++}
+            value={dataQualifi[coun[2]++]}
             type="text"
             placeholder="الجهة التعليمية"
           />
         </ParentInput>
         <ParentInput
+          forId={coun[1]++}
           label={"التخصص"}
           paraghrap={"المجال أو التخصص الذي درسته."}>
           <input
-            onChange={(e) => hendlerDataQualificaions(e)}
-            value={dataQualificaions.specialization}
-            id="specialization"
+            onChange={(e) => hendlerData(e, setDataQualifi)}
+            id={coun[0]++}
+            value={dataQualifi[coun[2]++]}
             type="text"
             placeholder="التخصص"
           />
         </ParentInput>
-        <ParentInput label={"الدرجة العلمية"}>
-          <select id="degree" onChange={(e) => hendlerDataQualificaions(e)}>
+        <ParentInput forId={coun[1]++} label={"الدرجة العلمية"}>
+          <select
+            id={coun[0]++}
+            onChange={(e) => hendlerData(e, setDataQualifi)}
+            value={dataQualifi[coun[2]++]}>
             <option>دكتوراه</option>
             <option>ماجستير</option>
             <option>دبلوم عالي</option>
@@ -102,48 +79,69 @@ const Qualifications = ({
             <option>أخرى</option>
           </select>
         </ParentInput>
+        <DateQualifi forId={coun[1]++} lable={"تاريخ التخرج"}>
+          <div
+            id={`day${coun[3]++}`}
+            onClick={(e) => hendlerData(e, setDataQualifi)}>
+            <Day />
+            {coun[0]++}
+            {coun[2]++}
+          </div>
+          <div
+            id={`manth${coun[3]++}`}
+            onClick={(e) => hendlerData(e, setDataQualifi)}>
+            <Manth />
+          </div>
+          <div
+            id={`yar${coun[3]++}`}
+            onClick={(e) => hendlerData(e, setDataQualifi)}>
+            <Yar />
+          </div>
+          <span>{dataQualifi[`day${coun[4]++}`]}</span>
+          <span>{dataQualifi[`manth${coun[4]++}`]}</span>
+          <span>{dataQualifi[`yar${coun[4]++}`]}</span>
+        </DateQualifi>
         <ParentInput
+          forId={coun[1]++}
           label={"وصف بسيط"}
           paraghrap={"اكتب وصف بسيط عن هذه المرحلة الدارسية (اختياري)"}>
           <input
-            onChange={(e) => hendlerDataQualificaions(e)}
-            value={dataQualificaions.esy}
-            id="esy"
+            onChange={(e) => hendlerData(e, setDataQualifi)}
+            id={coun[0]++}
+            value={dataQualifi[coun[2]++]}
             type="text"
             placeholder="وصف بسيط"
           />
         </ParentInput>
-        {hedinDate && <DateQualifi hendlerQuali={hendlerDataQualificaions} />}
-        {children}
       </div>
     );
   };
-
-  // Click Add Qualification
-  let [qualifiNumber, setQualifiNumber] = useState([0, 1]);
-  const qualifiNumberHendlre = () => setQualifiNumber((pre) => [...pre, 1]);
+  const [qualifiNumber, setQualifiNumber] = useState(
+    getFormValues("countQualifi", false)
+  );
+  const hendlreNum = () => setQualifiNumber((pre) => [...pre, 1]);
 
   return (
     <div onDrop={(e) => drop(e.target)} className={style.parent}>
       <div className={style.box}>
         {qualifiNumber.map((ele, ind) => createqualifi(ind))}
-
         <button
-          onClick={qualifiNumberHendlre}
+          onClick={hendlreNum}
           className={`${style.but} ${styleBut.mani}`}>
-          {addBtu}
+          أضف مؤهل جديد
         </button>
-
         <hr className={style.hr} />
         <Buttom
           onClick={() => {
-            dindlerAction();
-            window.localStorage.setItem(
-              "henQualificaions",
-              JSON.stringify(isn)
+            sendActionData(
+              hindlerAction,
+              "dataQualifi",
+              dataQualifi,
+              "countQualifi",
+              qualifiNumber
             );
           }}
-          text={saveBut}
+          text={"حفظ المؤهلات"}
         />
       </div>
     </div>
@@ -151,4 +149,4 @@ const Qualifications = ({
 };
 
 export default Qualifications;
-//79
+// Update 151

@@ -1,0 +1,51 @@
+header.profile {
+    background-color: #1a202e;
+    color: white;
+    height: 68px;
+    font-size: 16px;
+}
+header.profile > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+header.profile .right {
+    width: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+header.profile .right > a img {
+    width: 35px;
+}
+header.profile .right > a span {
+    font-size: 20px;
+}
+header.profile .right > a span::before {
+    content: "";
+    width: 0;
+    height: 0;
+}
+header.profile .right .icon {
+    display: flex;
+}
+header.profile .right .icon:hover {
+    opacity: .75;
+}
+header.profile .right .icon span {
+    font-size: 1rem;
+}
+header.profile .name_dash {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+header.profile .name_dash > span {
+    margin-left: 15px;
+}
+header.profile .name_dash:hover {
+    opacity: .75;
+}
