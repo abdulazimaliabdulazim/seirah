@@ -7,7 +7,11 @@
     --transform-s: .2s;
     --coloring: #9fa6b2;
     --mine-background:  #000b76;
-    --black: #1a202e
+    --black: #1a202e;
+    --color1: #c81e1e;
+    --color2: #64748b;
+    --color3: #374151;
+    --color4: #9b1c1c;
 }
 * {
     -webkit-box-sizing: border-box;

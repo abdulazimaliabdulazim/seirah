@@ -10,64 +10,48 @@ import hendlerData, {
   getFormValues,
   sendActionData,
 } from "../../hendlerData/hendlerData";
-import dataJson from "../../JSON_date/data_inputs.json";
 import { Day, Manth, Yar } from "./DateQualifi/LettersNmbers";
+import Json from "../../JSON_date/data_inputs.json";
 
 const Qualifications = () => {
   document.title = "المؤهلات العلمية";
-  const [dataQualifi, setDataQualifi] = useState(
-    getFormValues("dataQualifi", true, false, dataJson[1][0])
+  const [qualifi, setQualifi] = useState(
+    getFormValues("qualifi", true, true, "education", "specializat", "esy")
   );
   // Send Personals Data In Story
   const dispatch = useDispatch();
-  const hindlerAction = () => dispatch({ type: { dataQualifi: dataQualifi } });
+  const hindlerAction = () => dispatch({ type: { qualifi: qualifi } });
   let coun = [1, 1, 1, 1, 1];
   const createqualifi = (ind) => {
     return (
-      <div
-        onDragStart={(e) => dargItem(e.target)}
-        onDragEnd={(e) => dargEnd(e.target)}
-        onDragOver={(e) => dargOver(e.target)}
-        draggable={true}
-        className={style.qualificBox}
-        id={ind}
-        key={ind}>
+      <div className={style.qualificBox} id={ind} key={ind}>
         <span className={style.numberQuali}>{ind + 1}</span>
         <div className={style.controlBut}>
           <div type="button"></div>
           <div draggable={true} type="button"></div>
         </div>
-        <ParentInput
-          forId={coun[1]++}
-          label={"الجهة التعليمية"}
-          paraghrap={
-            "اسم الجامعة أو الجهة التعليمية التي حصلت على الشهادة منها."
-          }>
-          <input
-            onChange={(e) => hendlerData(e, setDataQualifi)}
-            id={coun[0]++}
-            value={dataQualifi[coun[2]++]}
-            type="text"
-            placeholder="الجهة التعليمية"
-          />
-        </ParentInput>
-        <ParentInput
-          forId={coun[1]++}
-          label={"التخصص"}
-          paraghrap={"المجال أو التخصص الذي درسته."}>
-          <input
-            onChange={(e) => hendlerData(e, setDataQualifi)}
-            id={coun[0]++}
-            value={dataQualifi[coun[2]++]}
-            type="text"
-            placeholder="التخصص"
-          />
-        </ParentInput>
+        {Json[3].map((input, ind) => {
+          return (
+            <ParentInput
+              key={ind}
+              forId={`${input.id}${coun[1]++}`}
+              label={input.label}
+              paraghrap={input.paraghrap}>
+              <input
+                onChange={(e) => hendlerData(e, setQualifi)}
+                id={`${input.id}${coun[0]++}`}
+                value={qualifi[`${input.id}${coun[2]++}`]}
+                type="text"
+                placeholder={input.label}
+              />
+            </ParentInput>
+          );
+        })}
         <ParentInput forId={coun[1]++} label={"الدرجة العلمية"}>
           <select
             id={coun[0]++}
-            onChange={(e) => hendlerData(e, setDataQualifi)}
-            value={dataQualifi[coun[2]++]}>
+            onChange={(e) => hendlerData(e, setQualifi)}
+            value={qualifi[coun[2]++]}>
             <option>دكتوراه</option>
             <option>ماجستير</option>
             <option>دبلوم عالي</option>
@@ -82,37 +66,31 @@ const Qualifications = () => {
         <DateQualifi forId={coun[1]++} lable={"تاريخ التخرج"}>
           <div
             id={`day${coun[3]++}`}
-            onClick={(e) => hendlerData(e, setDataQualifi)}>
+            onClick={(e) =>
+              hendlerData(e, setQualifi, false, false, true, false)
+            }>
             <Day />
             {coun[0]++}
             {coun[2]++}
           </div>
           <div
             id={`manth${coun[3]++}`}
-            onClick={(e) => hendlerData(e, setDataQualifi)}>
+            onClick={(e) =>
+              hendlerData(e, setQualifi, false, false, true, false)
+            }>
             <Manth />
           </div>
           <div
             id={`yar${coun[3]++}`}
-            onClick={(e) => hendlerData(e, setDataQualifi)}>
+            onClick={(e) =>
+              hendlerData(e, setQualifi, false, false, true, false)
+            }>
             <Yar />
           </div>
-          <span>{dataQualifi[`day${coun[4]++}`]}</span>
-          <span>{dataQualifi[`manth${coun[4]++}`]}</span>
-          <span>{dataQualifi[`yar${coun[4]++}`]}</span>
+          <span>{qualifi[`day${coun[4]++}`]}</span>
+          <span>{qualifi[`manth${coun[4]++}`]}</span>
+          <span>{qualifi[`yar${coun[4]++}`]}</span>
         </DateQualifi>
-        <ParentInput
-          forId={coun[1]++}
-          label={"وصف بسيط"}
-          paraghrap={"اكتب وصف بسيط عن هذه المرحلة الدارسية (اختياري)"}>
-          <input
-            onChange={(e) => hendlerData(e, setDataQualifi)}
-            id={coun[0]++}
-            value={dataQualifi[coun[2]++]}
-            type="text"
-            placeholder="وصف بسيط"
-          />
-        </ParentInput>
       </div>
     );
   };
@@ -135,8 +113,8 @@ const Qualifications = () => {
           onClick={() => {
             sendActionData(
               hindlerAction,
-              "dataQualifi",
-              dataQualifi,
+              "qualifi",
+              qualifi,
               "countQualifi",
               qualifiNumber
             );
@@ -149,4 +127,4 @@ const Qualifications = () => {
 };
 
 export default Qualifications;
-// Update 151
+// Update 129

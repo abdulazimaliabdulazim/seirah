@@ -18,7 +18,9 @@ import hendlerData, {
 
 const Skils = () => {
   document.title = "المهارات";
-  const [dataSkils, setDataSkils] = useState(getFormValues("dataSkils"));
+  const [dataSkils, setDataSkils] = useState(
+    getFormValues("dataSkils", true, true, "skil")
+  );
   // Send Personals Data In Story
   const dispatch = useDispatch();
   const hindlerAction = () => dispatch({ type: { dataSkils: dataSkils } });
@@ -47,8 +49,8 @@ const Skils = () => {
           }>
           <input
             onChange={(e) => hendlerData(e, setDataSkils)}
-            id={coun[0]++}
-            value={dataSkils[coun[1]++]}
+            id={`skil${coun[0]++}`}
+            value={dataSkils[`skil${coun[1]++}`]}
             type="text"
             placeholder="المهارة"
           />
@@ -145,4 +147,4 @@ const Skils = () => {
 };
 
 export default Skils;
-// Update 147
+// Update 149

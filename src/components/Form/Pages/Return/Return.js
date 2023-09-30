@@ -14,15 +14,17 @@ import hendlerData, {
   getFormValues,
   sendActionData,
 } from "../hendlerData/hendlerData";
+import json from "../JSON_date/data_inputs.json";
 
 const Return = () => {
   document.title = "المراجع";
-  const [dataReturn, setDataReturn] = useState(getFormValues("dataReturn"));
+  const [dataReturn, setDataReturn] = useState(
+    getFormValues("dataReturn", true, true, "name", "number_phone", "esy")
+  );
   // Send Personals Data In Story
   const dispatch = useDispatch();
   const hindlerAction = () => dispatch({ type: { dataReturn: dataReturn } });
-  let counter = [1, 1, 1];
-
+  let counter = [1, 1, 1, 1];
   const createqualifi = (ind) => {
     return (
       <div
@@ -37,42 +39,24 @@ const Return = () => {
           <div type="button"></div>
           <div draggable={true} type="button"></div>
         </div>
-        <ParentInput
-          forId={counter[2]++}
-          label={"اسم الشخص"}
-          paraghrap={"اسم الشخص الذي عملت معه، كمرجع وموصي لسؤاله عنك."}>
-          <input
-            onChange={(e) => hendlerData(e, setDataReturn)}
-            id={counter[0]++}
-            value={dataReturn[counter[1]++]}
-            type="text"
-            placeholder="اسم الشخص"
-          />
-        </ParentInput>
-        <ParentInput
-          forId={counter[2]++}
-          label={"رقم الجوال"}
-          paraghrap={"إختياري"}>
-          <input
-            onChange={(e) => hendlerData(e, setDataReturn)}
-            id={counter[0]++}
-            value={dataReturn[counter[1]++]}
-            type="text"
-            placeholder="رقم الجوال"
-          />
-        </ParentInput>
-        <ParentInput
-          forId={counter[2]++}
-          label={"نبذة بسيط"}
-          paraghrap={"نبذة بسيطة عن المشروع أو المنجز (اختياري)."}>
-          <input
-            onChange={(e) => hendlerData(e, setDataReturn)}
-            id={counter[0]++}
-            value={dataReturn[counter[1]++]}
-            type="text"
-            placeholder="نبذة بسيط"
-          />
-        </ParentInput>
+        {json[7].map((input, ind) => {
+          return (
+            <ParentInput
+              key={ind}
+              forId={`${input.id}${counter[1]++}`}
+              label={input.label}
+              paraghrap={input.paraghrap}>
+              <input
+                onChange={(e) => hendlerData(e, setDataReturn)}
+                id={`${input.id}${counter[0]++}`}
+                type="text"
+                placeholder={input.label}
+                className={`${input.id}${counter[2]++}`}
+                value={dataReturn[`${input.id}${counter[3]++}`]}
+              />
+            </ParentInput>
+          );
+        })}
       </div>
     );
   };
@@ -107,4 +91,4 @@ const Return = () => {
 };
 
 export default Return;
-// Update 109
+// Update 93

@@ -3,9 +3,10 @@ import style from "./Logo.module.css";
 import Container from "../../../Container/Container";
 import MineHeader from "./MineHeader/MineHeader";
 import UserImg from "../../../UserImg/UserImg";
+import { useSelector } from "react-redux";
 
 const Logo = () => {
-  const personal = JSON.parse(window.localStorage.getItem("dataPersonal"));
+  const personal = useSelector((state) => state.personal);
 
   return (
     <div className={style.parent}>

@@ -16,7 +16,6 @@ const Register = () => {
     }
   };
   const [userDetuls, setUserDetuls] = useState(detulsUser);
-
   const navigate = useNavigate();
 
   const onSubmitHandler = (e) => {
@@ -62,7 +61,7 @@ const Register = () => {
                 value={userDetuls.password}
                 type="password"
               />
-              <Buttom type="submit">أنشئ الحساب</Buttom>
+              <Buttom>أنشئ الحساب</Buttom>
             </ParentInput>
           </form>
         </div>

@@ -17,7 +17,9 @@ import hendlerData, {
 
 const Hobbies = () => {
   document.title = "الهوايات";
-  const [dataHobbies, setDataHobbies] = useState(getFormValues("dataHobbies"));
+  const [dataHobbies, setDataHobbies] = useState(
+    getFormValues("dataHobbies", true, true, "hobbie")
+  );
   // Send Hobbies Data In Story
   const dispatch = useDispatch();
   const hindlerAction = () => dispatch({ type: { dataHobbies: dataHobbies } });
@@ -38,13 +40,13 @@ const Hobbies = () => {
           <div draggable={true} type="button"></div>
         </div>
         <ParentInput
-          forId={counter[2]++}
+          forId={`hobbie${counter[2]++}`}
           label={"الهواية"}
           paraghrap={"يُفضّل من كلمة إلى 4 كلمات كحد أقصى."}>
           <input
             onChange={(e) => hendlerData(e, setDataHobbies)}
-            id={counter[0]++}
-            value={dataHobbies[counter[1]++]}
+            id={`hobbie${counter[0]++}`}
+            value={dataHobbies[`hobbie${counter[1]++}`]}
             type="text"
             placeholder="الهواية"
           />
@@ -83,4 +85,4 @@ const Hobbies = () => {
 };
 
 export default Hobbies;
-// Update 85
+// Update 87

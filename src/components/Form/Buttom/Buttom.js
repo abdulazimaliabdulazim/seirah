@@ -3,7 +3,7 @@ import style from "./Buttom.module.css";
 
 const Buttom = (props) => {
   return (
-    <button onClick={props.onClick} className={style.mani}>
+    <button type={props.type} onClick={props.onClick} className={style.mani}>
       {props.text}
       {props.children}
     </button>

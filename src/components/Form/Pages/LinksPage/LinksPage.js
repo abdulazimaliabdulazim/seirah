@@ -17,7 +17,9 @@ import hendlerData, {
 
 const LinksPage = () => {
   document.title = "الروابط";
-  const [dataLinks, setDataLinks] = useState(getFormValues("dataLinks"));
+  const [dataLinks, setDataLinks] = useState(
+    getFormValues("dataLinks", true, true, "link", "networck")
+  );
   // Send Links Data In Story
   const dispatch = useDispatch();
   const hindlerAction = () => dispatch({ type: { dataLinks: dataLinks } });
@@ -37,20 +39,20 @@ const LinksPage = () => {
           <div type="button"></div>
           <div draggable={true} type="button"></div>
         </div>
-        <ParentInput forId={counter[2]++} label={"الرابط"}>
+        <ParentInput forId={`link${counter[2]++}`} label={"الرابط"}>
           <input
             onChange={(e) => hendlerData(e, setDataLinks)}
-            id={counter[0]++}
-            value={dataLinks[counter[1]++]}
+            id={`link${counter[0]++}`}
+            value={dataLinks[`link${counter[1]++}`]}
             type="text"
             placeholder="الرابط"
           />
         </ParentInput>
-        <ParentInput forId={counter[2]++} label={"الدرجة العلمية"}>
+        <ParentInput forId={`networck${counter[2]++}`} label={"الشبكة"}>
           <select
-            id={counter[0]++}
+            id={`networck${counter[0]++}`}
             onChange={(e) => hendlerData(e, setDataLinks)}
-            value={dataLinks[counter[1]++]}>
+            value={dataLinks[`networck${counter[1]++}`]}>
             <option>Twitter</option>
             <option>Linkedin</option>
             <option>Facebock</option>
@@ -98,4 +100,4 @@ const LinksPage = () => {
 };
 
 export default LinksPage;
-// Update 100
+// Update 102

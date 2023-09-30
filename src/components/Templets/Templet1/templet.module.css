@@ -61,7 +61,7 @@
     margin: auto !important;
 }
 .box .colTwo .col span.icon {
-    background-color: #c81e1e;
+    background-color: var(--color1);
     color: white;
     display: inline-block;
     width: 10%;
@@ -95,4 +95,72 @@
 .textAria p {
     font-size: .90rem;
     font-weight: bold;
+}
+
+.experiences .space {
+    position: relative;
+}
+.experiences .space::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-image: linear-gradient(to left, var(--color1),#fdf2f2);
+}
+.experiences .space::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: var(--color1);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+}
+
+.experiences .hedin h4 {
+    color: var(--color1);
+}
+
+
+.experiences .detuls {
+    display: flex;
+    padding: 30px 0 0;
+}
+
+.experiences .detuls .date {
+    color: var(--color1);
+    font-weight: bold;
+    margin-left: 50px;
+}
+.experiences .detuls .date svg {
+    width: 15px !important;
+}
+.experiences .detuls .date span {
+    margin-left: 10px;
+}
+.experiences .detuls .info h1 {
+    margin: 0;
+    color: var(--color4);
+    font-size: 20px;
+}
+.experiences .detuls .info p {
+    font-size: 14px;
+}
+.experiences .detuls .info p:first-of-type {
+    color: var(--color2);
+}
+.experiences .detuls .info p:last-of-type {
+    color: var(--color3);
+}
+
+.experiences .parent hr {
+    background-color: #c81e1e63;
 }

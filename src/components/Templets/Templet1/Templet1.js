@@ -21,8 +21,14 @@ const Templet1 = () => {
     country,
     nationality,
   } = useSelector((state) => state.personal);
-  console.log(iam);
+  const experiences = useSelector((state) => state.experiences);
   const pdfRef = useRef();
+  const key = Object.values(experiences).filter((ele) => ele !== "").length / 4;
+
+  for (let i = 1; i <= 20; i = i + 5) {
+    console.log(experiences[`job${i}`]);
+  }
+  console.log(key);
   return (
     <div className={templet.templetOne} ref={pdfRef}>
       <div className={templet.header}>
@@ -135,7 +141,29 @@ const Templet1 = () => {
           </div>
           <div className={templet.experiences}>
             <div className={templet.hedin}>
-              <h3>الخبرات العمليّة</h3>
+              <h4>الخبرات العمليّة</h4>
+            </div>
+            <div className={templet.space}></div>
+            <div className={templet.parent}>
+              <div className={templet.detuls}>
+                <div className={templet.date}>
+                  <Icons
+                    path={
+                      "M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"
+                    }
+                    viewBox={"0 0 24 24"}
+                  />
+                  <span>2023-7-29</span>
+                  <span>-</span>
+                  <span>2022-5-7</span>
+                </div>
+                <div className={templet.info}>
+                  <h1>Smart</h1>
+                  <p>مكتبة لطباعة كتب IG</p>
+                  <p>اسوء ناس</p>
+                </div>
+              </div>
+              <hr />
             </div>
           </div>
         </div>

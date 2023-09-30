@@ -1,13 +1,13 @@
 import { createStore } from "@reduxjs/toolkit";
-const personalLocl = JSON.parse(window.localStorage.getItem("dataPersonal")),
-  qualifiLocl = JSON.parse(window.localStorage.getItem("dataQualificaions")),
-  experiencesLocl = JSON.parse(window.localStorage.getItem("dataExperiences")),
-  coursessLocl = JSON.parse(window.localStorage.getItem("dataCoursess")),
-  skilsLocl = JSON.parse(window.localStorage.getItem("dataSkils")),
-  projectsLocl = JSON.parse(window.localStorage.getItem("dataProjects")),
+const personalLocl = JSON.parse(window.localStorage.getItem("personal")),
+  qualifiLocl = JSON.parse(window.localStorage.getItem("qualifi")),
+  experiencesLocl = JSON.parse(window.localStorage.getItem("experiences")),
+  coursessLocl = JSON.parse(window.localStorage.getItem("coursess")),
+  skilsLocl = JSON.parse(window.localStorage.getItem("skils")),
+  projectsLocl = JSON.parse(window.localStorage.getItem("projects")),
   dReturnLocl = JSON.parse(window.localStorage.getItem("dataReturn")),
-  languagesLocl = JSON.parse(window.localStorage.getItem("dataLanguages")),
-  linksLocl = JSON.parse(window.localStorage.getItem("dataLinksPage")),
+  languagesLocl = JSON.parse(window.localStorage.getItem("dataLanguage")),
+  linksLocl = JSON.parse(window.localStorage.getItem("dataLinks")),
   hobbiesLocl = JSON.parse(window.localStorage.getItem("dataHobbies")),
   addressLocl = JSON.parse(window.localStorage.getItem("dataAddress"));
 
@@ -44,14 +44,6 @@ const initState = {
 };
 
 const dataForm = (state = initState, action) => {
-  // if (action.type.urls) {
-  //   let indexUrls = ulrsPages.indexOf(action.type.urls);
-  //   let nextUrl = ulrsPages[+indexUrls + 1];
-  //   return {
-  //     ...state,
-  //     url: (state.url = nextUrl),
-  //   };
-  // }
   if (action.type.urls === "/home-detuls/home-data") {
     return {
       ...state,
@@ -126,50 +118,50 @@ const dataForm = (state = initState, action) => {
     };
   }
 
-  if (action.type.dataPersonal) {
-    return { ...state, personal: (state.personal = action.type.dataPersonal) };
+  if (action.type.personal) {
+    return { ...state, personal: (state.personal = action.type.personal) };
   }
   if (personalLocl !== null) state.personal = personalLocl;
 
-  if (action.type.dataQualificaions) {
+  if (action.type.qualifi) {
     return {
       ...state,
-      qualificaions: (state.qualificaions = action.type.dataQualificaions),
+      qualificaions: (state.qualificaions = action.type.qualifi),
     };
   }
   if (qualifiLocl !== null) state.qualificaions = qualifiLocl;
-  if (action.type.dataExperiences) {
+  if (action.type.experiences) {
     return {
       ...state,
-      experiences: (state.experiences = action.type.dataExperiences),
+      experiences: (state.experiences = action.type.experiences),
     };
   }
   if (experiencesLocl !== null) state.experiences = experiencesLocl;
-  if (action.type.dataCoursess) {
-    return { ...state, coursess: (state.coursess = action.type.dataCoursess) };
+  if (action.type.coursess) {
+    return { ...state, coursess: (state.coursess = action.type.coursess) };
   }
   if (coursessLocl !== null) state.coursess = coursessLocl;
-  if (action.type.dataSkils) {
-    return { ...state, skils: (state.skils = action.type.dataSkils) };
+  if (action.type.skils) {
+    return { ...state, skils: (state.skils = action.type.skils) };
   }
   if (skilsLocl !== null) state.skils = skilsLocl;
-  if (action.type.dataProjects) {
-    return { ...state, projects: (state.projects = action.type.dataProjects) };
+  if (action.type.projects) {
+    return { ...state, projects: (state.projects = action.type.projects) };
   }
   if (projectsLocl !== null) state.projects = projectsLocl;
   if (action.type.dataReturn) {
     return { ...state, dReturn: (state.dReturn = action.type.dataReturn) };
   }
   if (dReturnLocl !== null) state.dReturn = dReturnLocl;
-  if (action.type.dataLanguages) {
+  if (action.type.dataLanguage) {
     return {
       ...state,
-      languages: (state.languages = action.type.dataLanguages),
+      languages: (state.languages = action.type.dataLanguage),
     };
   }
   if (languagesLocl !== null) state.languages = languagesLocl;
-  if (action.type.dataLinksPage) {
-    return { ...state, links: (state.links = action.type.dataLinksPage) };
+  if (action.type.dataLinks) {
+    return { ...state, links: (state.links = action.type.dataLinks) };
   }
   if (linksLocl !== null) state.links = linksLocl;
   if (action.type.dataHobbies) {

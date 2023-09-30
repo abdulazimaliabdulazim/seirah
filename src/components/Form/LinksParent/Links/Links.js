@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import style from "./Links.module.css";
 import Container from "../../../Container/Container";
 
@@ -8,18 +8,18 @@ const Links = () => {
     <header className={style.parent}>
       <Container>
         <nav>
-          <Link to="">
+          <NavLink to="/dashboard/cvs/home-detuls">
             <span>بيانات السيرة</span>
-          </Link>
-          <Link to="#">
+          </NavLink>
+          <NavLink to="/dashboard/cvs/ahome-detuls">
             <span>التصميم</span>
-          </Link>
-          <Link to="#">
+          </NavLink>
+          <NavLink to="/dashboard/cvs/hosadme-detuls">
             <span>تحميل ومشاركة</span>
-          </Link>
-          <Link to="#">
+          </NavLink>
+          <NavLink to="/dashboard/cvs/home-sddetuls">
             <span>تخصيص</span>
-          </Link>
+          </NavLink>
         </nav>
       </Container>
     </header>

@@ -20,14 +20,14 @@ import jsonD from "../JSON_date/data_inputs.json";
 const Language = () => {
   document.title = "اللغات";
   const [dataLanguage, setDataLanguage] = useState(
-    getFormValues("dataLanguage")
+    getFormValues("dataLanguage", true, true, "lang", "levelLang")
   );
   // Send Personals Data In Story
   const dispatch = useDispatch();
   const hindlerAction = () =>
     dispatch({ type: { dataLanguage: dataLanguage } });
-  let counter = [1, 1, 1, 1];
-  let checkd = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+  let counter = [1, 1, 1, 1],
+    checkd = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
   const createqualifi = (ind) => {
     return (
@@ -43,15 +43,18 @@ const Language = () => {
             <div type="button"></div>
             <div draggable={true} type="button"></div>
           </div>
-          <ParentInput forId={counter[2]++} hedinSpan={false} label={"اللغة"}>
+          <ParentInput
+            forId={`lang${counter[2]++}`}
+            hedinSpan={false}
+            label={"اللغة"}>
             <input
               onChange={(e) => hendlerData(e, setDataLanguage)}
-              id={counter[0]++}
+              id={`lang${counter[0]++}`}
               list="brow"
-              value={dataLanguage[counter[1]++]}
+              value={dataLanguage[`lang${counter[1]++}`]}
             />
             <datalist id={"brow"}>
-              {jsonD[2].map((lang, ind) => {
+              {jsonD[1].map((lang, ind) => {
                 return <option key={ind} value={lang} />;
               })}
             </datalist>
@@ -173,4 +176,4 @@ const Language = () => {
 };
 
 export default Language;
-// Update 175
+// Update 178

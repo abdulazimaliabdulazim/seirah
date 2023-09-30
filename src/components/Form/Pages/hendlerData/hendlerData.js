@@ -1,17 +1,46 @@
 import clickInTop from "../../../Functionalty/funs";
-import dataJson from "../JSON_date/data_inputs.json";
+export const generatNmaeObj = (a, b, c, d) => {
+  const nameObj = {};
+  for (let i = 1; i <= 5; i++) {
+    nameObj[a + `${[i]}`] = "";
+    nameObj[b + `${[i]}`] = "";
+    nameObj[c + `${[i]}`] = "";
+    nameObj[d + `${[i]}`] = "";
+  }
+  return nameObj;
+};
+
+export const generaatdNmaeObj = (a, b, c, d) => {
+  let arr = [];
+  for (let i = 1; i <= 5; i++) {
+    const nameObj = {};
+    nameObj[a + `${[i]}`] = "";
+    nameObj[b + `${[i]}`] = "";
+    nameObj[c + `${[i]}`] = "";
+    arr.push(nameObj);
+  }
+  return arr;
+};
+export const finalObjInDate = generaatdNmaeObj(
+  "education",
+  "specializat",
+  "esy"
+);
 
 export const getFormValues = (
   nameLocal,
   empty = true,
   check = true,
+  name1,
+  name2,
+  name3,
   objData
 ) => {
   const dataInLocal = window.localStorage.getItem(nameLocal);
   if (!dataInLocal) {
     if (empty === true) {
       if (check === true) {
-        return dataJson[1][0];
+        return generatNmaeObj(name1, name2, name3);
       } else {
         return objData;
       }
@@ -67,5 +96,4 @@ const hendlerData = (
   });
 };
 export default hendlerData;
-
-//  !== "" ? id :
+// 81
