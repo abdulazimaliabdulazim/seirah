@@ -1,27 +1,26 @@
 import React, { useState } from "react";
 import style from "./Qualifications.module.css";
-import styleBut from "../../../Buttom/Buttom.module.css";
-import Buttom from "../../../Buttom/Buttom";
 import DateQualifi from "../Home/DateQualifi/DateQualifi";
-import { dargItem, dargEnd, dargOver, drop } from "./f_drag_drop/drag_drop";
 import ParentInput from "../../Personal_data/Home/ParentInput/ParentInput";
-import { useDispatch } from "react-redux";
-import hendlerData, {
-  getFormValues,
-  sendActionData,
-} from "../../hendlerData/hendlerData";
+import hendlerData, { getFormValues } from "../../hendlerData/hendlerData";
 import { Day, Manth, Yar } from "./DateQualifi/LettersNmbers";
 import Json from "../../JSON_date/data_inputs.json";
+import UsePages from "../../UsePage/UsePages";
 
 const Qualifications = () => {
+  let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5];
   document.title = "المؤهلات العلمية";
-  const [qualifi, setQualifi] = useState(
-    getFormValues("qualifi", true, true, "education", "specializat", "esy")
+  const [qualification, setQualification] = useState(
+    getFormValues(
+      "qualification",
+      true,
+      true,
+      coun[coun.length - 1],
+      "education",
+      "specializat",
+      "esy"
+    )
   );
-  // Send Personals Data In Story
-  const dispatch = useDispatch();
-  const hindlerAction = () => dispatch({ type: { qualifi: qualifi } });
-  let coun = [1, 1, 1, 1, 1];
   const createqualifi = (ind) => {
     return (
       <div className={style.qualificBox} id={ind} key={ind}>
@@ -34,97 +33,77 @@ const Qualifications = () => {
           return (
             <ParentInput
               key={ind}
-              forId={`${input.id}${coun[1]++}`}
+              forId={
+                input.id === "education"
+                  ? `${input.id}${coun[11]++}`
+                  : input.id === "specializat"
+                  ? `${input.id}${coun[12]++}`
+                  : `${input.id}${coun[13]++}`
+              }
               label={input.label}
               paraghrap={input.paraghrap}>
               <input
-                onChange={(e) => hendlerData(e, setQualifi)}
-                id={`${input.id}${coun[0]++}`}
-                value={qualifi[`${input.id}${coun[2]++}`]}
+                onChange={(e) => hendlerData(e, setQualification)}
+                id={
+                  input.id === "education"
+                    ? `${input.id}${coun[5]++}`
+                    : input.id === "specializat"
+                    ? `${input.id}${coun[6]++}`
+                    : `${input.id}${coun[7]++}`
+                }
+                value={
+                  input.id === "education"
+                    ? qualification[`${input.id}${coun[8]++}`]
+                    : input.id === "specializat"
+                    ? qualification[`${input.id}${coun[9]++}`]
+                    : qualification[`${input.id}${coun[10]++}`]
+                }
                 type="text"
                 placeholder={input.label}
               />
             </ParentInput>
           );
         })}
-        <ParentInput forId={coun[1]++} label={"الدرجة العلمية"}>
+        <ParentInput forId={`degree${coun[1]++}`} label={"الدرجة العلمية"}>
           <select
-            id={coun[0]++}
-            onChange={(e) => hendlerData(e, setQualifi)}
-            value={qualifi[coun[2]++]}>
-            <option>دكتوراه</option>
-            <option>ماجستير</option>
-            <option>دبلوم عالي</option>
-            <option>بكالوريوس</option>
-            <option>ليسانس</option>
-            <option>دبلوم</option>
-            <option>المرحلة الثانوية أو ما يعادلها</option>
-            <option>المرحلة المتوسطة</option>
-            <option>أخرى</option>
+            id={`degree${coun[0]++}`}
+            onChange={(e) => hendlerData(e, setQualification)}
+            value={qualification[`degree${coun[2]++}`]}>
+            {Json[8].map((option, ind) => {
+              return <option key={ind}>{option}</option>;
+            })}
           </select>
         </ParentInput>
         <DateQualifi forId={coun[1]++} lable={"تاريخ التخرج"}>
-          <div
-            id={`day${coun[3]++}`}
-            onClick={(e) =>
-              hendlerData(e, setQualifi, false, false, true, false)
-            }>
-            <Day />
-            {coun[0]++}
-            {coun[2]++}
-          </div>
-          <div
-            id={`manth${coun[3]++}`}
-            onClick={(e) =>
-              hendlerData(e, setQualifi, false, false, true, false)
-            }>
-            <Manth />
-          </div>
-          <div
-            id={`yar${coun[3]++}`}
-            onClick={(e) =>
-              hendlerData(e, setQualifi, false, false, true, false)
-            }>
-            <Yar />
-          </div>
-          <span>{qualifi[`day${coun[4]++}`]}</span>
-          <span>{qualifi[`manth${coun[4]++}`]}</span>
-          <span>{qualifi[`yar${coun[4]++}`]}</span>
+          <Day id={`day${coun[3]++}`} state={setQualification} />
+          <Manth id={`manth${coun[4]++}`} state={setQualification} />
+          <Yar id={`yar${coun[14]++}`} state={setQualification} />
+          <span>{qualification[`day${coun[15]++}`]}</span>
+          <span>{qualification[`manth${coun[16]++}`]}</span>
+          <span>{qualification[`yar${coun[17]++}`]}</span>
+          {coun[0]++}
+          {coun[2]++}
         </DateQualifi>
       </div>
     );
   };
   const [qualifiNumber, setQualifiNumber] = useState(
-    getFormValues("countQualifi", false)
+    getFormValues("qualifiNumber", false)
   );
-  const hendlreNum = () => setQualifiNumber((pre) => [...pre, 1]);
-
   return (
-    <div onDrop={(e) => drop(e.target)} className={style.parent}>
-      <div className={style.box}>
-        {qualifiNumber.map((ele, ind) => createqualifi(ind))}
-        <button
-          onClick={hendlreNum}
-          className={`${style.but} ${styleBut.mani}`}>
-          أضف مؤهل جديد
-        </button>
-        <hr className={style.hr} />
-        <Buttom
-          onClick={() => {
-            sendActionData(
-              hindlerAction,
-              "qualifi",
-              qualifi,
-              "countQualifi",
-              qualifiNumber
-            );
-          }}
-          text={"حفظ المؤهلات"}
-        />
-      </div>
-    </div>
+    <UsePages
+      state={qualification}
+      naState={"qualification"}
+      state2={qualifiNumber}
+      naState2={"qualifiNumber"}
+      setState2={setQualifiNumber}
+      b1={"أضف مؤهل جديد"}
+      b2={"حفظ المؤهلات"}
+      numbCol={coun[coun.length - 1]}>
+      {qualifiNumber.map((ele, ind) => createqualifi(ind))}
+    </UsePages>
   );
 };
 
 export default Qualifications;
-// Update 129
+// Update 129 => 101

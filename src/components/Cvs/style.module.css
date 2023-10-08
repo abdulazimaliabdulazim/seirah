@@ -60,16 +60,16 @@
 }
 .line {
     background-color: #F8FAFC;
-    padding: 20px;
+    padding: 20px 0;
     position: relative;
 }
 .line .havi {
     position: absolute;
-    width: 94%;
+    width: 96%;
     height: 70%;
     background-color: #f1f5f9;
     bottom: 15%;
-    left: 3%;
+    margin: 0 2%;
 }
 .line .havi .infuk {
     color: white;

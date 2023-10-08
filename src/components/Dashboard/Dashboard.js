@@ -8,17 +8,30 @@ import Icons from "../Icons/Icons";
 import { useSelector } from "react-redux";
 
 const Dashboard = () => {
-  const { name } = useSelector((state) => state.personal);
+  const dateNew = new Date().getDate();
+  const personal = useSelector((state) => state.personal);
+  const [{ name }, { date }] = useSelector((state) => state.detulsUser);
+
   return (
     <Fragment>
       <Profile />
       <div className={style.detulsPersonal}>
         <Container>
           <div className={style.detuls}>
-            <UserImg width="60px" radius="50%" />
+            <UserImg
+              srcImg={personal !== null ? personal.srcImg1 : ""}
+              width="60px"
+              radius="50%"
+            />
             <div className={style.box}>
               <h2>
-                <span>أهلاً</span> {name} 🖐
+                <span>أهلاً</span>{" "}
+                {personal !== null
+                  ? personal.name !== ""
+                    ? personal.name
+                    : name
+                  : name}{" "}
+                🖐
               </h2>
               <div className={style.name}>
                 <div className={style.date}>
@@ -28,7 +41,7 @@ const Dashboard = () => {
                     }
                     viewBox={"0 0 24 24"}
                   />
-                  <span>عضو منذ 7 أشهر</span>
+                  <span>{`عضو منذ ${dateNew - date} يوم`}</span>
                 </div>
                 <div className={style.paca}>
                   <Icons

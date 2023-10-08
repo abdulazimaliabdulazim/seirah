@@ -1,11 +1,16 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
+import hendlerData from "../Form/Pages/hendlerData/hendlerData";
 import img from "../../images/user.png";
 
-const UserImg = ({ hidden = false, width = "70px", radius = "0" }) => {
-  const srcLocal = window.localStorage.getItem("src");
-  const [scrIma, setScr] = useState(!srcLocal ? img : srcLocal);
+const UserImg = ({
+  hidden = false,
+  width = "70px",
+  radius = "0",
+  srcImg,
+  setState,
+}) => {
   // Get Image In Users
-  const uploadImage = () => {
+  const uploadImage = (e) => {
     const upload = document.createElement("input");
     upload.type = "file";
     upload.click();
@@ -13,10 +18,15 @@ const UserImg = ({ hidden = false, width = "70px", radius = "0" }) => {
       const newFiles = new FileReader();
       newFiles.readAsDataURL(upload.files[0]);
       newFiles.onload = () => {
-        setScr(newFiles.result);
-        window.localStorage.setItem("src", newFiles.result);
+        hendlerData(e, setState, false, false, false, false, newFiles.result);
       };
     };
+  };
+  // Check For Image
+  const checkForImg = () => {
+    if (srcImg === "" || srcImg === undefined) {
+      return img;
+    } else return srcImg;
   };
   return (
     <Fragment>
@@ -26,13 +36,11 @@ const UserImg = ({ hidden = false, width = "70px", radius = "0" }) => {
           height: width,
           borderRadius: radius,
         }}
-        src={scrIma}
-        onLoad={(e) => setScr(e.target.src)}
+        src={checkForImg()}
         alt="img"
-        id="thamnal"
       />
       {hidden && (
-        <button onClick={uploadImage} type="button">
+        <button onClick={(e) => uploadImage(e)} type="button">
           تغيير الصورة
         </button>
       )}

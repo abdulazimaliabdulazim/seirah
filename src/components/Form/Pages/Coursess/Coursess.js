@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Buttom from "../../Buttom/Buttom";
 import DateQualifi from "../Qualifications/Home/DateQualifi/DateQualifi";
 import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
 import {
@@ -8,30 +7,30 @@ import {
   dargOver,
   drop,
 } from "../Qualifications/Home/f_drag_drop/drag_drop";
-import { useDispatch } from "react-redux";
 import style from "../Qualifications/Home/Qualifications.module.css";
-import styleBut from "../../Buttom/Buttom.module.css";
-import hendlerData, {
-  getFormValues,
-  sendActionData,
-} from "../hendlerData/hendlerData";
+import hendlerData, { getFormValues } from "../hendlerData/hendlerData";
 import {
   Day,
   Manth,
   Yar,
 } from "../Qualifications/Home/DateQualifi/LettersNmbers";
 import json from "../JSON_date/data_inputs.json";
+import UsePages from "../UsePage/UsePages";
 
 const Coursess = () => {
+  let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5];
   document.title = "الدورات التدريبية";
   const [coursess, setCoursess] = useState(
-    getFormValues("coursess", true, true, "cours", "mantur", "esy")
+    getFormValues(
+      "coursess",
+      true,
+      true,
+      coun[coun.length - 1],
+      "cours",
+      "mantur",
+      "esy"
+    )
   );
-  // Send Coursess Data In Story
-  const dispatch = useDispatch();
-  const hindlerAction = () => dispatch({ type: { date: coursess } });
-  let counter = [1, 1, 1, 1, 1, 1, 1];
-
   const createqualifi = (ind) => {
     return (
       <div className={style.qualificBox} key={ind}>
@@ -44,78 +43,64 @@ const Coursess = () => {
           return (
             <ParentInput
               key={ind}
-              forId={`${input.id}${counter[1]++}`}
+              forId={
+                input.id === "cours"
+                  ? `${input.id}${coun[0]++}`
+                  : input.id === "mantur"
+                  ? `${input.id}${coun[1]++}`
+                  : `${input.id}${coun[2]++}`
+              }
               label={input.label}
               paraghrap={input.paraghrap}>
               <input
-                onChange={(e) => hendlerData(e, setCoursess)}
-                id={`${input.id}${counter[0]++}`}
+                id={
+                  input.id === "cours"
+                    ? `${input.id}${coun[3]++}`
+                    : input.id === "mantur"
+                    ? `${input.id}${coun[4]++}`
+                    : `${input.id}${coun[5]++}`
+                }
+                value={
+                  input.id === "cours"
+                    ? coursess[`${input.id}${coun[6]++}`]
+                    : input.id === "mantur"
+                    ? coursess[`${input.id}${coun[7]++}`]
+                    : coursess[`${input.id}${coun[8]++}`]
+                }
                 type="text"
                 placeholder={input.label}
-                className={`${input.id}${counter[2]++}`}
-                value={coursess[`${input.id}${counter[3]++}`]}
+                className={`${input.id}${coun[9]++}`}
+                onChange={(e) => hendlerData(e, setCoursess)}
               />
             </ParentInput>
           );
         })}
-        <DateQualifi forId={counter[4]++} lable={"تاريخها"}>
-          <div
-            id={`day${counter[5]++}`}
-            onClick={(e) =>
-              hendlerData(e, setCoursess, false, false, true, false)
-            }>
-            <Day />
-            {counter[0]++}
-          </div>
-          <div
-            id={`manth${counter[5]++}`}
-            onClick={(e) =>
-              hendlerData(e, setCoursess, false, false, true, false)
-            }>
-            <Manth />
-          </div>
-          <div
-            id={`yar${counter[5]++}`}
-            onClick={(e) =>
-              hendlerData(e, setCoursess, false, false, true, false)
-            }>
-            <Yar />
-          </div>
-          <span>{coursess[`day${counter[6]++}`]}</span>
-          <span>{coursess[`manth${counter[6]++}`]}</span>
-          <span>{coursess[`yar${counter[6]++}`]}</span>
+        <DateQualifi forId={coun[10]++} lable={"تاريخها"}>
+          <Day id={`day${coun[11]++}`} state={setCoursess} />
+          <Manth id={`manth${coun[12]++}`} state={setCoursess} />
+          <Yar id={`yar${coun[13]++}`} state={setCoursess} />
+          <span>{coursess[`day${coun[14]++}`]}</span>
+          <span>{coursess[`manth${coun[15]++}`]}</span>
+          <span>{coursess[`yar${coun[16]++}`]}</span>
         </DateQualifi>
       </div>
     );
   };
-  // Click Add Coursess
-  let [count, setCount] = useState(getFormValues("countCours", false));
-  const hendlreNum = () => setCount((pre) => [...pre, 1]);
-
+  let [coursessNumber, setCoursessNum] = useState(
+    getFormValues("coursessNumber", false)
+  );
   return (
-    <div onDrop={(e) => drop(e.target)} className={style.parent}>
-      <div className={style.box}>
-        {count.map((ele, ind) => createqualifi(ind))}
-        <button
-          onClick={hendlreNum}
-          className={`${style.but} ${styleBut.mani}`}>
-          أضف خبرة جديدة
-        </button>
-        <hr className={style.hr} />
-        <Buttom
-          onClick={() => {
-            sendActionData(
-              hindlerAction,
-              "coursess",
-              coursess,
-              "countCours",
-              count
-            );
-          }}
-          text={"حفظ الخبرات"}
-        />
-      </div>
-    </div>
+    <UsePages
+      state={coursess}
+      naState={"coursess"}
+      state2={coursessNumber}
+      naState2={"coursessNumber"}
+      setState2={setCoursessNum}
+      b1={"أضف دورة جديدة"}
+      b2={"حفظ الدورات"}
+      numbCol={coun[coun.length - 1]}>
+      {coursessNumber.map((ele, ind) => createqualifi(ind))}
+    </UsePages>
   );
 };
 

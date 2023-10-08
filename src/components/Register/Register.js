@@ -1,34 +1,48 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import style from "./style.module.css";
 import LogoHeader from "../Header/LogoHeader/LogoHeader";
-import { Link, createSearchParams, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ParentInput from "../Form/Pages/Personal_data/Home/ParentInput/ParentInput";
 import Buttom from "../Form/Buttom/Buttom";
+import json from "../Form/Pages/JSON_date/data_inputs.json";
+import hendlerData, {
+  generatorId,
+  getFormValues,
+  openLink,
+} from "../Form/Pages/hendlerData/hendlerData";
+import { useDispatch } from "react-redux";
+import { counterActions } from "../../sliceStores/sliceTwo";
 
 const Register = () => {
-  let emptyUser = { name: "", password: "" };
-  const detulsUser = () => {
-    let getuser = window.localStorage.getItem("userDetuls");
-    if (getuser) {
-      return JSON.parse(getuser);
-    } else {
-      return emptyUser;
-    }
-  };
-  const [userDetuls, setUserDetuls] = useState(detulsUser);
-  const navigate = useNavigate();
+  const date = new Date().getDate();
+  const [userDetuls, setUserDetuls] = useState(
+    getFormValues(
+      "detulsUser",
+      true,
+      false,
+      0,
+      "",
+      "",
+      "",
+      {
+        name: "",
+        password: "",
+      },
+      false
+    )
+  );
 
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-    window.localStorage.setItem("userDetuls", JSON.stringify(userDetuls));
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const arryOfObjectData = [userDetuls, { date: date }, { id: generatorId }];
+
+  const onSubmit = (e) => {
+    window.localStorage.setItem("detulsUser", JSON.stringify(arryOfObjectData));
+    dispatch(counterActions.detulsUser(arryOfObjectData));
     navigate("/dashboard", { replace: true });
   };
-  const hendlerInput = (e) => {
-    let id = e.target.id;
-    setUserDetuls((prev) => {
-      return { ...prev, [id]: e.target.value };
-    });
-  };
+
   return (
     <div className={style.register}>
       <div className={style.parent}>
@@ -42,26 +56,30 @@ const Register = () => {
           </div>
         </div>
         <div className={style.login}>
-          <form onSubmit={(e) => onSubmitHandler(e)}>
+          <form>
             <ParentInput hedinSpan={false}>
-              <label htmlFor="name">اسمك</label>
-              <input
-                required
-                onChange={(e) => hendlerInput(e)}
-                id={"name"}
-                value={userDetuls.name}
-                type="text"
-              />
-              <label htmlFor="password">كلمة المرور</label>
-              <input
-                autoComplete="offoff"
-                required
-                onChange={(e) => hendlerInput(e)}
-                id={"password"}
-                value={userDetuls.password}
-                type="password"
-              />
-              <Buttom>أنشئ الحساب</Buttom>
+              {json[10].map((input, ind) => {
+                return (
+                  <Fragment key={ind}>
+                    <label htmlFor={input.id}>اسمك</label>
+                    <input
+                      autoComplete={userDetuls[input.id].toString()}
+                      required
+                      onChange={(e) => hendlerData(e, setUserDetuls)}
+                      id={input.id}
+                      type={input.type}
+                      value={userDetuls[input.id]}
+                    />
+                  </Fragment>
+                );
+              })}
+              <Buttom
+                onClick={(e) => {
+                  onSubmit(e);
+                  openLink("/dashboard", "_self");
+                }}>
+                أنشئ الحساب
+              </Buttom>
             </ParentInput>
           </form>
         </div>

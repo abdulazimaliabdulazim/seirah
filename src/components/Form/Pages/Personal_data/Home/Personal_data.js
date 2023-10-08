@@ -10,13 +10,15 @@ import hendlerData, {
   sendActionData,
 } from "../../hendlerData/hendlerData";
 import json from "../../JSON_date/data_inputs.json";
+import { counterActions } from "../../../../../sliceStores/sliceTwo";
+import { useNavigate } from "react-router-dom";
 
 const Inputs = () => {
   document.title = "البيانات الشخصية";
   const selector = useSelector((state) => state.value);
   const [halth, setHalth] = useState(false);
   const [personal, setPersonal] = useState(
-    getFormValues("personal", true, false, "", "", "", {
+    getFormValues("personal", true, false, 0, "", "", "", {
       city: "",
       country: "",
       date: "",
@@ -31,13 +33,16 @@ const Inputs = () => {
       six: "",
       tatis_health: "",
       stits: "",
-      thamnal: "",
+      srcImg1: "",
+      address: "",
     })
   );
 
+  const navigator = useNavigate();
+
   // Send Personals Data In Story
   const dispatch = useDispatch();
-  const hindlerAction = () => dispatch({ type: { personal: personal } });
+  const hindlerAction = () => dispatch(counterActions.personal(personal));
   return (
     <div className={style.parent}>
       <div className={style.box}>
@@ -58,7 +63,7 @@ const Inputs = () => {
             </ParentInput>
           );
         })}
-        <ParentInput forId={"overview"} label={"نبذة بسيطة"}>
+        <ParentInput forId={"iam"} label={"نبذة بسيطة"}>
           <textarea
             onChange={(e) => hendlerData(e, setPersonal)}
             id="iam"
@@ -67,7 +72,7 @@ const Inputs = () => {
             typeof="text"></textarea>
         </ParentInput>
         <Checkd forID={"six"} label={"الجنس"}>
-          <label onClick={() => dispatch({ type: "رجل" })}>
+          <label onClick={() => dispatch(counterActions.man())}>
             <input
               onChange={(e) => {
                 hendlerData(e, setPersonal);
@@ -80,7 +85,7 @@ const Inputs = () => {
             رجل
             <div></div>
           </label>
-          <label onClick={() => dispatch({ type: "أنثى" })}>
+          <label onClick={() => dispatch(counterActions.famil())}>
             <input
               onChange={(e) => {
                 hendlerData(e, setPersonal);
@@ -227,12 +232,17 @@ const Inputs = () => {
         </Checkd>
         <hr />
         <Upload
+          id={`srcImg1`}
           text={"الصورة الشخصية"}
-          p={"الصوره يجب ان تكون بحجم 300*300 بكسل"}></Upload>
+          p={"الصوره يجب ان تكون بحجم 300*300 بكسل"}
+          setState={setPersonal}
+          srcImg={personal.srcImg1}
+        />
         <hr />
         <Buttom
           onClick={() => {
             sendActionData(hindlerAction, "personal", personal);
+            navigator("/dashboard/cvs/data/qualifications");
           }}
           text={"حفظ البيانات الشخصية"}
         />

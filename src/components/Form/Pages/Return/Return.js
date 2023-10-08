@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import style from "../Qualifications/Home/Qualifications.module.css";
-import styleBut from "../../Buttom/Buttom.module.css";
-import Buttom from "../../Buttom/Buttom";
 import {
   dargItem,
   dargEnd,
@@ -9,22 +7,24 @@ import {
   drop,
 } from "../Qualifications/Home/f_drag_drop/drag_drop";
 import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
-import { useDispatch } from "react-redux";
-import hendlerData, {
-  getFormValues,
-  sendActionData,
-} from "../hendlerData/hendlerData";
+import hendlerData, { getFormValues } from "../hendlerData/hendlerData";
 import json from "../JSON_date/data_inputs.json";
+import UsePages from "../UsePage/UsePages";
 
 const Return = () => {
+  let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3];
   document.title = "المراجع";
   const [dataReturn, setDataReturn] = useState(
-    getFormValues("dataReturn", true, true, "name", "number_phone", "esy")
+    getFormValues(
+      "return",
+      true,
+      true,
+      coun[coun.length - 1],
+      "name",
+      "number_phone",
+      "esy"
+    )
   );
-  // Send Personals Data In Story
-  const dispatch = useDispatch();
-  const hindlerAction = () => dispatch({ type: { dataReturn: dataReturn } });
-  let counter = [1, 1, 1, 1];
   const createqualifi = (ind) => {
     return (
       <div
@@ -43,16 +43,33 @@ const Return = () => {
           return (
             <ParentInput
               key={ind}
-              forId={`${input.id}${counter[1]++}`}
+              forId={
+                input.id === "job"
+                  ? `${input.id}${coun[1]++}`
+                  : input.id === "jobTitle"
+                  ? `${input.id}${coun[2]++}`
+                  : `${input.id}${coun[3]++}`
+              }
               label={input.label}
               paraghrap={input.paraghrap}>
               <input
                 onChange={(e) => hendlerData(e, setDataReturn)}
-                id={`${input.id}${counter[0]++}`}
                 type="text"
                 placeholder={input.label}
-                className={`${input.id}${counter[2]++}`}
-                value={dataReturn[`${input.id}${counter[3]++}`]}
+                id={
+                  input.id === "job"
+                    ? `${input.id}${coun[4]++}`
+                    : input.id === "jobTitle"
+                    ? `${input.id}${coun[5]++}`
+                    : `${input.id}${coun[6]++}`
+                }
+                value={
+                  input.id === "job"
+                    ? dataReturn[`${input.id}${coun[7]++}`]
+                    : input.id === "jobTitle"
+                    ? dataReturn[`${input.id}${coun[8]++}`]
+                    : dataReturn[`${input.id}${coun[9]++}`]
+                }
               />
             </ParentInput>
           );
@@ -60,33 +77,21 @@ const Return = () => {
       </div>
     );
   };
-  // Click Add Qualification
-  let [count, setCount] = useState(getFormValues("countRetu", false));
-  const hendlreNum = () => setCount((pre) => [...pre, 1]);
+  let [returnNumber, setReturnNumber] = useState(
+    getFormValues("returnNumber", false)
+  );
   return (
-    <div onDrop={(e) => drop(e.target)} className={style.parent}>
-      <div className={style.box}>
-        {count.map((ele, ind) => createqualifi(ind))}
-        <button
-          onClick={hendlreNum}
-          className={`${style.but} ${styleBut.mani}`}>
-          {"أضف شخص جديد"}
-        </button>
-        <hr className={style.hr} />
-        <Buttom
-          onClick={() => {
-            sendActionData(
-              hindlerAction,
-              "dataReturn",
-              dataReturn,
-              "countRetu",
-              count
-            );
-          }}
-          text={"حفظ المراجع"}
-        />
-      </div>
-    </div>
+    <UsePages
+      state={dataReturn}
+      naState={"return"}
+      state2={returnNumber}
+      naState2={"returnNumber"}
+      setState2={setReturnNumber}
+      b1={"أضف شخص جديد"}
+      b2={"حفظ المراجع"}
+      numbCol={coun[coun.length - 1]}>
+      {returnNumber.map((ele, ind) => createqualifi(ind))}
+    </UsePages>
   );
 };
 

@@ -15,11 +15,11 @@
 .register .continer p a {
     color: var(--color-ylo);
 }
-.register .parent form div {
+.register .parent .login div {
     width: 95% !important;
     background-color: #fff;
 }
-.register .parent form div input {
+.register .parent .login div input {
     margin: 10px 0;
     width: 90%;
     display: block;

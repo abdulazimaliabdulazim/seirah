@@ -16,6 +16,9 @@
     display: flex;
     align-items: center;
 }
+.parent .child .box .detuls h1 {
+    margin: 5px 0;
+}
 .parent .child .logo img {
     width: 80px;
     height: 80px;

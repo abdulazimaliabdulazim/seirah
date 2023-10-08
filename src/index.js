@@ -4,7 +4,7 @@ import App from "./App/APP";
 import "normalize.css";
 import "./index.css";
 import { Provider } from "react-redux";
-import sliceStares from "./sliceStores/sliceStores";
+import sliceStares from "./sliceStores/sliceTwo";
 
 createRoot(document.getElementById("root")).render(
   <Provider store={sliceStares}>

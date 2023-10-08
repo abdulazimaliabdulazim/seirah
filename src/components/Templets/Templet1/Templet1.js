@@ -6,31 +6,69 @@ import logo from "../../../images/logo.png";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Icons from "../../Icons/Icons";
+import { outbotValuesArrayInMineObjectPages } from "../../Form/Pages/hendlerData/hendlerData";
+import dawnloadPdf from "../../../Framework/pdf";
 
 const Templet1 = () => {
-  const {
-    name,
-    position,
-    phone_number,
-    email,
-    iam,
-    personal_website,
-    six,
-    date,
-    stits,
-    country,
-    nationality,
-  } = useSelector((state) => state.personal);
-  const experiences = useSelector((state) => state.experiences);
   const pdfRef = useRef();
-  const key = Object.values(experiences).filter((ele) => ele !== "").length / 4;
 
-  for (let i = 1; i <= 20; i = i + 5) {
-    console.log(experiences[`job${i}`]);
-  }
-  console.log(key);
+  const {
+      name,
+      position,
+      phone_number,
+      email,
+      iam,
+      personal_website,
+      six,
+      date,
+      stits,
+      country,
+      nationality,
+      srcImg1,
+    } = useSelector((state) => state.personal),
+    experiences = useSelector((state) => state.experiences),
+    qualifications = useSelector((state) => state.qualifications),
+    coursess = useSelector((state) => state.coursess),
+    projects = useSelector((state) => state.projects),
+    address = useSelector((state) => state.address);
+
+  const experiencesFinal = [];
+  outbotValuesArrayInMineObjectPages(
+    experiencesFinal,
+    experiences,
+    "job",
+    "jobTitle",
+    "esy"
+  );
+  const qualificationsFinal = [];
+  outbotValuesArrayInMineObjectPages(
+    qualificationsFinal,
+    qualifications,
+    "education",
+    "specializat",
+    "esy",
+    "degree"
+  );
+  const coursessFinal = [];
+  outbotValuesArrayInMineObjectPages(
+    coursessFinal,
+    coursess,
+    "cours",
+    "mantur",
+    "esy",
+    ""
+  );
+  const projectsFinal = [];
+  outbotValuesArrayInMineObjectPages(
+    projectsFinal,
+    projects,
+    "name",
+    "link",
+    "brief"
+  );
+
   return (
-    <div className={templet.templetOne} ref={pdfRef}>
+    <div id="faund" className={templet.templetOne} ref={pdfRef}>
       <div className={templet.header}>
         <Container>
           <img src={logo} alt="logo" />
@@ -41,7 +79,7 @@ const Templet1 = () => {
       <Container>
         <div className={templet.box}>
           <div className={templet.colOne}>
-            <UserImg radius="50%" width="80px" />
+            <UserImg srcImg={srcImg1} radius="50%" width="80px" />
             <h1>{name}</h1>
             <span>{position}</span>
           </div>
@@ -78,7 +116,9 @@ const Templet1 = () => {
                   viewBox={"0 0 24 24"}
                 />
               </span>
-              <span>{personal_website}</span>
+              <a href={personal_website} target="_blanck">
+                <span>{personal_website}</span>
+              </a>
             </div>
             <div className={templet.col}>
               <span className={templet.icon}>
@@ -139,31 +179,133 @@ const Templet1 = () => {
           <div className={templet.textAria}>
             <p>{iam}</p>
           </div>
-          <div className={templet.experiences}>
+          <div className={templet.pacedg}>
             <div className={templet.hedin}>
-              <h4>الخبرات العمليّة</h4>
+              <h3>الخبرات العمليّة</h3>
             </div>
             <div className={templet.space}></div>
             <div className={templet.parent}>
-              <div className={templet.detuls}>
-                <div className={templet.date}>
-                  <Icons
-                    path={
-                      "M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"
-                    }
-                    viewBox={"0 0 24 24"}
-                  />
-                  <span>2023-7-29</span>
-                  <span>-</span>
-                  <span>2022-5-7</span>
-                </div>
-                <div className={templet.info}>
-                  <h1>Smart</h1>
-                  <p>مكتبة لطباعة كتب IG</p>
-                  <p>اسوء ناس</p>
-                </div>
-              </div>
-              <hr />
+              {experiencesFinal.map((ele, ind) => {
+                return (
+                  <div key={ind} className={templet.detuls}>
+                    <div className={templet.date}>
+                      <Icons
+                        path={
+                          "M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"
+                        }
+                        viewBox={"0 0 24 24"}
+                      />
+                      <span>{ele.dateTwo.reverse().join("-")}</span>
+                      <span>-</span>
+                      <span>{ele.dateOne.reverse().join("-")}</span>
+                    </div>
+                    <div className={templet.info}>
+                      <h1>{ele.job}</h1>
+                      <p>{ele.jobTitle}</p>
+                      <p>{ele.esy}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className={templet.pacedg}>
+            <div className={templet.hedin}>
+              <h3>المؤهلات العلميّة</h3>
+            </div>
+            <div className={templet.space}></div>
+            <div className={templet.parent}>
+              {qualificationsFinal.map((ele, ind) => {
+                return (
+                  <div key={ind} className={templet.detuls}>
+                    {ele.education !== "" && (
+                      <div className={templet.date}>
+                        <Icons
+                          path={
+                            "M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"
+                          }
+                          viewBox={"0 0 24 24"}
+                        />
+                        <span>{ele.dateOne.reverse().join("-")}</span>
+                      </div>
+                    )}
+                    <div className={templet.info}>
+                      <h1>{ele.education}</h1>
+                      <p>{ele.specializat}</p>
+                      <p>{ele.esy}</p>
+                      <p>{ele.degree}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className={templet.pacedg}>
+            <div className={templet.hedin}>
+              <h3>الدورات التدريبية</h3>
+            </div>
+            <div className={templet.space}></div>
+            <div className={templet.parent}>
+              {coursessFinal.map((ele, ind) => {
+                return (
+                  <div key={ind} className={templet.detuls}>
+                    <div className={templet.date}>
+                      <Icons
+                        path={
+                          "M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"
+                        }
+                        viewBox={"0 0 24 24"}
+                      />
+                      <span>{ele.dateOne.reverse().join("-")}</span>
+                    </div>
+                    <div className={templet.info}>
+                      <h1>{ele.cours}</h1>
+                      <p>{ele.mantur}</p>
+                      <p>{ele.esy}</p>
+                    </div>
+                    <hr />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className={templet.pacedg}>
+            <div className={templet.hedin}>
+              <h3>العنوان الوطني</h3>
+            </div>
+            <div className={templet.space}></div>
+            <div className={templet.parent}>
+              <p className={templet.address}>{address.address}</p>
+            </div>
+          </div>
+          <div className={templet.pacedg}>
+            <div className={templet.hedin}>
+              <h3>الإنجازات والمشاريع</h3>
+            </div>
+            <div className={templet.space}></div>
+            <div className={templet.parent}>
+              {projectsFinal.map((ele, ind) => {
+                return (
+                  <div key={ind} className={templet.detuls}>
+                    <div className={templet.date}>
+                      <Icons
+                        path={
+                          "M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"
+                        }
+                        viewBox={"0 0 24 24"}
+                      />
+                      <span>{ele.dateOne.reverse().join("-")}</span>
+                    </div>
+                    <div className={templet.info}>
+                      <a href={ele.link}>
+                        <h1>{ele.name}</h1>
+                      </a>
+                      <p>{ele.brief}</p>
+                    </div>
+                    <hr />
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

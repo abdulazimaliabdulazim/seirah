@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import style from "../Qualifications/Home/Qualifications.module.css";
 import Buttom from "../../Buttom/Buttom";
 import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import hendlerData, {
   getFormValues,
   sendActionData,
@@ -10,9 +10,9 @@ import hendlerData, {
 
 const Address = () => {
   document.title = "العنوان";
-  const [dataAddress, setDataAddress] = useState(getFormValues("dataAddress"));
+  const [address, setAddress] = useState(getFormValues("address"));
   const dispatch = useDispatch();
-  const hindlerAction = () => dispatch({ type: { dataAddress: dataAddress } });
+  const hindlerAction = () => dispatch({ type: { address } });
   return (
     <div className={style.parent}>
       <div className={style.box}>
@@ -27,9 +27,9 @@ const Address = () => {
             label={"العنوان الوطني"}
             paraghrap={"تفاصيل العنوان الوطني"}>
             <input
-              onChange={(e) => hendlerData(e, setDataAddress)}
+              onChange={(e) => hendlerData(e, setAddress)}
               id={"address"}
-              value={dataAddress.address}
+              value={address.address}
               type="text"
               placeholder="العنوان الوطني"
             />
@@ -37,7 +37,7 @@ const Address = () => {
         </div>
         <Buttom
           onClick={() => {
-            sendActionData(hindlerAction, "dataAddress", dataAddress);
+            sendActionData(hindlerAction, "address", address);
           }}
           text={"حفظ العنوان الوطني"}
         />

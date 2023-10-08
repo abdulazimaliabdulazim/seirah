@@ -1,6 +1,5 @@
 .templetOne {
     background-color: #aa3333;
-    height: 100vh;
 }
 .templetOne .header {
     background-color: var(--black);
@@ -69,6 +68,7 @@
 .box .colTwo .col span {
     display: inline-block;
     width: 90%;
+    height: 38px;
     background-color:  #fdf2f2;
     color: #73230d;
     padding-right: 10px;
@@ -97,17 +97,18 @@
     font-weight: bold;
 }
 
-.experiences .space {
+
+.pacedg .space {
     position: relative;
 }
-.experiences .space::before {
+.pacedg .space::before {
     content: "";
     position: absolute;
     width: 100%;
     height: 2px;
     background-image: linear-gradient(to left, var(--color1),#fdf2f2);
 }
-.experiences .space::after {
+.pacedg .space::after {
     content: "";
     position: absolute;
     width: 12px;
@@ -124,43 +125,51 @@
     -ms-transform: translateY(-50%);
     -o-transform: translateY(-50%);
 }
-
-.experiences .hedin h4 {
+.pacedg .hedin h3 {
     color: var(--color1);
+    font-size: 22px;
 }
-
-
-.experiences .detuls {
+.pacedg .detuls {
     display: flex;
     padding: 30px 0 0;
 }
-
-.experiences .detuls .date {
+.pacedg .detuls:not(.pacedg .detuls:last-of-type) {
+    border-bottom: 2px solid  #c81e1e31;
+}
+.pacedg .detuls .date {
     color: var(--color1);
     font-weight: bold;
     margin-left: 50px;
 }
-.experiences .detuls .date svg {
+.pacedg .detuls .date svg {
     width: 15px !important;
 }
-.experiences .detuls .date span {
+.pacedg .detuls .date span {
     margin-left: 10px;
 }
-.experiences .detuls .info h1 {
+.pacedg .detuls .info h1 {
     margin: 0;
     color: var(--color4);
     font-size: 20px;
 }
-.experiences .detuls .info p {
+.pacedg .detuls .info h1:hover {
+    color: #3f83f8;
+}
+.pacedg .detuls .info p {
     font-size: 14px;
 }
-.experiences .detuls .info p:first-of-type {
+.pacedg .detuls .info p:first-of-type {
     color: var(--color2);
 }
-.experiences .detuls .info p:last-of-type {
+.pacedg .detuls .info p:last-of-type {
     color: var(--color3);
 }
-
-.experiences .parent hr {
+.pacedg .parent hr {
     background-color: #c81e1e63;
+}
+
+.box .pacedg .parent p.address {
+    color: #4b5563;
+    padding: 30px 0;
+    font-weight: bold;
 }

@@ -53,3 +53,22 @@ label {
     cursor: pointer;
 }
 
+.colInput .detulsInput .spans {
+    position: absolute;
+    direction: ltr;
+    margin-bottom: 8px;
+    color: var(--coloring);
+    cursor: pointer;
+    top: 10px;
+    left: 10px;
+}
+.colInput .detulsInput .spans span:last-of-type {
+    margin-left: 10px;
+    background-color: white;
+    padding: 0 2px;
+    color: var(--background-main-alt);
+}
+.colInput .detulsInput .spans span:hover {
+    color: var(--background-main-alt);
+}
+

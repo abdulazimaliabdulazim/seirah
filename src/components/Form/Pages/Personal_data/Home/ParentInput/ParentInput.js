@@ -13,7 +13,7 @@ const ParentInput = ({
     <div className={style.colInput}>
       <label htmlFor={forId}>{label}</label>
       <div className={style.detulsInput}>
-        {hedinSpan && <Spans />}
+        {hedinSpan && <Spans className={style.spans} />}
         {children}
         <p>{paraghrap}</p>
       </div>

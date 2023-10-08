@@ -1,7 +1,5 @@
 import React, { Fragment, useState } from "react";
 import style from "../Qualifications/Home/Qualifications.module.css";
-import styleBut from "../../Buttom/Buttom.module.css";
-import Buttom from "../../Buttom/Buttom";
 import {
   dargItem,
   dargEnd,
@@ -9,26 +7,27 @@ import {
   drop,
 } from "../Qualifications/Home/f_drag_drop/drag_drop";
 import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
-import { useDispatch } from "react-redux";
 import Checkd from "../Personal_data/Home/Checkd/Checkd";
 import hendlerData, {
   getFormValues,
   sendActionData,
 } from "../hendlerData/hendlerData";
 import jsonD from "../JSON_date/data_inputs.json";
+import UsePages from "../UsePage/UsePages";
 
-const Language = () => {
+const Languages = () => {
+  let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3];
   document.title = "اللغات";
-  const [dataLanguage, setDataLanguage] = useState(
-    getFormValues("dataLanguage", true, true, "lang", "levelLang")
+  const [languages, setLanguages] = useState(
+    getFormValues(
+      "languages",
+      true,
+      true,
+      coun[coun.length - 1],
+      "lang",
+      "levelLang"
+    )
   );
-  // Send Personals Data In Story
-  const dispatch = useDispatch();
-  const hindlerAction = () =>
-    dispatch({ type: { dataLanguage: dataLanguage } });
-  let counter = [1, 1, 1, 1],
-    checkd = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-
   const createqualifi = (ind) => {
     return (
       <Fragment key={ind}>
@@ -44,14 +43,14 @@ const Language = () => {
             <div draggable={true} type="button"></div>
           </div>
           <ParentInput
-            forId={`lang${counter[2]++}`}
+            forId={`lang${coun[12]++}`}
             hedinSpan={false}
             label={"اللغة"}>
             <input
-              onChange={(e) => hendlerData(e, setDataLanguage)}
-              id={`lang${counter[0]++}`}
+              id={`lang${coun[10]++}`}
+              value={languages[`lang${coun[11]++}`]}
+              onChange={(e) => hendlerData(e, setLanguages)}
               list="brow"
-              value={dataLanguage[`lang${counter[1]++}`]}
             />
             <datalist id={"brow"}>
               {jsonD[1].map((lang, ind) => {
@@ -59,58 +58,58 @@ const Language = () => {
               })}
             </datalist>
           </ParentInput>
-          <Checkd forID={`levelLang${counter[3]++}`} label={"مستواك بها"}>
+          <Checkd forID={`levelLang${coun[13]++}`} label={"مستواك بها"}>
             <label className={style.parent_tog}>
               <input
-                onChange={(e) => hendlerData(e, setDataLanguage)}
+                onChange={(e) => hendlerData(e, setLanguages)}
                 value={"مبتدئ"}
-                id={`levelLang${checkd[0]++}`}
+                id={`levelLang${coun[0]++}`}
                 type="radio"
-                name={`health${checkd[1]++}`}
+                name={`health${coun[1]++}`}
               />
               مبتدئ
               <div className={style.tog}></div>
             </label>
             <label className={style.parent_tog}>
               <input
-                onChange={(e) => hendlerData(e, setDataLanguage)}
+                onChange={(e) => hendlerData(e, setLanguages)}
                 value={"محدود"}
-                id={`levelLang${checkd[2]++}`}
+                id={`levelLang${coun[2]++}`}
                 type="radio"
-                name={`health${checkd[3]++}`}
+                name={`health${coun[3]++}`}
               />
               محدود
               <div className={style.tog}></div>
             </label>
             <label className={style.parent_tog}>
               <input
-                onChange={(e) => hendlerData(e, setDataLanguage)}
+                onChange={(e) => hendlerData(e, setLanguages)}
                 value={"إجادة تامة في حدود العمل"}
-                id={`levelLang${checkd[4]++}`}
+                id={`levelLang${coun[4]++}`}
                 type="radio"
-                name={`health${checkd[5]++}`}
+                name={`health${coun[5]++}`}
               />
               إجادة تامة في حدود العمل
               <div className={style.tog}></div>
             </label>
             <label className={style.parent_tog}>
               <input
-                onChange={(e) => hendlerData(e, setDataLanguage)}
+                onChange={(e) => hendlerData(e, setLanguages)}
                 value={"إجادة كاملة"}
-                id={`levelLang${checkd[6]++}`}
+                id={`levelLang${coun[6]++}`}
                 type="radio"
-                name={`health${checkd[7]++}`}
+                name={`health${coun[7]++}`}
               />
               إجادة كاملة
               <div className={style.tog}></div>
             </label>
             <label className={style.parent_tog}>
               <input
-                onChange={(e) => hendlerData(e, setDataLanguage)}
+                onChange={(e) => hendlerData(e, setLanguages)}
                 value={"اللغة الأم"}
-                id={`levelLang${checkd[8]++}`}
+                id={`levelLang${coun[8]++}`}
                 type="radio"
-                name={`health${checkd[9]++}`}
+                name={`health${coun[9]++}`}
               />
               اللغة الأم
               <div className={style.tog}></div>
@@ -120,19 +119,19 @@ const Language = () => {
       </Fragment>
     );
   };
-  // Click Add Qualification
-  let [count, setCount] = useState(getFormValues("countLang", false));
-  const hendlreNum = () => setCount((pre) => [...pre, 1]);
+  let [languagesNumber, setLanguagesNumber] = useState(
+    getFormValues("languagesNumber", false)
+  );
   return (
     <div onDrop={(e) => drop(e.target)} className={style.parent}>
-      <div className={style.box}>
+      <div className={style.signlanguages}>
         🤘 ✊
         <Checkd label={"هل تتحدث لغة الإشارة؟"}>
           <label className={style.parent_tog}>
             <input
-              onChange={(e) => hendlerData(e, setDataLanguage)}
+              onChange={(e) => hendlerData(e, setLanguages)}
               value={"نعم"}
-              id="signLanguage"
+              id="signlanguages"
               type="radio"
               name="sign"
             />
@@ -141,9 +140,9 @@ const Language = () => {
           </label>
           <label className={style.parent_tog}>
             <input
-              onChange={(e) => hendlerData(e, setDataLanguage)}
+              onChange={(e) => hendlerData(e, setLanguages)}
               value={"لا"}
-              id="signLanguage"
+              id="signlanguages"
               type="radio"
               name="sign"
             />
@@ -151,29 +150,21 @@ const Language = () => {
             <div className={style.tog}></div>
           </label>
         </Checkd>
-        {count.map((ele, ind) => createqualifi(ind))}
-        <button
-          onClick={hendlreNum}
-          className={`${style.but} ${styleBut.mani}`}>
-          {"أضف لغة جديدة"}
-        </button>
-        <hr className={style.hr} />
-        <Buttom
-          onClick={() => {
-            sendActionData(
-              hindlerAction,
-              "dataLanguage",
-              dataLanguage,
-              "countLang",
-              count
-            );
-          }}
-          text={"حفظ اللغات"}
-        />
       </div>
+      <UsePages
+        state={languages}
+        naState={"languages"}
+        state2={languagesNumber}
+        naState2={"languagesNumber"}
+        setState2={setLanguagesNumber}
+        b1={"أضف لغة جديدة"}
+        b2={"حفظ اللغات"}
+        numbCol={coun[coun.length - 1]}>
+        {languagesNumber.map((ele, ind) => createqualifi(ind))}
+      </UsePages>
     </div>
   );
 };
 
-export default Language;
+export default Languages;
 // Update 178

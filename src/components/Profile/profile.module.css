@@ -30,6 +30,14 @@ header.profile .right > a span::before {
 }
 header.profile .right .icon {
     display: flex;
+    background-color: #1a56db;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
 }
 header.profile .right .icon:hover {
     opacity: .75;

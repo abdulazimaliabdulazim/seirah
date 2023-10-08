@@ -9,6 +9,7 @@ import LogoHeader from "./LogoHeader/LogoHeader";
 const Header = () => {
   const auth = useAuth();
   const nullUser = auth.user === null;
+
   return (
     <div className={style.header}>
       <Container>
@@ -21,7 +22,7 @@ const Header = () => {
           <a
             onClick={() => {
               auth.logout();
-              window.localStorage.removeItem("userDetuls");
+              window.localStorage.removeItem("detulsUser");
             }}
             href="#a">
             <Icons
@@ -30,7 +31,7 @@ const Header = () => {
               }
               viewBox={"0 0 24 24"}
             />
-            {auth.user === null ? "دخول" : "خروج"}
+            {nullUser ? "دخول" : "خروج"}
           </a>
         </div>
       </Container>

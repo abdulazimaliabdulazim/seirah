@@ -7,18 +7,27 @@ import { useSelector } from "react-redux";
 
 const Logo = () => {
   const personal = useSelector((state) => state.personal);
-
+  const [{ name }] = useSelector((state) => state.detulsUser);
   return (
     <div className={style.parent}>
       <div className={style.child}>
         <Container>
           <div className={style.box}>
             <div className={style.logo}>
-              <UserImg radius={"50%"} />
+              <UserImg
+                srcImg={personal !== null ? personal.srcImg1 : ""}
+                radius={"50%"}
+              />
             </div>
             <div className={style.detuls}>
-              <h1>{personal === null ? "مستخدم جديد" : personal.name}</h1>
-              <span>{personal === null ? "مجهول" : personal.position}</span>
+              <h1>
+                {personal !== null
+                  ? personal.name !== ""
+                    ? personal.name
+                    : name
+                  : name}
+              </h1>
+              <span>{personal !== null ? personal.position : "مجهول"}</span>
             </div>
           </div>
         </Container>

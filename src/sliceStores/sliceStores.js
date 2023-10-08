@@ -1,6 +1,6 @@
 import { createStore } from "@reduxjs/toolkit";
 const personalLocl = JSON.parse(window.localStorage.getItem("personal")),
-  qualifiLocl = JSON.parse(window.localStorage.getItem("qualifi")),
+  qualifiLocl = JSON.parse(window.localStorage.getItem("qualification")),
   experiencesLocl = JSON.parse(window.localStorage.getItem("experiences")),
   coursessLocl = JSON.parse(window.localStorage.getItem("coursess")),
   skilsLocl = JSON.parse(window.localStorage.getItem("skils")),
@@ -8,8 +8,9 @@ const personalLocl = JSON.parse(window.localStorage.getItem("personal")),
   dReturnLocl = JSON.parse(window.localStorage.getItem("dataReturn")),
   languagesLocl = JSON.parse(window.localStorage.getItem("dataLanguage")),
   linksLocl = JSON.parse(window.localStorage.getItem("dataLinks")),
-  hobbiesLocl = JSON.parse(window.localStorage.getItem("dataHobbies")),
-  addressLocl = JSON.parse(window.localStorage.getItem("dataAddress"));
+  hobbiesLocl = JSON.parse(window.localStorage.getItem("hobbies")),
+  addressLocl = JSON.parse(window.localStorage.getItem("address")),
+  detulsUserLocl = JSON.parse(window.localStorage.getItem("detulsUser"));
 
 const ulrsPages = [
   "/home-detuls/home-data",
@@ -24,13 +25,15 @@ const ulrsPages = [
   "/home-detuls/hobbies",
   "/home-detuls/address",
 ];
+console.log(addressLocl);
 
 const initState = {
   value: [" أعزب", "متزوج"],
   url: "/home-detuls/qualifications",
+  detulsUser: "",
   textPage: "معلومات الشخصية, وبيانات الإتصال الضرورية",
-  personal: "",
-  qualificaions: "",
+  personal: "sdggd",
+  qualification: "",
   experiences: "",
   coursess: "",
   skils: "",
@@ -42,7 +45,6 @@ const initState = {
   address: "",
   nextUrl: "",
 };
-
 const dataForm = (state = initState, action) => {
   if (action.type.urls === "/home-detuls/home-data") {
     return {
@@ -118,18 +120,26 @@ const dataForm = (state = initState, action) => {
     };
   }
 
+  if (action.type.detulsUser) {
+    return {
+      ...state,
+      detulsUser: (state.detulsUser = action.type.detulsUser),
+    };
+  }
+  if (detulsUserLocl !== null) state.detulsUser = detulsUserLocl;
+
   if (action.type.personal) {
     return { ...state, personal: (state.personal = action.type.personal) };
   }
   if (personalLocl !== null) state.personal = personalLocl;
 
-  if (action.type.qualifi) {
+  if (action.type.qualification) {
     return {
       ...state,
-      qualificaions: (state.qualificaions = action.type.qualifi),
+      qualificaions: (state.qualification = action.type.qualification),
     };
   }
-  if (qualifiLocl !== null) state.qualificaions = qualifiLocl;
+  if (qualifiLocl !== null) state.qualification = qualifiLocl;
   if (action.type.experiences) {
     return {
       ...state,
@@ -164,20 +174,21 @@ const dataForm = (state = initState, action) => {
     return { ...state, links: (state.links = action.type.dataLinks) };
   }
   if (linksLocl !== null) state.links = linksLocl;
-  if (action.type.dataHobbies) {
-    return { ...state, hobbies: (state.hobbies = action.type.dataHobbies) };
+  if (action.type.hobbies) {
+    return { ...state, hobbies: (state.hobbies = action.type.hobbies) };
   }
   if (hobbiesLocl !== null) state.hobbies = hobbiesLocl;
-  if (action.type.dataAddress) {
-    return { ...state, address: (state.address = action.type.dataAddress) };
+
+  if (action.type.address) {
+    return { ...state, address: (state.address = action.type.address) };
   }
-  if (addressLocl !== null) state.address = hobbiesLocl;
+  if (addressLocl !== null) state.address = addressLocl;
 
   if (action.type === "رجل") {
-    return { value: (state.value = [" أعزب", "متزوج"]) };
+    return { ...state, value: (state.value = [" أعزب", "متزوج"]) };
   }
   if (action.type === "أنثى") {
-    return { value: (state.value = [" آنسة", " متزوجة"]) };
+    return { ...state, value: (state.value = [" آنسة", " متزوجة"]) };
   }
 
   return state;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "./style.module.css";
 import Container from "../Container/Container";
 import { Link } from "react-router-dom";
@@ -7,10 +7,12 @@ import Icons from "../Icons/Icons";
 import UserImg from "../UserImg/UserImg";
 import Profile from "../Profile/Profile";
 import { useSelector } from "react-redux";
+import Progress from "./Progress/Progress";
 
 const Cvs = () => {
-  const { name } = useSelector((state) => state.personal);
-  const [progress, setProgress] = useState("15%");
+  const personal = useSelector((state) => state.personal);
+  const [{ name }] = useSelector((state) => state.detulsUser);
+
   return (
     <div className={style.cvs}>
       <Profile />
@@ -21,22 +23,35 @@ const Cvs = () => {
         </div>
         <div className={style.box}>
           <div className={style.parent}>
-            <Link className={style.img} to={"home-detuls/home-data"}>
-              <UserImg radius="50%" />
+            <Link
+              onClick={() =>
+                window.localStorage.setItem("seirah", JSON.stringify([]))
+              }
+              className={style.img}
+              to={"data/personal"}>
+              <UserImg
+                srcImg={personal !== null ? personal.srcImg1 : ""}
+                radius="50%"
+              />
               <div className={style.col}>
                 <span>السيرة الذاتية الأساسية</span>
-                <h4>{name}</h4>
+                <h4>
+                  {personal !== null
+                    ? personal.name !== ""
+                      ? personal.name
+                      : name
+                    : name}
+                </h4>
               </div>
             </Link>
-            <div className={style.line}>
-              <div className={style.havi}>
-                <div style={{ width: progress }} className={style.infuk}>
-                  {progress}
-                </div>
-              </div>
-            </div>
+            <Progress />
             <div className={style.pareControl}>
-              <Link to={"home-detuls/home-data"} className={style.control}>
+              <Link
+                onClick={() =>
+                  window.localStorage.setItem("seirah", JSON.stringify([]))
+                }
+                to={"data/personal"}
+                className={style.control}>
                 <Icons
                   path={
                     "M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"
@@ -54,7 +69,7 @@ const Cvs = () => {
                 />
                 تصميم
               </Link>
-              <Link to={""} className={style.control}>
+              <Link to={"data/download-share"} className={style.control}>
                 <Icons
                   path={
                     "M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"

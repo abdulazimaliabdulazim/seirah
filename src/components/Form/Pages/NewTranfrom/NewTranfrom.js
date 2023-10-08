@@ -2,13 +2,21 @@ import React from "react";
 import style from "./NewTranfrom.module.css";
 import Icons from "../../../Icons/Icons";
 import Button from "../../Buttom/Buttom";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { counterActions } from "../../../../sliceStores/sliceTwo";
+import json from "../JSON_date/data_inputs.json";
+import { nextPage } from "../hendlerData/hendlerData";
 
 const NewTranfrom = () => {
   const textPage = useSelector((state) => state.textPage);
-  const url = useSelector((state) => state.url);
+  window.localStorage.setItem("textPage", textPage);
+
+  const ulrsPages = json[13];
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const varNextPages = ulrsPages[ulrsPages.indexOf(nextPage().join("")) + 1];
   return (
     <div className={style.transfrom}>
       <div className={style.flex}>
@@ -22,15 +30,18 @@ const NewTranfrom = () => {
           <strong>{textPage}</strong>
         </div>
       </div>
-      <Link
+      <Button
         onClick={() => {
-          dispatch({
-            type: { urls: window.location.pathname },
-          });
+          navigate(varNextPages);
+          if (
+            varNextPages !== undefined &&
+            varNextPages !== "/dashboard/cvs/data/download-share"
+          ) {
+            dispatch(counterActions[`name_${varNextPages.split("/")[4]}`]());
+          }
         }}
-        to={url}>
-        <Button text={"التالي"} />
-      </Link>
+        text={"التالي"}
+      />
     </div>
   );
 };

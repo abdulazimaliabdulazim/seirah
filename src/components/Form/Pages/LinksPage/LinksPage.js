@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import style from "../Qualifications/Home/Qualifications.module.css";
-import styleBut from "../../Buttom/Buttom.module.css";
-import Buttom from "../../Buttom/Buttom";
 import {
   dargItem,
   dargEnd,
@@ -9,22 +7,23 @@ import {
   drop,
 } from "../Qualifications/Home/f_drag_drop/drag_drop";
 import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
-import { useDispatch } from "react-redux";
-import hendlerData, {
-  getFormValues,
-  sendActionData,
-} from "../hendlerData/hendlerData";
+import hendlerData, { getFormValues } from "../hendlerData/hendlerData";
+import json from "../JSON_date/data_inputs.json";
+import UsePages from "../UsePage/UsePages";
 
 const LinksPage = () => {
+  let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3];
   document.title = "الروابط";
-  const [dataLinks, setDataLinks] = useState(
-    getFormValues("dataLinks", true, true, "link", "networck")
+  const [links, setLinks] = useState(
+    getFormValues(
+      "links",
+      true,
+      true,
+      coun[coun.length - 1],
+      "link",
+      "networck"
+    )
   );
-  // Send Links Data In Story
-  const dispatch = useDispatch();
-  const hindlerAction = () => dispatch({ type: { dataLinks: dataLinks } });
-  let counter = [1, 1, 1];
-
   const createqualifi = (ind) => {
     return (
       <div
@@ -39,63 +38,43 @@ const LinksPage = () => {
           <div type="button"></div>
           <div draggable={true} type="button"></div>
         </div>
-        <ParentInput forId={`link${counter[2]++}`} label={"الرابط"}>
+        <ParentInput forId={`link${coun[0]++}`} label={"الرابط"}>
           <input
-            onChange={(e) => hendlerData(e, setDataLinks)}
-            id={`link${counter[0]++}`}
-            value={dataLinks[`link${counter[1]++}`]}
+            onChange={(e) => hendlerData(e, setLinks)}
+            id={`link${coun[1]++}`}
+            value={links[`link${coun[2]++}`]}
             type="text"
             placeholder="الرابط"
           />
         </ParentInput>
-        <ParentInput forId={`networck${counter[2]++}`} label={"الشبكة"}>
+        <ParentInput forId={`networck${coun[3]++}`} label={"الشبكة"}>
           <select
-            id={`networck${counter[0]++}`}
-            onChange={(e) => hendlerData(e, setDataLinks)}
-            value={dataLinks[`networck${counter[1]++}`]}>
-            <option>Twitter</option>
-            <option>Linkedin</option>
-            <option>Facebock</option>
-            <option>Instagram</option>
-            <option>Goodreads</option>
-            <option>Tumblr</option>
-            <option>Snabchat</option>
-            <option>Wordpress</option>
-            <option>مدونة شخصية</option>
-            <option>موقع ويب</option>
-            <option>أخري</option>
+            id={`networck${coun[4]++}`}
+            onChange={(e) => hendlerData(e, setLinks)}
+            value={links[`networck${coun[5]++}`]}>
+            {json[9].map((option, ind) => {
+              return <option key={ind}>{option}</option>;
+            })}
           </select>
         </ParentInput>
       </div>
     );
   };
-  // Click Add Qualification
-  let [count, setCount] = useState(getFormValues("countLink", false));
-  const hendlreNum = () => setCount((pre) => [...pre, 1]);
+  let [linksNumber, setLinksNumber] = useState(
+    getFormValues("linksNumber", false)
+  );
   return (
-    <div onDrop={(e) => drop(e.target)} className={style.parent}>
-      <div className={style.box}>
-        {count.map((ele, ind) => createqualifi(ind))}
-        <button
-          onClick={hendlreNum}
-          className={`${style.but} ${styleBut.mani}`}>
-          أضف رابط جديد
-        </button>
-        <hr className={style.hr} />
-        <Buttom
-          onClick={() => {
-            sendActionData(
-              hindlerAction,
-              "dataLinks",
-              dataLinks,
-              "countLink",
-              count
-            );
-          }}
-          text={"حفظ الروابط"}
-        />
-      </div>
-    </div>
+    <UsePages
+      state={links}
+      naState={"links"}
+      state2={linksNumber}
+      naState2={"linksNumber"}
+      setState2={setLinksNumber}
+      b1={"أضف رابط جديد"}
+      b2={"حفظ الروابط"}
+      numbCol={coun[coun.length - 1]}>
+      {linksNumber.map((ele, ind) => createqualifi(ind))}
+    </UsePages>
   );
 };
 

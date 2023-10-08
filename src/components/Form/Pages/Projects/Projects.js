@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import style from "../Qualifications/Home/Qualifications.module.css";
-import styleBut from "../../Buttom/Buttom.module.css";
-import Buttom from "../../Buttom/Buttom";
 import DateQualifi from "../Qualifications/Home/DateQualifi/DateQualifi";
 import {
   dargItem,
@@ -10,29 +8,29 @@ import {
   drop,
 } from "../Qualifications/Home/f_drag_drop/drag_drop";
 import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
-import { useDispatch } from "react-redux";
-import hendlerData, {
-  getFormValues,
-  sendActionData,
-} from "../hendlerData/hendlerData";
+import hendlerData, { getFormValues } from "../hendlerData/hendlerData";
 import {
   Day,
   Manth,
   Yar,
 } from "../Qualifications/Home/DateQualifi/LettersNmbers";
 import json from "../JSON_date/data_inputs.json";
+import UsePages from "../UsePage/UsePages";
 
 const Projects = () => {
+  let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5];
   document.title = "المشاريع";
   const [projects, setProjects] = useState(
-    getFormValues("projects", true, true, "name", "link", "brief")
+    getFormValues(
+      "projects",
+      true,
+      true,
+      coun[coun.length - 1],
+      "name",
+      "link",
+      "brief"
+    )
   );
-  // Send Personals Data In Story
-  const dispatch = useDispatch();
-  const hindlerAction = () =>
-    dispatch({ type: { projects: { projects: projects } } });
-  let counter = [1, 1, 1, 1, 1];
-
   const createqualifi = (ind) => {
     return (
       <div
@@ -51,77 +49,63 @@ const Projects = () => {
           return (
             <ParentInput
               key={ind}
-              forId={`${input.id}${counter[2]++}`}
+              forId={
+                input.id === "name"
+                  ? `${input.id}${coun[1]++}`
+                  : input.id === "link"
+                  ? `${input.id}${coun[2]++}`
+                  : `${input.id}${coun[3]++}`
+              }
               label={input.label}
               paraghrap={input.paraghrap}>
               <input
                 onChange={(e) => hendlerData(e, setProjects)}
-                id={`${input.id}${counter[0]++}`}
+                id={
+                  input.id === "name"
+                    ? `${input.id}${coun[4]++}`
+                    : input.id === "link"
+                    ? `${input.id}${coun[5]++}`
+                    : `${input.id}${coun[6]++}`
+                }
                 type="text"
                 placeholder={input.label}
-                value={projects[`${input.id}${counter[1]++}`]}
+                value={
+                  input.id === "name"
+                    ? projects[`${input.id}${coun[7]++}`]
+                    : input.id === "link"
+                    ? projects[`${input.id}${coun[8]++}`]
+                    : projects[`${input.id}${coun[9]++}`]
+                }
               />
             </ParentInput>
           );
         })}
-        <DateQualifi forId={counter[2]++} lable={"تاريخ الإنجاز"}>
-          <div
-            id={`day${counter[3]++}`}
-            onClick={(e) =>
-              hendlerData(e, setProjects, false, false, true, false)
-            }>
-            <Day />
-            {counter[0]++}
-            {counter[1]++}
-          </div>
-          <div
-            id={`manth${counter[3]++}`}
-            onClick={(e) =>
-              hendlerData(e, setProjects, false, false, true, false)
-            }>
-            <Manth />
-          </div>
-          <div
-            id={`yar${counter[3]++}`}
-            onClick={(e) =>
-              hendlerData(e, setProjects, false, false, true, false)
-            }>
-            <Yar />
-          </div>
-          <span>{projects[`day${counter[4]++}`]}</span>
-          <span>{projects[`manth${counter[4]++}`]}</span>
-          <span>{projects[`yar${counter[4]++}`]}</span>
+        <DateQualifi forId={coun[13]++} lable={"تاريخ الإنجاز"}>
+          <Day id={`day${coun[14]++}`} state={setProjects} />
+          <Manth id={`manth${coun[15]++}`} state={setProjects} />
+          <Yar id={`yar${coun[16]++}`} state={setProjects} />
+          <span>{projects[`day${coun[10]++}`]}</span>
+          <span>{projects[`manth${coun[11]++}`]}</span>
+          <span>{projects[`yar${coun[12]++}`]}</span>
         </DateQualifi>
       </div>
     );
   };
-  // Click Add Qualification
-  let [count, setCount] = useState(getFormValues("countProj", false));
-  const hendlreNum = () => setCount((pre) => [...pre, 1]);
+  let [projectNumber, setProjectNumber] = useState(
+    getFormValues("projectNumber", false)
+  );
   return (
-    <div onDrop={(e) => drop(e.target)} className={style.parent}>
-      <div className={style.box}>
-        {count.map((ele, ind) => createqualifi(ind))}
-        <button
-          onClick={hendlreNum}
-          className={`${style.but} ${styleBut.mani}`}>
-          أضف مشروع جديد
-        </button>
-        <hr className={style.hr} />
-        <Buttom
-          onClick={() => {
-            sendActionData(
-              hindlerAction,
-              "projects",
-              projects,
-              "countProj",
-              count
-            );
-          }}
-          text={"حفظ الإنجازات"}
-        />
-      </div>
-    </div>
+    <UsePages
+      state={projects}
+      naState={"projects"}
+      state2={projectNumber}
+      naState2={"projectNumber"}
+      setState2={setProjectNumber}
+      b1={"أضف مشروع جديد"}
+      b2={"حفظ المشروعات"}
+      numbCol={coun[coun.length - 1]}>
+      {projectNumber.map((ele, ind) => createqualifi(ind))}
+    </UsePages>
   );
 };
 

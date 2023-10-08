@@ -1,9 +1,8 @@
 import React from "react";
-import style from "./Spans.module.css";
 
-const Spans = () => {
+const Spans = (props) => {
   return (
-    <div className={style.spans}>
+    <div className={props.className}>
       <span>English</span>
       <span>عربي</span>
     </div>

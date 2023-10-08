@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"; // React
+import React, { Fragment } from "react";
 import Header from "../components/Header/Header";
 import Section from "../components/Section/Section";
 import Features from "../components/Features/Features";
@@ -23,8 +23,13 @@ import Dashboard from "../components/Dashboard/Dashboard";
 import Cvs from "../components/Cvs/Cvs";
 import RequireAuth from "../components/RequireAuth/RequireAuth";
 import Templet1 from "../components/Templets/Templet1/Templet1";
+import { useSelector } from "react-redux";
+import DownloadShare from "../components/Download-share/DownloadShare";
+import { checkUser } from "../components/Form/Pages/hendlerData/hendlerData";
 
 const App = () => {
+  const detulsUser = useSelector((state) => state.detulsUser);
+
   return (
     <ContextProvider>
       <BrowserRouter>
@@ -42,20 +47,20 @@ const App = () => {
             }
           />
           <Route
-            path="dashboard/cvs/home-detuls"
+            path={"dashboard/cvs/data"}
             element={
               <RequireAuth>
                 <Form />
               </RequireAuth>
             }>
-            <Route path="home-data" element={<PersonalData />} />
+            <Route path="personal" element={<PersonalData />} />
             <Route path="qualifications" element={<Qualifications />} />
             <Route path="experiences" element={<Experiences />} />
             <Route path="coursess" element={<Coursess />} />
             <Route path="skils" element={<Skils />} />
             <Route path="projects" element={<Projects />} />
             <Route path="return" element={<Return />} />
-            <Route path="langutch" element={<Languages />} />
+            <Route path="languages" element={<Languages />} />
             <Route path="links" element={<LinksPage />} />
             <Route path="hobbies" element={<Hobbies />} />
             <Route path="address" element={<Address />} />
@@ -77,7 +82,15 @@ const App = () => {
               </RequireAuth>
             }
           />
-          <Route path="abdo" element={<Templet1 />} />
+          <Route path={checkUser(detulsUser, 2, "id")} element={<Templet1 />} />
+          <Route
+            path={`dashboard/cvs/data/download-share`}
+            element={
+              <RequireAuth>
+                <DownloadShare />
+              </RequireAuth>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </ContextProvider>
