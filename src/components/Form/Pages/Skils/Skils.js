@@ -15,7 +15,7 @@ const Skils = () => {
   let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5];
   document.title = "المهارات";
   const [skils, setSkils] = useState(
-    getFormValues("skils", true, true, coun[coun.length - 1], "skils")
+    getFormValues(true, "skils", true, true, coun[coun.length - 1], "skils")
   );
   const createqualifi = (ind) => {
     return (
@@ -101,7 +101,7 @@ const Skils = () => {
     );
   };
   let [skilsNumber, setSkilsNumb] = useState(
-    getFormValues("skilsNumber", false)
+    getFormValues(true, "skilsNumber", false)
   );
   return (
     <UsePages

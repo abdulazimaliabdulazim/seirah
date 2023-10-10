@@ -61,7 +61,7 @@ const Register = () => {
               {json[10].map((input, ind) => {
                 return (
                   <Fragment key={ind}>
-                    <label htmlFor={input.id}>اسمك</label>
+                    <label htmlFor={input.id}>{input.label}</label>
                     <input
                       autoComplete={userDetuls[input.id].toString()}
                       required

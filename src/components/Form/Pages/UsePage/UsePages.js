@@ -27,6 +27,8 @@ const UsePages = ({
   const hindlerAction = () =>
     dispatch(counterActions[window.location.pathname.split("/")[4]](state));
   const hendlreNum = () => setState2((pre) => [...pre, 1]);
+
+  const targetSeirah = window.localStorage.getItem("targetSeirah");
   return (
     <div className={style.parent}>
       <div className={style.box}>
@@ -43,7 +45,13 @@ const UsePages = ({
         <hr className={style.hr} />
         <Buttom
           onClick={() => {
-            sendActionData(hindlerAction, naState, state, naState2, state2);
+            sendActionData(
+              hindlerAction,
+              `${naState}${targetSeirah}`,
+              state,
+              `${naState2}${targetSeirah}`,
+              state2
+            );
             navigate(varNextPages);
           }}
           text={b2}

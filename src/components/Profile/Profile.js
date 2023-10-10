@@ -3,19 +3,20 @@ import header from "./profile.module.css";
 import Container from "../Container/Container";
 import LogoHeader from "../Header/LogoHeader/LogoHeader";
 import Icons from "../Icons/Icons";
-import { useSelector } from "react-redux";
 import UserImg from "../UserImg/UserImg";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { allSeirah } from "../Form/Pages/hendlerData/hendlerData";
 
 const Profile = () => {
-  const personal = useSelector((state) => state.personal);
-  const detulsUser = useSelector((state) => state.detulsUser);
+  const [{ name }] = useSelector((state) => state.detulsUser);
+
   return (
     <header className={header.profile}>
       <Container>
         <div className={header.right}>
           <LogoHeader />
-          <Link to={"/dashboard/cvs"}>
+          <Link to="/dashboard/cvs">
             <div className={header.icon}>
               <Icons
                 path={
@@ -28,19 +29,13 @@ const Profile = () => {
           </Link>
         </div>
         <div className={header.name_dash}>
-          <span>
-            {personal !== null
-              ? personal.name !== ""
-                ? personal.name
-                : detulsUser !== null
-                ? detulsUser[0].name
-                : ""
-              : detulsUser !== null
-              ? detulsUser[0].name
-              : ""}
-          </span>
+          <span>{name}</span>
           <UserImg
-            srcImg={personal !== null ? personal.srcImg1 : ""}
+            srcImg={
+              allSeirah("personal")[0] !== undefined
+                ? allSeirah("personal")[0].srcImg1
+                : ""
+            }
             width="40px"
             radius="50%"
           />

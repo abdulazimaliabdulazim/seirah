@@ -25,6 +25,7 @@ const Experiences = () => {
   document.title = "الخبرات العملية";
   const [experiences, setexpEriences] = useState(
     getFormValues(
+      true,
       "experiences",
       true,
       true,
@@ -112,7 +113,7 @@ const Experiences = () => {
     );
   };
   let [experienNumber, setExperNumber] = useState(
-    getFormValues("experienNumber", false)
+    getFormValues(true, "experienNumber", false)
   );
   return (
     <UsePages

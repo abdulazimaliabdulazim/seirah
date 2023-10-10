@@ -53,7 +53,7 @@
     [ "Twitter", "Linkedin", "Facebock", "Instagram", "Goodreads", "Tumblr", "Snabchat", "Wordpress", "مدونة شخصية", "موقع ويب", "أخرى"],
     [
         { "label": "اسمك", "paraghrap": "إختياري", "id": "name", "type": "text"},
-        { "label": "أنشئ الحساب", "paraghrap": "نبذة بسيطة عن المشروع أو المنجز (اختياري).", "id": "password", "type": "password"}
+        { "label": "كلمة المرور", "paraghrap": "نبذة بسيطة عن المشروع أو المنجز (اختياري).", "id": "password", "type": "password"}
     ],
     [ "يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "اغسطس", "سبتمبر", "اكتوبر", "نوفمبر", "ديسمبر"],
     [ "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"],

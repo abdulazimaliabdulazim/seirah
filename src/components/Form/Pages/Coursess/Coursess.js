@@ -22,6 +22,7 @@ const Coursess = () => {
   document.title = "الدورات التدريبية";
   const [coursess, setCoursess] = useState(
     getFormValues(
+      true,
       "coursess",
       true,
       true,
@@ -87,7 +88,7 @@ const Coursess = () => {
     );
   };
   let [coursessNumber, setCoursessNum] = useState(
-    getFormValues("coursessNumber", false)
+    getFormValues(true, "coursessNumber", false)
   );
   return (
     <UsePages

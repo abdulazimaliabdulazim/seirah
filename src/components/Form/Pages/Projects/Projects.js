@@ -22,6 +22,7 @@ const Projects = () => {
   document.title = "المشاريع";
   const [projects, setProjects] = useState(
     getFormValues(
+      true,
       "projects",
       true,
       true,
@@ -92,7 +93,7 @@ const Projects = () => {
     );
   };
   let [projectNumber, setProjectNumber] = useState(
-    getFormValues("projectNumber", false)
+    getFormValues(true, "projectNumber", false)
   );
   return (
     <UsePages

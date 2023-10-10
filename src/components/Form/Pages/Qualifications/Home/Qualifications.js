@@ -12,6 +12,7 @@ const Qualifications = () => {
   document.title = "المؤهلات العلمية";
   const [qualification, setQualification] = useState(
     getFormValues(
+      true,
       "qualification",
       true,
       true,
@@ -88,7 +89,7 @@ const Qualifications = () => {
     );
   };
   const [qualifiNumber, setQualifiNumber] = useState(
-    getFormValues("qualifiNumber", false)
+    getFormValues(true, "qualifiNumber", false)
   );
   return (
     <UsePages

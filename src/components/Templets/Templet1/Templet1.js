@@ -6,12 +6,16 @@ import logo from "../../../images/logo.png";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Icons from "../../Icons/Icons";
-import { outbotValuesArrayInMineObjectPages } from "../../Form/Pages/hendlerData/hendlerData";
+import {
+  allSeirah,
+  outbotValuesArrayInMineObjectPages,
+} from "../../Form/Pages/hendlerData/hendlerData";
 import dawnloadPdf from "../../../Framework/pdf";
 
 const Templet1 = () => {
   const pdfRef = useRef();
 
+  const targetSeirah = window.localStorage.getItem("targetSeirah");
   const {
       name,
       position,
@@ -25,12 +29,12 @@ const Templet1 = () => {
       country,
       nationality,
       srcImg1,
-    } = useSelector((state) => state.personal),
-    experiences = useSelector((state) => state.experiences),
-    qualifications = useSelector((state) => state.qualifications),
-    coursess = useSelector((state) => state.coursess),
-    projects = useSelector((state) => state.projects),
-    address = useSelector((state) => state.address);
+    } = allSeirah("personal")[targetSeirah - 1],
+    qualifications = allSeirah("qualification")[targetSeirah - 1],
+    experiences = allSeirah("experiences")[targetSeirah - 1],
+    coursess = allSeirah("coursess")[targetSeirah - 1],
+    projects = allSeirah("projects")[targetSeirah - 1],
+    address = allSeirah("address")[targetSeirah - 1];
 
   const experiencesFinal = [];
   outbotValuesArrayInMineObjectPages(
@@ -68,7 +72,11 @@ const Templet1 = () => {
   );
 
   return (
-    <div id="faund" className={templet.templetOne} ref={pdfRef}>
+    <div
+      onClick={() => dawnloadPdf(pdfRef)}
+      id="faund"
+      className={templet.templetOne}
+      ref={pdfRef}>
       <div className={templet.header}>
         <Container>
           <img src={logo} alt="logo" />

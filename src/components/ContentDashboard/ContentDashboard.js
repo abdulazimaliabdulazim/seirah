@@ -5,15 +5,16 @@ import { Link } from "react-router-dom";
 import img1 from "../../images/home-img/id1.png";
 
 const ContentDashboard = () => {
+  const countseirahAll = JSON.parse(window.localStorage.getItem("countseirah"));
   return (
     <div className={style.ContentDashboard}>
       <Container>
         <div className={style.parent}>
-          <Link to={"cvs"}>
+          <Link to="cvs">
             <img src={img1} alt="" />
             <div className={style.col}>
               <h3>السير الذاتية</h3>
-              <h4>1</h4>
+              <h4>{countseirahAll === null ? "1" : countseirahAll.length}</h4>
             </div>
           </Link>
           <p>أنشئ سير متخصصة حسب الجهات التي ترغب بالتقديم لها.</p>

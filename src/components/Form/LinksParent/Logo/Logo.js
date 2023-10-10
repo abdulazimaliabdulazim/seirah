@@ -3,11 +3,13 @@ import style from "./Logo.module.css";
 import Container from "../../../Container/Container";
 import MineHeader from "./MineHeader/MineHeader";
 import UserImg from "../../../UserImg/UserImg";
-import { useSelector } from "react-redux";
 
 const Logo = () => {
-  const personal = useSelector((state) => state.personal);
-  const [{ name }] = useSelector((state) => state.detulsUser);
+  const targetSeirah = window.localStorage.getItem("targetSeirah");
+  const personal = JSON.parse(
+    window.localStorage.getItem(`personal${targetSeirah}`)
+  );
+
   return (
     <div className={style.parent}>
       <div className={style.child}>
@@ -20,13 +22,7 @@ const Logo = () => {
               />
             </div>
             <div className={style.detuls}>
-              <h1>
-                {personal !== null
-                  ? personal.name !== ""
-                    ? personal.name
-                    : name
-                  : name}
-              </h1>
+              <h1>{personal !== null ? personal.name : "مستخدم جديد"}</h1>
               <span>{personal !== null ? personal.position : "مجهول"}</span>
             </div>
           </div>

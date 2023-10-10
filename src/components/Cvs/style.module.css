@@ -14,12 +14,17 @@
     font-size: 1rem;
     font-weight: bold;
 }
+.cvs .boxingAll {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 .cvs .box {
     margin-top: 15px;
     color: #64748B;
+    width: calc(90%/3);
 }
 .cvs .box .parent {
-    width: 35%;
     background-color: white;
     border-radius: 10px;
     -webkit-border-radius: 10px;

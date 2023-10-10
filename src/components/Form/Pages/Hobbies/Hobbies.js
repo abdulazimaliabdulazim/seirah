@@ -13,7 +13,7 @@ const Hobbies = () => {
   let coun = [1, 1, 1, 1, 3];
   document.title = "الهوايات";
   const [hobbies, setHobbies] = useState(
-    getFormValues("hobbies", true, true, coun[coun.length - 1], "hobbie")
+    getFormValues(true, "hobbies", true, true, coun[coun.length - 1], "hobbie")
   );
   const createqualifi = (ind) => {
     return (
@@ -45,7 +45,7 @@ const Hobbies = () => {
     );
   };
   let [hobbiesNumber, setHobbiesNumber] = useState(
-    getFormValues("hobbiesNumber", false)
+    getFormValues(true, "hobbiesNumber", false)
   );
   return (
     <UsePages

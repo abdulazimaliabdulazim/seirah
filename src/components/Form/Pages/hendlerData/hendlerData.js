@@ -8,8 +8,8 @@ export const generatNmaeObj = (numb, ...name) => {
   }
   return nameObj;
 };
-
 export const getFormValues = (
+  addTarget = true,
   nameLocal,
   empty = true,
   check = true,
@@ -20,7 +20,10 @@ export const getFormValues = (
   objData,
   all = true
 ) => {
-  const dataInLocal = window.localStorage.getItem(nameLocal);
+  const targetSeirah = window.localStorage.getItem("targetSeirah");
+  const dataInLocal = window.localStorage.getItem(
+    addTarget === true ? `${nameLocal}${targetSeirah}` : nameLocal
+  );
   if (!dataInLocal) {
     if (empty === true) {
       if (check === true) {
@@ -148,11 +151,28 @@ export const openLink = (url, target = "_blanck") => {
   window.open(url, target, "noreferrer");
 };
 
-const ulrsPages = json[13];
-
+// Next Pages
 export const nextPage = () => {
+  const ulrsPages = json[13];
   const filterUrls = ulrsPages.filter(
     (ele) => ele === window.location.pathname
   );
   return filterUrls;
+};
+
+// Mautpet Seirah
+export const allSeirah = (nameObj) => {
+  const personal = [];
+  const countseirahAll = JSON.parse(window.localStorage.getItem("countseirah"));
+  if (countseirahAll !== null) {
+    for (let i = 1; i <= countseirahAll.length; i++) {
+      const personals = JSON.parse(
+        window.localStorage.getItem(`${nameObj}${i}`)
+      );
+      if (personals !== null) {
+        personal.push(personals);
+      }
+    }
+  }
+  return personal;
 };

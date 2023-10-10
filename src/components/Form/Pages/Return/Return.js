@@ -16,6 +16,7 @@ const Return = () => {
   document.title = "المراجع";
   const [dataReturn, setDataReturn] = useState(
     getFormValues(
+      true,
       "return",
       true,
       true,
@@ -78,7 +79,7 @@ const Return = () => {
     );
   };
   let [returnNumber, setReturnNumber] = useState(
-    getFormValues("returnNumber", false)
+    getFormValues(true, "returnNumber", false)
   );
   return (
     <UsePages

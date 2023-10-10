@@ -14,35 +14,46 @@ import { counterActions } from "../../../../../sliceStores/sliceTwo";
 import { useNavigate } from "react-router-dom";
 
 const Inputs = () => {
+  const targetSeirah = window.localStorage.getItem("targetSeirah");
   document.title = "البيانات الشخصية";
   const selector = useSelector((state) => state.value);
   const [halth, setHalth] = useState(false);
   const [personal, setPersonal] = useState(
-    getFormValues("personal", true, false, 0, "", "", "", {
-      city: "",
-      country: "",
-      date: "",
-      email: "",
-      name: "",
-      personal_website: "",
-      nationality: "",
-      overview: "",
-      phone_number: "",
-      position: "",
-      service: "",
-      six: "",
-      tatis_health: "",
-      stits: "",
-      srcImg1: "",
-      address: "",
-    })
+    getFormValues(
+      false,
+      `personal${targetSeirah}`,
+      true,
+      false,
+      0,
+      "",
+      "",
+      "",
+      {
+        city: "",
+        country: "",
+        date: "",
+        email: "",
+        name: "",
+        personal_website: "",
+        nationality: "",
+        overview: "",
+        phone_number: "",
+        position: "",
+        service: "",
+        six: "",
+        tatis_health: "",
+        stits: "",
+        srcImg1: "",
+        address: "",
+      }
+    )
   );
 
   const navigator = useNavigate();
 
   // Send Personals Data In Story
   const dispatch = useDispatch();
-  const hindlerAction = () => dispatch(counterActions.personal(personal));
+  const hindlerAction = () => dispatch(counterActions.personal());
   return (
     <div className={style.parent}>
       <div className={style.box}>
@@ -241,7 +252,7 @@ const Inputs = () => {
         <hr />
         <Buttom
           onClick={() => {
-            sendActionData(hindlerAction, "personal", personal);
+            sendActionData(hindlerAction, `personal${targetSeirah}`, personal);
             navigator("/dashboard/cvs/data/qualifications");
           }}
           text={"حفظ البيانات الشخصية"}

@@ -20,6 +20,7 @@ const Languages = () => {
   document.title = "اللغات";
   const [languages, setLanguages] = useState(
     getFormValues(
+      true,
       "languages",
       true,
       true,
@@ -120,7 +121,7 @@ const Languages = () => {
     );
   };
   let [languagesNumber, setLanguagesNumber] = useState(
-    getFormValues("languagesNumber", false)
+    getFormValues(true, "languagesNumber", false)
   );
   return (
     <div onDrop={(e) => drop(e.target)} className={style.parent}>

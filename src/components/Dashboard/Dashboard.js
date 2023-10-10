@@ -6,10 +6,10 @@ import UserImg from "../UserImg/UserImg";
 import Container from "../Container/Container";
 import Icons from "../Icons/Icons";
 import { useSelector } from "react-redux";
+import { allSeirah } from "../Form/Pages/hendlerData/hendlerData";
 
 const Dashboard = () => {
   const dateNew = new Date().getDate();
-  const personal = useSelector((state) => state.personal);
   const [{ name }, { date }] = useSelector((state) => state.detulsUser);
 
   return (
@@ -19,19 +19,17 @@ const Dashboard = () => {
         <Container>
           <div className={style.detuls}>
             <UserImg
-              srcImg={personal !== null ? personal.srcImg1 : ""}
+              srcImg={
+                allSeirah("personal")[0] !== undefined
+                  ? allSeirah("personal")[0].srcImg1
+                  : ""
+              }
               width="60px"
               radius="50%"
             />
             <div className={style.box}>
               <h2>
-                <span>أهلاً</span>{" "}
-                {personal !== null
-                  ? personal.name !== ""
-                    ? personal.name
-                    : name
-                  : name}{" "}
-                🖐
+                <span>أهلاً</span> {name}🖐
               </h2>
               <div className={style.name}>
                 <div className={style.date}>

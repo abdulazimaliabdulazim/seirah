@@ -1,37 +1,40 @@
 import { createSlice, createStore } from "@reduxjs/toolkit";
+// import { allSeirah } from "../components/Form/Pages/hendlerData/hendlerData";
 
 const initState = {
   value: [" أعزب", "متزوج"],
   url: "/home-detuls/qualifications",
   detulsUser: "",
   textPage: "معلومات الشخصية, وبيانات الإتصال الضرورية",
-  personal: "",
-  qualifications: "",
-  experiences: "",
-  coursess: "",
-  skils: "",
-  projects: "",
-  return: "",
-  languages: "",
-  links: "",
-  hobbies: "",
-  address: "",
+  // personal: [],
+  // qualifications: "",
+  // experiences: "",
+  // coursess: "",
+  // skils: "",
+  // projects: "",
+  // return: "",
+  // languages: "",
+  // links: "",
+  // hobbies: "",
+  // address: "",
   nextUrl: "",
+  nexdsatUrl: "",
 };
+// Function Get Seirah All
+// allSeirah(initState.personal);
 
-initState.personal = JSON.parse(window.localStorage.getItem("personal"));
-initState.qualifications = JSON.parse(
-  window.localStorage.getItem("qualification")
-);
-initState.experiences = JSON.parse(window.localStorage.getItem("experiences"));
-initState.coursess = JSON.parse(window.localStorage.getItem("coursess"));
-initState.skils = JSON.parse(window.localStorage.getItem("skils"));
-initState.projects = JSON.parse(window.localStorage.getItem("projects"));
-initState.return = JSON.parse(window.localStorage.getItem("return"));
-initState.languages = JSON.parse(window.localStorage.getItem("languages"));
-initState.links = JSON.parse(window.localStorage.getItem("links"));
-initState.hobbies = JSON.parse(window.localStorage.getItem("hobbies"));
-initState.address = JSON.parse(window.localStorage.getItem("address"));
+// initState.qualifications = JSON.parse(
+//   window.localStorage.getItem("qualification")
+// );
+// initState.experiences = JSON.parse(window.localStorage.getItem("experiences"));
+// initState.coursess = JSON.parse(window.localStorage.getItem("coursess"));
+// initState.skils = JSON.parse(window.localStorage.getItem("skils"));
+// initState.projects = JSON.parse(window.localStorage.getItem("projects"));
+// initState.return = JSON.parse(window.localStorage.getItem("return"));
+// initState.languages = JSON.parse(window.localStorage.getItem("languages"));
+// initState.links = JSON.parse(window.localStorage.getItem("links"));
+// initState.hobbies = JSON.parse(window.localStorage.getItem("hobbies"));
+// initState.address = JSON.parse(window.localStorage.getItem("address"));
 initState.detulsUser = JSON.parse(window.localStorage.getItem("detulsUser"));
 initState.textPage = window.localStorage.getItem("textPage");
 
@@ -41,37 +44,37 @@ const counterSlice = createSlice({
   reducers: {
     // Get Date In Pages
     personal: (state, action) => {
-      state.personal = action.payload;
+      state.nexdsatUrl = "action.payload";
     },
     qualifications: (state, action) => {
-      state.qualifications = action.payload;
+      state.nexdsatUrl = "action.payload";
     },
     experiences: (state, action) => {
-      state.experiences = action.payload;
+      state.nexdsatUrl = "action.payload";
     },
     coursess: (state, action) => {
-      state.coursess = action.payload;
+      state.nexdsatUrl = "action.payload";
     },
     skils: (state, action) => {
-      state.skils = action.payload;
+      state.nexdsatUrl = "action.payload";
     },
     projects: (state, action) => {
-      state.projects = action.payload;
+      state.nexdsatUrl = "action.payload";
     },
     return: (state, action) => {
-      state.return = action.payload;
+      state.nexdsatUrl = "action.payload";
     },
     languages: (state, action) => {
-      state.languages = action.payload;
+      state.nexdsatUrl = "action.payload";
     },
     links: (state, action) => {
-      state.links = action.payload;
+      state.nexdsatUrl = "action.payload";
     },
     hobbies: (state, action) => {
-      state.hobbies = action.payload;
+      state.nexdsatUrl = "action.payload";
     },
     address: (state, action) => {
-      state.address = action.payload;
+      state.nexdsatUrl = "action.payload";
     },
     detulsUser: (state, action) => {
       state.detulsUser = action.payload;

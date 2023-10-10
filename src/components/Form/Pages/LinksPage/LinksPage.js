@@ -16,6 +16,7 @@ const LinksPage = () => {
   document.title = "الروابط";
   const [links, setLinks] = useState(
     getFormValues(
+      true,
       "links",
       true,
       true,
@@ -61,7 +62,7 @@ const LinksPage = () => {
     );
   };
   let [linksNumber, setLinksNumber] = useState(
-    getFormValues("linksNumber", false)
+    getFormValues(true, "linksNumber", false)
   );
   return (
     <UsePages
