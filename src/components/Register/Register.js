@@ -8,7 +8,6 @@ import json from "../Form/Pages/JSON_date/data_inputs.json";
 import hendlerData, {
   generatorId,
   getFormValues,
-  openLink,
 } from "../Form/Pages/hendlerData/hendlerData";
 import { useDispatch } from "react-redux";
 import { counterActions } from "../../sliceStores/sliceTwo";
@@ -63,7 +62,7 @@ const Register = () => {
                   <Fragment key={ind}>
                     <label htmlFor={input.id}>{input.label}</label>
                     <input
-                      autoComplete={userDetuls[input.id].toString()}
+                      autoComplete={userDetuls[input.id]}
                       required
                       onChange={(e) => hendlerData(e, setUserDetuls)}
                       id={input.id}
@@ -76,7 +75,7 @@ const Register = () => {
               <Buttom
                 onClick={(e) => {
                   onSubmit(e);
-                  openLink("/dashboard", "_self");
+                  window.open("/dashboard", "_self", "noreferrer");
                 }}>
                 أنشئ الحساب
               </Buttom>

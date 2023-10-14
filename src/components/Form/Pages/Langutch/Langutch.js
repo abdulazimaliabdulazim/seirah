@@ -8,25 +8,17 @@ import {
 } from "../Qualifications/Home/f_drag_drop/drag_drop";
 import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
 import Checkd from "../Personal_data/Home/Checkd/Checkd";
-import hendlerData, {
-  getFormValues,
-  sendActionData,
-} from "../hendlerData/hendlerData";
+import hendlerData, { getFormValues } from "../hendlerData/hendlerData";
 import jsonD from "../JSON_date/data_inputs.json";
 import UsePages from "../UsePage/UsePages";
 
 const Languages = () => {
+  const targetSeirah = window.localStorage.getItem("targetSeirah");
   let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3];
   document.title = "اللغات";
   const [languages, setLanguages] = useState(
     getFormValues(
-      true,
-      "languages",
-      true,
-      true,
-      coun[coun.length - 1],
-      "lang",
-      "levelLang"
+      targetSeirah !== null ? `languages${targetSeirah}` : "languages1"
     )
   );
   const createqualifi = (ind) => {
@@ -121,7 +113,11 @@ const Languages = () => {
     );
   };
   let [languagesNumber, setLanguagesNumber] = useState(
-    getFormValues(true, "languagesNumber", false)
+    getFormValues(
+      targetSeirah !== null
+        ? `languagesNumber${targetSeirah}`
+        : "languagesNumber1"
+    )
   );
   return (
     <div onDrop={(e) => drop(e.target)} className={style.parent}>
@@ -159,8 +155,7 @@ const Languages = () => {
         naState2={"languagesNumber"}
         setState2={setLanguagesNumber}
         b1={"أضف لغة جديدة"}
-        b2={"حفظ اللغات"}
-        numbCol={coun[coun.length - 1]}>
+        b2={"حفظ اللغات"}>
         {languagesNumber.map((ele, ind) => createqualifi(ind))}
       </UsePages>
     </div>
@@ -168,4 +163,3 @@ const Languages = () => {
 };
 
 export default Languages;
-// Update 178

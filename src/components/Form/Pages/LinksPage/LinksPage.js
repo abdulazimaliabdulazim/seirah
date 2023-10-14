@@ -12,18 +12,11 @@ import json from "../JSON_date/data_inputs.json";
 import UsePages from "../UsePage/UsePages";
 
 const LinksPage = () => {
+  const targetSeirah = window.localStorage.getItem("targetSeirah");
   let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3];
   document.title = "الروابط";
   const [links, setLinks] = useState(
-    getFormValues(
-      true,
-      "links",
-      true,
-      true,
-      coun[coun.length - 1],
-      "link",
-      "networck"
-    )
+    getFormValues(targetSeirah !== null ? `links${targetSeirah}` : "links1")
   );
   const createqualifi = (ind) => {
     return (
@@ -62,7 +55,9 @@ const LinksPage = () => {
     );
   };
   let [linksNumber, setLinksNumber] = useState(
-    getFormValues(true, "linksNumber", false)
+    getFormValues(
+      targetSeirah !== null ? `linksNumber${targetSeirah}` : "linksNumber1"
+    )
   );
   return (
     <UsePages
@@ -72,12 +67,10 @@ const LinksPage = () => {
       naState2={"linksNumber"}
       setState2={setLinksNumber}
       b1={"أضف رابط جديد"}
-      b2={"حفظ الروابط"}
-      numbCol={coun[coun.length - 1]}>
+      b2={"حفظ الروابط"}>
       {linksNumber.map((ele, ind) => createqualifi(ind))}
     </UsePages>
   );
 };
 
 export default LinksPage;
-// Update 102

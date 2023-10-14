@@ -8,18 +8,14 @@ import Json from "../../JSON_date/data_inputs.json";
 import UsePages from "../../UsePage/UsePages";
 
 const Qualifications = () => {
+  const targetSeirah = window.localStorage.getItem("targetSeirah");
   let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5];
   document.title = "المؤهلات العلمية";
   const [qualification, setQualification] = useState(
     getFormValues(
-      true,
-      "qualification",
-      true,
-      true,
-      coun[coun.length - 1],
-      "education",
-      "specializat",
-      "esy"
+      targetSeirah !== null
+        ? `qualifications${targetSeirah}`
+        : "qualifications1"
     )
   );
   const createqualifi = (ind) => {
@@ -89,22 +85,22 @@ const Qualifications = () => {
     );
   };
   const [qualifiNumber, setQualifiNumber] = useState(
-    getFormValues(true, "qualifiNumber", false)
+    getFormValues(
+      targetSeirah !== null ? `qualifiNumber${targetSeirah}` : "qualifiNumber1"
+    )
   );
   return (
     <UsePages
       state={qualification}
-      naState={"qualification"}
+      naState={"qualifications"}
       state2={qualifiNumber}
       naState2={"qualifiNumber"}
       setState2={setQualifiNumber}
       b1={"أضف مؤهل جديد"}
-      b2={"حفظ المؤهلات"}
-      numbCol={coun[coun.length - 1]}>
+      b2={"حفظ المؤهلات"}>
       {qualifiNumber.map((ele, ind) => createqualifi(ind))}
     </UsePages>
   );
 };
 
 export default Qualifications;
-// Update 129 => 101

@@ -1,12 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "../style.module.css";
 
-const Progress = () => {
-  const [progress] = useState(
-    window.localStorage.getItem("progress") !== null
-      ? window.localStorage.getItem("progress")
-      : "0"
-  );
+const Progress = ({ progress }) => {
   return (
     <div className={style.line}>
       <div className={style.havi}>

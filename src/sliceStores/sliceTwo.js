@@ -1,80 +1,33 @@
 import { createSlice, createStore } from "@reduxjs/toolkit";
-// import { allSeirah } from "../components/Form/Pages/hendlerData/hendlerData";
+
+const targetSeirah = window.localStorage.getItem("targetSeirah");
 
 const initState = {
   value: [" أعزب", "متزوج"],
-  url: "/home-detuls/qualifications",
   detulsUser: "",
   textPage: "معلومات الشخصية, وبيانات الإتصال الضرورية",
-  // personal: [],
-  // qualifications: "",
-  // experiences: "",
-  // coursess: "",
-  // skils: "",
-  // projects: "",
-  // return: "",
-  // languages: "",
-  // links: "",
-  // hobbies: "",
-  // address: "",
-  nextUrl: "",
-  nexdsatUrl: "",
+  [`progress${targetSeirah}`]: 0,
 };
-// Function Get Seirah All
-// allSeirah(initState.personal);
-
-// initState.qualifications = JSON.parse(
-//   window.localStorage.getItem("qualification")
-// );
-// initState.experiences = JSON.parse(window.localStorage.getItem("experiences"));
-// initState.coursess = JSON.parse(window.localStorage.getItem("coursess"));
-// initState.skils = JSON.parse(window.localStorage.getItem("skils"));
-// initState.projects = JSON.parse(window.localStorage.getItem("projects"));
-// initState.return = JSON.parse(window.localStorage.getItem("return"));
-// initState.languages = JSON.parse(window.localStorage.getItem("languages"));
-// initState.links = JSON.parse(window.localStorage.getItem("links"));
-// initState.hobbies = JSON.parse(window.localStorage.getItem("hobbies"));
-// initState.address = JSON.parse(window.localStorage.getItem("address"));
+// Get Item In Local Storage
 initState.detulsUser = JSON.parse(window.localStorage.getItem("detulsUser"));
 initState.textPage = window.localStorage.getItem("textPage");
+initState[`progress${targetSeirah}`] =
+  JSON.parse(window.localStorage.getItem(`progressStory${targetSeirah}`)) !==
+  null
+    ? JSON.parse(window.localStorage.getItem(`progressStory${targetSeirah}`))
+    : 0;
 
 const counterSlice = createSlice({
   name: "counter",
   initialState: initState,
   reducers: {
     // Get Date In Pages
-    personal: (state, action) => {
-      state.nexdsatUrl = "action.payload";
-    },
-    qualifications: (state, action) => {
-      state.nexdsatUrl = "action.payload";
-    },
-    experiences: (state, action) => {
-      state.nexdsatUrl = "action.payload";
-    },
-    coursess: (state, action) => {
-      state.nexdsatUrl = "action.payload";
-    },
-    skils: (state, action) => {
-      state.nexdsatUrl = "action.payload";
-    },
-    projects: (state, action) => {
-      state.nexdsatUrl = "action.payload";
-    },
-    return: (state, action) => {
-      state.nexdsatUrl = "action.payload";
-    },
-    languages: (state, action) => {
-      state.nexdsatUrl = "action.payload";
-    },
-    links: (state, action) => {
-      state.nexdsatUrl = "action.payload";
-    },
-    hobbies: (state, action) => {
-      state.nexdsatUrl = "action.payload";
-    },
-    address: (state, action) => {
-      state.nexdsatUrl = "action.payload";
+    progress: (state, action) => {
+      state[`progress${targetSeirah}`] += action.payload;
+      window.localStorage.setItem(
+        `progressStory${targetSeirah}`,
+        JSON.stringify(state[`progress${targetSeirah}`])
+      );
     },
     detulsUser: (state, action) => {
       state.detulsUser = action.payload;

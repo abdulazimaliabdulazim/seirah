@@ -12,10 +12,11 @@ import hendlerData, { getFormValues } from "../hendlerData/hendlerData";
 import UsePages from "../UsePage/UsePages";
 
 const Skils = () => {
+  const targetSeirah = window.localStorage.getItem("targetSeirah");
   let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5];
   document.title = "المهارات";
   const [skils, setSkils] = useState(
-    getFormValues(true, "skils", true, true, coun[coun.length - 1], "skils")
+    getFormValues(targetSeirah !== null ? `skils${targetSeirah}` : "skils1")
   );
   const createqualifi = (ind) => {
     return (
@@ -52,6 +53,7 @@ const Skils = () => {
               id={`skils${coun[4]++}`}
               type="radio"
               name={`skils${coun[5]++}`}
+              value={"20% مبتدئ"}
             />
             مبتدئ
             <div className={style.tog}></div>
@@ -62,6 +64,7 @@ const Skils = () => {
               id={`skils${coun[7]++}`}
               type="radio"
               name={`skils${coun[8]++}`}
+              value={"40% محدود"}
             />
             محدود
             <div className={style.tog}></div>
@@ -72,6 +75,7 @@ const Skils = () => {
               id={`skils${coun[10]++}`}
               type="radio"
               name={`skils${coun[11]++}`}
+              value={"60% جيّد"}
             />
             جيّد
             <div className={style.tog}></div>
@@ -82,6 +86,7 @@ const Skils = () => {
               id={`skils${coun[13]++}`}
               type="radio"
               name={`skils${coun[14]++}`}
+              value={"80% متمكن"}
             />
             متمكن
             <div className={style.tog}></div>
@@ -92,6 +97,7 @@ const Skils = () => {
               id={`skils${coun[16]++}`}
               type="radio"
               name={`skils${coun[17]++}`}
+              value={"100% متخصص"}
             />
             متخصص
             <div className={style.tog}></div>
@@ -101,7 +107,9 @@ const Skils = () => {
     );
   };
   let [skilsNumber, setSkilsNumb] = useState(
-    getFormValues(true, "skilsNumber", false)
+    getFormValues(
+      targetSeirah !== null ? `skilsNumber${targetSeirah}` : "skilsNumber1"
+    )
   );
   return (
     <UsePages
@@ -111,12 +119,10 @@ const Skils = () => {
       naState2={"skilsNumber"}
       setState2={setSkilsNumb}
       b1={"أضف خبرة مهارة"}
-      b2={"حفظ المهارات"}
-      numbCol={5}>
+      b2={"حفظ المهارات"}>
       {skilsNumber.map((ele, ind) => createqualifi(ind))}
     </UsePages>
   );
 };
 
 export default Skils;
-// Update 149

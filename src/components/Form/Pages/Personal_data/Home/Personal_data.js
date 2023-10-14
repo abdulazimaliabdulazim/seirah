@@ -7,6 +7,7 @@ import ParentInput from "./ParentInput/ParentInput";
 import Checkd from "./Checkd/Checkd";
 import hendlerData, {
   getFormValues,
+  progress,
   sendActionData,
 } from "../../hendlerData/hendlerData";
 import json from "../../JSON_date/data_inputs.json";
@@ -20,40 +21,18 @@ const Inputs = () => {
   const [halth, setHalth] = useState(false);
   const [personal, setPersonal] = useState(
     getFormValues(
-      false,
-      `personal${targetSeirah}`,
-      true,
-      false,
-      0,
-      "",
-      "",
-      "",
-      {
-        city: "",
-        country: "",
-        date: "",
-        email: "",
-        name: "",
-        personal_website: "",
-        nationality: "",
-        overview: "",
-        phone_number: "",
-        position: "",
-        service: "",
-        six: "",
-        tatis_health: "",
-        stits: "",
-        srcImg1: "",
-        address: "",
-      }
+      targetSeirah !== null ? `personal${targetSeirah}` : "personal1"
     )
   );
+  // Set Value Progress
+  progress(personal);
 
   const navigator = useNavigate();
 
   // Send Personals Data In Story
   const dispatch = useDispatch();
-  const hindlerAction = () => dispatch(counterActions.personal());
+  const hindlerAction = () =>
+    dispatch(counterActions.progress(personal.progress));
   return (
     <div className={style.parent}>
       <div className={style.box}>
@@ -252,7 +231,11 @@ const Inputs = () => {
         <hr />
         <Buttom
           onClick={() => {
-            sendActionData(hindlerAction, `personal${targetSeirah}`, personal);
+            sendActionData(
+              hindlerAction,
+              targetSeirah !== null ? `personal${targetSeirah}` : "personal1",
+              personal
+            );
             navigator("/dashboard/cvs/data/qualifications");
           }}
           text={"حفظ البيانات الشخصية"}
@@ -263,4 +246,3 @@ const Inputs = () => {
 };
 
 export default Inputs;
-// Update 244

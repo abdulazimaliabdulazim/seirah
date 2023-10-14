@@ -13,6 +13,7 @@
     --color3: #374151;
     --color4: #9b1c1c;
     --background1:#f1f5f9;
+    --background2:#fde8e8;
 }
 * {
     -webkit-box-sizing: border-box;
@@ -41,4 +42,23 @@ ul {
 }
 button {
     border: none;
+}
+
+/* Small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+/* Medium */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+/* Large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
 }

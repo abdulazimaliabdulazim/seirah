@@ -8,32 +8,11 @@ export const generatNmaeObj = (numb, ...name) => {
   }
   return nameObj;
 };
-export const getFormValues = (
-  addTarget = true,
-  nameLocal,
-  empty = true,
-  check = true,
-  numb,
-  name1,
-  name2,
-  name3,
-  objData,
-  all = true
-) => {
-  const targetSeirah = window.localStorage.getItem("targetSeirah");
-  const dataInLocal = window.localStorage.getItem(
-    addTarget === true ? `${nameLocal}${targetSeirah}` : nameLocal
-  );
+
+export const getFormValues = (nameLocal, all = true) => {
+  const dataInLocal = window.localStorage.getItem(nameLocal);
   if (!dataInLocal) {
-    if (empty === true) {
-      if (check === true) {
-        return generatNmaeObj(numb, name1, name2, name3);
-      } else {
-        return objData;
-      }
-    } else {
-      return [];
-    }
+    return [];
   }
   if (all === true) {
     return JSON.parse(dataInLocal);
@@ -49,20 +28,6 @@ export const sendActionData = (
   nameCoun,
   count
 ) => {
-  const obj = Object.values(dataLocal).filter((ele) => ele !== "");
-  const getItem = window.localStorage.getItem("progress");
-  const setItem = (name, item) => window.localStorage.setItem(name, item);
-
-  if (getItem) {
-    obj.length >= 10
-      ? setItem("progress", `${Number(getItem) + 10}`)
-      : setItem("progress", `${Number(getItem) + obj.length}`);
-  } else {
-    obj.length >= 10
-      ? setItem("progress", "10")
-      : setItem("progress", `${obj.length}`);
-  }
-
   sendAction();
   window.localStorage.setItem(nameLocal, JSON.stringify(dataLocal));
   window.localStorage.setItem(nameCoun, JSON.stringify(count));
@@ -86,6 +51,7 @@ const hendlerData = (
     src = e.target.src,
     inner = e.target.innerHTML,
     clas = e.target.className;
+
   setData((pre) => {
     return {
       ...pre,
@@ -106,27 +72,31 @@ export default hendlerData;
 export const outbotValuesArrayInMineObjectPages = (
   arrayInPush,
   objInData,
+  date = true,
   ...nameObj
 ) => {
   const nameManth = json[11];
   for (let i = 1; i <= 4; i++) {
-    const obj = {
-      dateOne: [
+    const obj = {};
+    if (date) {
+      obj["dateOne"] = [
         objInData[`day${i}`],
         nameManth.indexOf(objInData[`manth${i}`]) === -1
           ? undefined
           : nameManth.indexOf(objInData[`manth${i}`]) + 1,
         objInData[`yar${i}`],
-      ],
-      dateTwo: [
+      ];
+      obj["dateTwo"] = [
         objInData[`day2${i}`],
         nameManth.indexOf(objInData[`manth2${i}`]) === -1
           ? undefined
           : nameManth.indexOf(objInData[`manth${i}`]) + 1,
         objInData[`yar2${i}`],
-      ],
-    };
-    nameObj.map((ele) => (obj[ele] = objInData[`${ele}${i}`]));
+      ];
+      nameObj.map((ele) => (obj[ele] = objInData[`${ele}${i}`]));
+    } else {
+      nameObj.map((ele) => (obj[ele] = objInData[`${ele}${i}`]));
+    }
     arrayInPush.push(obj);
   }
 };
@@ -163,9 +133,9 @@ export const nextPage = () => {
 // Mautpet Seirah
 export const allSeirah = (nameObj) => {
   const personal = [];
-  const countseirahAll = JSON.parse(window.localStorage.getItem("countseirah"));
+  const countseirahAll = window.localStorage.getItem("countseirah");
   if (countseirahAll !== null) {
-    for (let i = 1; i <= countseirahAll.length; i++) {
+    for (let i = 1; i <= countseirahAll; i++) {
       const personals = JSON.parse(
         window.localStorage.getItem(`${nameObj}${i}`)
       );
@@ -175,4 +145,29 @@ export const allSeirah = (nameObj) => {
     }
   }
   return personal;
+};
+
+// progress
+export const progress = (obj, setState) => {
+  const valuesObj = Object.values(obj); // Keys Of Object
+  // Filter Length  Object
+  const filterEmpty = valuesObj.filter((ele) => {
+    return ele !== "";
+  });
+  const lengthObj = valuesObj.length; // Total Length  Object
+  obj["progress"] = Math.ceil((filterEmpty.length / lengthObj) * 10);
+};
+
+export const fetchDateAllSeirah = (numberSeirh, add = true) => {
+  const data = [];
+  json[0].map((nameObj) => {
+    if (add) {
+      return data.push(
+        JSON.parse(window.localStorage.getItem(`${nameObj.url}${numberSeirh}`))
+      );
+    } else {
+      return window.localStorage.removeItem(`${nameObj.url}${numberSeirh}`);
+    }
+  });
+  return data;
 };

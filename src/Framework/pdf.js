@@ -2,7 +2,7 @@ import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 
 const dawnloadPdf = (pdfRef, name) => {
-  const input = pdfRef.current;
+  const input = pdfRef;
   html2canvas(input).then((canvas) => {
     const imgDate = canvas.toDataURL();
     const pdf = new jsPDF();
@@ -12,7 +12,7 @@ const dawnloadPdf = (pdfRef, name) => {
     const imHeight = canvas.height;
     const ratio = Math.min(pdfWidth / imWidth, pdfHeight / imHeight);
     const imgX = (pdfWidth - imWidth * ratio) / 2;
-    const imgY = 30;
+    const imgY = 0;
     pdf.addImage(imgDate, "PNG", imgX, imgY, imWidth * ratio, imHeight * ratio);
     pdf.save(name);
   });

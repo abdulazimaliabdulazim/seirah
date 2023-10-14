@@ -3,7 +3,7 @@ import style from "../Qualifications/Home/Qualifications.module.css";
 import styleBut from "../../....//../Buttom/Buttom.module.css";
 import Buttom from "../../Buttom/Buttom";
 import { useDispatch } from "react-redux";
-import { nextPage, sendActionData } from "../hendlerData/hendlerData";
+import { nextPage, progress, sendActionData } from "../hendlerData/hendlerData";
 import { counterActions } from "../../../../sliceStores/sliceTwo";
 import { useNavigate } from "react-router-dom";
 import json from "../JSON_date/data_inputs.json";
@@ -17,15 +17,16 @@ const UsePages = ({
   setState2,
   b1,
   b2,
-  numbCol,
 }) => {
   const navigate = useNavigate();
   const ulrsPages = json[13];
   const varNextPages = ulrsPages[ulrsPages.indexOf(nextPage().join("")) + 1];
 
+  // Progress
+  progress(state);
+
   const dispatch = useDispatch();
-  const hindlerAction = () =>
-    dispatch(counterActions[window.location.pathname.split("/")[4]](state));
+  const hindlerAction = () => dispatch(counterActions.progress(state.progress));
   const hendlreNum = () => setState2((pre) => [...pre, 1]);
 
   const targetSeirah = window.localStorage.getItem("targetSeirah");
@@ -34,11 +35,7 @@ const UsePages = ({
       <div className={style.box}>
         {children}
         <button
-          onClick={(e) => {
-            state2.length < numbCol
-              ? hendlreNum()
-              : e.target.removeEventListener("click", e.target);
-          }}
+          onClick={() => hendlreNum()}
           className={`${style.but} ${styleBut.mani}`}>
           {b1}
         </button>
@@ -47,9 +44,13 @@ const UsePages = ({
           onClick={() => {
             sendActionData(
               hindlerAction,
-              `${naState}${targetSeirah}`,
+              targetSeirah !== null
+                ? `${naState}${targetSeirah}`
+                : `${naState}1`,
               state,
-              `${naState2}${targetSeirah}`,
+              targetSeirah !== null
+                ? `${naState2}${targetSeirah}`
+                : `${naState2}1`,
               state2
             );
             navigate(varNextPages);

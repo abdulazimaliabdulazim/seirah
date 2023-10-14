@@ -18,21 +18,15 @@ import Json from "../JSON_date/data_inputs.json";
 import UsePages from "../UsePage/UsePages";
 
 const Experiences = () => {
+  const targetSeirah = window.localStorage.getItem("targetSeirah");
   let coun = [
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 3,
+    1, 1, 1, 1, 1, 3,
   ];
   document.title = "الخبرات العملية";
   const [experiences, setexpEriences] = useState(
     getFormValues(
-      true,
-      "experiences",
-      true,
-      true,
-      coun[coun.length - 1],
-      "job",
-      "jobTitle",
-      "esy"
+      targetSeirah !== null ? `experiences${targetSeirah}` : "experiences1"
     )
   );
   const createexperiences = (ind) => {
@@ -103,17 +97,21 @@ const Experiences = () => {
           <span>{experiences[`yar2${coun[25]++}`]}</span>
         </DateQualifi>
         <Upload
-          id={`srcImg${coun[18]++}`}
+          id={`srcImg${coun[29]++}`}
           text={"شعار المنشأة"}
           p={"إختياري، يظهر شعار المنشأة في بعض القوالب وليس كلها."}
           setState={setexpEriences}
-          srcImg={experiences[`srcImg${coun[19]++}`]}
+          srcImg={experiences[`srcImg${coun[28]++}`]}
         />
       </div>
     );
   };
   let [experienNumber, setExperNumber] = useState(
-    getFormValues(true, "experienNumber", false)
+    getFormValues(
+      targetSeirah !== null
+        ? `experienNumber${targetSeirah}`
+        : "experienNumber1"
+    )
   );
   return (
     <UsePages
@@ -123,12 +121,10 @@ const Experiences = () => {
       naState2={"experienNumber"}
       setState2={setExperNumber}
       b1={"أضف خبرة جديدة"}
-      b2={"حفظ الخبرات"}
-      numbCol={coun[coun.length - 1]}>
+      b2={"حفظ الخبرات"}>
       {experienNumber.map((ele, ind) => createexperiences(ind))}
     </UsePages>
   );
 };
 
 export default Experiences;
-// Update 173

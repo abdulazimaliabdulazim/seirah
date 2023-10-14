@@ -18,18 +18,12 @@ import json from "../JSON_date/data_inputs.json";
 import UsePages from "../UsePage/UsePages";
 
 const Coursess = () => {
+  const targetSeirah = window.localStorage.getItem("targetSeirah");
   let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5];
   document.title = "الدورات التدريبية";
   const [coursess, setCoursess] = useState(
     getFormValues(
-      true,
-      "coursess",
-      true,
-      true,
-      coun[coun.length - 1],
-      "cours",
-      "mantur",
-      "esy"
+      targetSeirah !== null ? `coursess${targetSeirah}` : "coursess1"
     )
   );
   const createqualifi = (ind) => {
@@ -88,7 +82,11 @@ const Coursess = () => {
     );
   };
   let [coursessNumber, setCoursessNum] = useState(
-    getFormValues(true, "coursessNumber", false)
+    getFormValues(
+      targetSeirah !== null
+        ? `coursessNumber${targetSeirah}`
+        : "coursessNumber1"
+    )
   );
   return (
     <UsePages
@@ -98,12 +96,10 @@ const Coursess = () => {
       naState2={"coursessNumber"}
       setState2={setCoursessNum}
       b1={"أضف دورة جديدة"}
-      b2={"حفظ الدورات"}
-      numbCol={coun[coun.length - 1]}>
+      b2={"حفظ الدورات"}>
       {coursessNumber.map((ele, ind) => createqualifi(ind))}
     </UsePages>
   );
 };
 
 export default Coursess;
-// Update 122

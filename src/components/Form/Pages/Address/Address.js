@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import style from "../Qualifications/Home/Qualifications.module.css";
 import Buttom from "../../Buttom/Buttom";
 import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import hendlerData, {
   getFormValues,
   sendActionData,
@@ -12,7 +12,7 @@ const Address = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
   document.title = "العنوان";
   const [address, setAddress] = useState(
-    getFormValues(false, `address${targetSeirah}`)
+    getFormValues(`address${targetSeirah}`)
   );
   const dispatch = useDispatch();
   const hindlerAction = () => dispatch({ type: { address } });
@@ -50,5 +50,3 @@ const Address = () => {
 };
 
 export default Address;
-// Update 49
-// Total => (1,662)

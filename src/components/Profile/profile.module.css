@@ -57,3 +57,11 @@ header.profile .name_dash > span {
 header.profile .name_dash:hover {
     opacity: .75;
 }
+@media (max-width:567px) {
+    header.profile .name_dash > span {
+        display: none;
+    }
+    header.profile .right {
+        justify-content: space-around;
+    }
+} 

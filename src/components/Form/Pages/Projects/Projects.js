@@ -18,18 +18,12 @@ import json from "../JSON_date/data_inputs.json";
 import UsePages from "../UsePage/UsePages";
 
 const Projects = () => {
+  const targetSeirah = window.localStorage.getItem("targetSeirah");
   let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5];
   document.title = "المشاريع";
   const [projects, setProjects] = useState(
     getFormValues(
-      true,
-      "projects",
-      true,
-      true,
-      coun[coun.length - 1],
-      "name",
-      "link",
-      "brief"
+      targetSeirah !== null ? `projects${targetSeirah}` : "projects1"
     )
   );
   const createqualifi = (ind) => {
@@ -93,7 +87,9 @@ const Projects = () => {
     );
   };
   let [projectNumber, setProjectNumber] = useState(
-    getFormValues(true, "projectNumber", false)
+    getFormValues(
+      targetSeirah !== null ? `projectNumber${targetSeirah}` : "projectNumber1"
+    )
   );
   return (
     <UsePages
@@ -103,12 +99,10 @@ const Projects = () => {
       naState2={"projectNumber"}
       setState2={setProjectNumber}
       b1={"أضف مشروع جديد"}
-      b2={"حفظ المشروعات"}
-      numbCol={coun[coun.length - 1]}>
+      b2={"حفظ المشروعات"}>
       {projectNumber.map((ele, ind) => createqualifi(ind))}
     </UsePages>
   );
 };
 
 export default Projects;
-// Update 128

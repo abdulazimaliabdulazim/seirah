@@ -4,42 +4,34 @@ import Container from "../../Container/Container";
 import UserImg from "../../UserImg/UserImg";
 import logo from "../../../images/logo.png";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import Icons from "../../Icons/Icons";
 import {
   allSeirah,
   outbotValuesArrayInMineObjectPages,
 } from "../../Form/Pages/hendlerData/hendlerData";
 import dawnloadPdf from "../../../Framework/pdf";
+import dawnloadImg from "../../../Framework/png";
 
 const Templet1 = () => {
-  const pdfRef = useRef();
-
-  const targetSeirah = window.localStorage.getItem("targetSeirah");
-  const {
-      name,
-      position,
-      phone_number,
-      email,
-      iam,
-      personal_website,
-      six,
-      date,
-      stits,
-      country,
-      nationality,
-      srcImg1,
-    } = allSeirah("personal")[targetSeirah - 1],
-    qualifications = allSeirah("qualification")[targetSeirah - 1],
+  const pdfRef = useRef(),
+    targetSeirah = window.localStorage.getItem("targetSeirah"),
+    personal = allSeirah("personal")[targetSeirah - 1],
+    qualifications = allSeirah("qualifications")[targetSeirah - 1],
     experiences = allSeirah("experiences")[targetSeirah - 1],
     coursess = allSeirah("coursess")[targetSeirah - 1],
     projects = allSeirah("projects")[targetSeirah - 1],
-    address = allSeirah("address")[targetSeirah - 1];
+    address = allSeirah("address")[targetSeirah - 1],
+    skils = allSeirah("skils")[targetSeirah - 1],
+    return_ = allSeirah("return")[targetSeirah - 1],
+    languages = allSeirah("languages")[targetSeirah - 1],
+    links = allSeirah("links")[targetSeirah - 1],
+    hobbies = allSeirah("hobbies")[targetSeirah - 1];
 
   const experiencesFinal = [];
   outbotValuesArrayInMineObjectPages(
     experiencesFinal,
     experiences,
+    true,
     "job",
     "jobTitle",
     "esy"
@@ -48,6 +40,7 @@ const Templet1 = () => {
   outbotValuesArrayInMineObjectPages(
     qualificationsFinal,
     qualifications,
+    true,
     "education",
     "specializat",
     "esy",
@@ -57,6 +50,7 @@ const Templet1 = () => {
   outbotValuesArrayInMineObjectPages(
     coursessFinal,
     coursess,
+    true,
     "cours",
     "mantur",
     "esy",
@@ -66,17 +60,50 @@ const Templet1 = () => {
   outbotValuesArrayInMineObjectPages(
     projectsFinal,
     projects,
+    true,
     "name",
     "link",
     "brief"
   );
+  const skilsFinal = [];
+  outbotValuesArrayInMineObjectPages(
+    skilsFinal,
+    skils,
+    false,
+    "skils",
+    "skilsId"
+  );
+  const return_Final = [];
+  outbotValuesArrayInMineObjectPages(
+    return_Final,
+    return_,
+    false,
+    "name",
+    "number_phone",
+    "email",
+    "esy"
+  );
+  const languagesFinal = [];
+  outbotValuesArrayInMineObjectPages(
+    languagesFinal,
+    languages,
+    false,
+    "lang",
+    "levelLang"
+  );
+  const linksFinal = [];
+  outbotValuesArrayInMineObjectPages(
+    linksFinal,
+    links,
+    false,
+    "link",
+    "networck"
+  );
+  const hobbiesFinal = [];
+  outbotValuesArrayInMineObjectPages(hobbiesFinal, hobbies, false, "hobbie");
 
   return (
-    <div
-      onClick={() => dawnloadPdf(pdfRef)}
-      id="faund"
-      className={templet.templetOne}
-      ref={pdfRef}>
+    <div id="faund" className={templet.templetOne}>
       <div className={templet.header}>
         <Container>
           <img src={logo} alt="logo" />
@@ -85,11 +112,11 @@ const Templet1 = () => {
         </Container>
       </div>
       <Container>
-        <div className={templet.box}>
+        <div ref={pdfRef} className={templet.box}>
           <div className={templet.colOne}>
-            <UserImg srcImg={srcImg1} radius="50%" width="80px" />
-            <h1>{name}</h1>
-            <span>{position}</span>
+            <UserImg srcImg={personal.srcImg1} radius="50%" width="80px" />
+            <h1>{personal.name}</h1>
+            <span>{personal.position}</span>
           </div>
           <hr />
           <div className={templet.colTwo}>
@@ -102,7 +129,7 @@ const Templet1 = () => {
                   viewBox={"0 0 24 24"}
                 />
               </span>
-              <span>{phone_number}</span>
+              <span>{personal.phone_number}</span>
             </div>
             <div className={templet.col}>
               <span className={templet.icon}>
@@ -113,7 +140,7 @@ const Templet1 = () => {
                   viewBox={"0 0 24 24"}
                 />
               </span>
-              <span>{email}</span>
+              <span>{personal.email}</span>
             </div>
             <div className={templet.col}>
               <span className={templet.icon}>
@@ -124,8 +151,8 @@ const Templet1 = () => {
                   viewBox={"0 0 24 24"}
                 />
               </span>
-              <a href={personal_website} target="_blanck">
-                <span>{personal_website}</span>
+              <a href={personal.personal_website} target="_blanck">
+                <span>{personal.personal_website}</span>
               </a>
             </div>
             <div className={templet.col}>
@@ -137,7 +164,7 @@ const Templet1 = () => {
                   viewBox={"0 0 24 24"}
                 />
               </span>
-              <span>{six}</span>
+              <span>{personal.six}</span>
             </div>
             <div className={templet.col}>
               <span className={templet.icon}>
@@ -148,7 +175,7 @@ const Templet1 = () => {
                   viewBox={"0 0 24 24"}
                 />
               </span>
-              <span>{date}</span>
+              <span>{personal.date}</span>
             </div>
             <div className={templet.col}>
               <span className={templet.icon}>
@@ -159,7 +186,7 @@ const Templet1 = () => {
                   viewBox={"0 0 24 24"}
                 />
               </span>
-              <span>{stits}</span>
+              <span>{personal.stits}</span>
             </div>
             <div className={templet.col}>
               <span className={templet.icon}>
@@ -170,7 +197,7 @@ const Templet1 = () => {
                   viewBox={"0 0 24 24"}
                 />
               </span>
-              <span>{country}</span>
+              <span>{personal.country}</span>
             </div>
             <div className={templet.col}>
               <span className={templet.icon}>
@@ -181,11 +208,11 @@ const Templet1 = () => {
                   viewBox={"0 0 24 24"}
                 />
               </span>
-              <span>{nationality}</span>
+              <span>{personal.nationality}</span>
             </div>
           </div>
           <div className={templet.textAria}>
-            <p>{iam}</p>
+            <p>{personal.iam}</p>
           </div>
           <div className={templet.pacedg}>
             <div className={templet.hedin}>
@@ -195,24 +222,26 @@ const Templet1 = () => {
             <div className={templet.parent}>
               {experiencesFinal.map((ele, ind) => {
                 return (
-                  <div key={ind} className={templet.detuls}>
-                    <div className={templet.date}>
-                      <Icons
-                        path={
-                          "M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"
-                        }
-                        viewBox={"0 0 24 24"}
-                      />
-                      <span>{ele.dateTwo.reverse().join("-")}</span>
-                      <span>-</span>
-                      <span>{ele.dateOne.reverse().join("-")}</span>
+                  ele.job !== undefined && (
+                    <div key={ind} className={templet.detuls}>
+                      <div className={templet.date}>
+                        <Icons
+                          path={
+                            "M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"
+                          }
+                          viewBox={"0 0 24 24"}
+                        />
+                        <span>{ele.dateTwo.reverse().join("-")}</span>
+                        <span>-</span>
+                        <span>{ele.dateOne.reverse().join("-")}</span>
+                      </div>
+                      <div className={templet.info}>
+                        <h1>{ele.job}</h1>
+                        <p>{ele.jobTitle}</p>
+                        <p>{ele.esy}</p>
+                      </div>
                     </div>
-                    <div className={templet.info}>
-                      <h1>{ele.job}</h1>
-                      <p>{ele.jobTitle}</p>
-                      <p>{ele.esy}</p>
-                    </div>
-                  </div>
+                  )
                 );
               })}
             </div>
@@ -225,8 +254,8 @@ const Templet1 = () => {
             <div className={templet.parent}>
               {qualificationsFinal.map((ele, ind) => {
                 return (
-                  <div key={ind} className={templet.detuls}>
-                    {ele.education !== "" && (
+                  ele.education !== undefined && (
+                    <div key={ind} className={templet.detuls}>
                       <div className={templet.date}>
                         <Icons
                           path={
@@ -236,14 +265,14 @@ const Templet1 = () => {
                         />
                         <span>{ele.dateOne.reverse().join("-")}</span>
                       </div>
-                    )}
-                    <div className={templet.info}>
-                      <h1>{ele.education}</h1>
-                      <p>{ele.specializat}</p>
-                      <p>{ele.esy}</p>
-                      <p>{ele.degree}</p>
+                      <div className={templet.info}>
+                        <h1>{ele.education}</h1>
+                        <p>{ele.specializat}</p>
+                        <p>{ele.esy}</p>
+                        <p>{ele.degree}</p>
+                      </div>
                     </div>
-                  </div>
+                  )
                 );
               })}
             </div>
@@ -256,23 +285,24 @@ const Templet1 = () => {
             <div className={templet.parent}>
               {coursessFinal.map((ele, ind) => {
                 return (
-                  <div key={ind} className={templet.detuls}>
-                    <div className={templet.date}>
-                      <Icons
-                        path={
-                          "M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"
-                        }
-                        viewBox={"0 0 24 24"}
-                      />
-                      <span>{ele.dateOne.reverse().join("-")}</span>
+                  ele.cours !== undefined && (
+                    <div key={ind} className={templet.detuls}>
+                      <div className={templet.date}>
+                        <Icons
+                          path={
+                            "M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"
+                          }
+                          viewBox={"0 0 24 24"}
+                        />
+                        <span>{ele.dateOne.reverse().join("-")}</span>
+                      </div>
+                      <div className={templet.info}>
+                        <h1>{ele.cours}</h1>
+                        <p>{ele.mantur}</p>
+                        <p>{ele.esy}</p>
+                      </div>
                     </div>
-                    <div className={templet.info}>
-                      <h1>{ele.cours}</h1>
-                      <p>{ele.mantur}</p>
-                      <p>{ele.esy}</p>
-                    </div>
-                    <hr />
-                  </div>
+                  )
                 );
               })}
             </div>
@@ -294,24 +324,132 @@ const Templet1 = () => {
             <div className={templet.parent}>
               {projectsFinal.map((ele, ind) => {
                 return (
-                  <div key={ind} className={templet.detuls}>
-                    <div className={templet.date}>
-                      <Icons
-                        path={
-                          "M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"
-                        }
-                        viewBox={"0 0 24 24"}
-                      />
-                      <span>{ele.dateOne.reverse().join("-")}</span>
+                  ele.link !== undefined && (
+                    <div key={ind} className={templet.detuls}>
+                      <div className={templet.date}>
+                        <Icons
+                          path={
+                            "M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"
+                          }
+                          viewBox={"0 0 24 24"}
+                        />
+                        <span>{ele.dateOne.reverse().join("-")}</span>
+                      </div>
+                      <div className={templet.info}>
+                        <a href={ele.link}>
+                          <h1>{ele.name}</h1>
+                        </a>
+                        <p>{ele.brief}</p>
+                      </div>
                     </div>
-                    <div className={templet.info}>
-                      <a href={ele.link}>
-                        <h1>{ele.name}</h1>
-                      </a>
-                      <p>{ele.brief}</p>
+                  )
+                );
+              })}
+            </div>
+          </div>
+          <div className={templet.pacedg}>
+            {skilsFinal.map((ele, ind) => {
+              return (
+                ele.skilsId !== undefined && (
+                  <div key={ind} className={templet.boxLevils}>
+                    <div className={templet.skil}>
+                      <div style={{ width: ele.skils.split(" ")[0] }}>
+                        {ele.skilsId}
+                      </div>
                     </div>
-                    <hr />
+                    <div className={templet.lesvel}>
+                      {ele.skils.split(" ")[1]}
+                    </div>
                   </div>
+                )
+              );
+            })}
+          </div>
+          <div className={templet.pacedg}>
+            <div className={templet.hedin}>
+              <h3>المراجع</h3>
+            </div>
+            <div className={templet.space}></div>
+            <div className={templet.parent}>
+              {return_Final.map((ele, ind) => {
+                return (
+                  ele.name !== undefined && (
+                    <div key={ind} className={templet.detuls}>
+                      <div className={templet.date}>
+                        <span
+                          style={{ display: "block", marginBottom: "10px" }}>
+                          {ele.email}
+                        </span>
+                        <span>{ele.number_phone}</span>
+                      </div>
+                      <div className={templet.info}>
+                        <h1>{ele.name}</h1>
+                        <p>{ele.esy}</p>
+                      </div>
+                    </div>
+                  )
+                );
+              })}
+            </div>
+          </div>
+          <div className={templet.pacedg}>
+            <div className={templet.hedin}>
+              <h3>اللغات</h3>
+            </div>
+            <div className={templet.space}></div>
+            {languagesFinal.map((ele, ind) => {
+              return (
+                ele.lang !== undefined && (
+                  <div key={ind} className={templet.boxLevils}>
+                    <div className={templet.languages}>
+                      <div>{ele.lang}</div>
+                    </div>
+                    <div
+                      style={{ padding: "4px 8px", fontSize: "1rem" }}
+                      className={templet.lesvel}>
+                      {ele.levelLang}
+                    </div>
+                  </div>
+                )
+              );
+            })}
+          </div>
+          <div className={templet.pacedg}>
+            <div className={templet.hedin}>
+              <h3>روابط</h3>
+            </div>
+            <div className={templet.space}></div>
+            {linksFinal.map((ele, ind) => {
+              return (
+                ele.networck !== undefined && (
+                  <div key={ind} className={templet.boxLevils}>
+                    <div className={templet.languages}>
+                      <div>{ele.networck}</div>
+                    </div>
+                    <div
+                      onClick={() => window.open(ele.link)}
+                      style={{ padding: "4px 8px", cursor: "pointer" }}
+                      className={templet.lesvel}>
+                      {ele.link}
+                    </div>
+                  </div>
+                )
+              );
+            })}
+          </div>
+          <div className={templet.pacedg}>
+            <div className={templet.hedin}>
+              <h3>الهوايات</h3>
+            </div>
+            <div className={templet.space}></div>
+            <div className={templet.boxhobbie}>
+              {hobbiesFinal.map((ele, ind) => {
+                return (
+                  ele.hobbie !== undefined && (
+                    <div key={ind} className={templet.hobbie}>
+                      {ele.hobbie}
+                    </div>
+                  )
                 );
               })}
             </div>

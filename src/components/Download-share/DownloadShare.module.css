@@ -2,6 +2,9 @@
     background-color: var(--background1);
     padding: 20px 0;
 }
+.DownloadShare div {
+    position: relative;
+}
 .header {
     background-color: #f9fafb;
     color: var(--color2);
@@ -40,7 +43,7 @@
 .copyLink  {
     height: 60px;
 }
-.copyLink ,.pdf{
+.copyLink {
     display: flex;
     align-items: center;
     background-color: white;
@@ -101,26 +104,62 @@
 }
 
 .pdf {
-    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
     color: white;
+    background-color: white;
+    padding: 10px;
+    margin: 20px 0;
+}
+.pdf .parent {
+    margin: 10px;
 }
 .pdf .parent span {
     cursor: pointer;
     padding: 10px 15px;
 }
+.pdf .headin {
+    width: 98%;
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    border-bottom: 1px solid #d2d6dc;
+}
+.pdf .headin svg {
+    height: 22px !important;
+}
+.pdf .headin p {
+    color: black;
+    font-weight: bold;
+}
+.pdf .mauty {
+    padding: 5px 10px;
+    margin: 15px;
+    background-color: #f6f5ff;
+    color: #7e3af2;
+    font-size: 20px;
+}
 .pdf .parent span svg {
     color: white !important;
+}
+.pdf .mauty svg {
+    color: #7e3af2 !important;
 }
 .pdf span:first-of-type {
     background-image: linear-gradient(to right,#751a3d,#bf125d);
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
 }
-.pdf span:first-of-type:hover {
-    /* background-image: linear-gradient(to right,#000000); */
-}
 .pdf span:last-of-type {
     background-color: #E3A008;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
+}
+
+.DownloadShare img {
+    position: absolute;
+    top: 0;
+    z-index: -41;
 }

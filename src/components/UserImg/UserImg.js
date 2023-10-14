@@ -13,6 +13,7 @@ const UserImg = ({
   const uploadImage = (e) => {
     const upload = document.createElement("input");
     upload.type = "file";
+    upload.accept = ".jpg";
     upload.click();
     upload.onchange = () => {
       const newFiles = new FileReader();

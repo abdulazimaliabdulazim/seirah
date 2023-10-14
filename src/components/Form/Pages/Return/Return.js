@@ -12,19 +12,11 @@ import json from "../JSON_date/data_inputs.json";
 import UsePages from "../UsePage/UsePages";
 
 const Return = () => {
+  const targetSeirah = window.localStorage.getItem("targetSeirah");
   let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3];
   document.title = "المراجع";
   const [dataReturn, setDataReturn] = useState(
-    getFormValues(
-      true,
-      "return",
-      true,
-      true,
-      coun[coun.length - 1],
-      "name",
-      "number_phone",
-      "esy"
-    )
+    getFormValues(targetSeirah !== null ? `return${targetSeirah}` : "return1")
   );
   const createqualifi = (ind) => {
     return (
@@ -45,11 +37,13 @@ const Return = () => {
             <ParentInput
               key={ind}
               forId={
-                input.id === "job"
+                input.id === "name"
                   ? `${input.id}${coun[1]++}`
-                  : input.id === "jobTitle"
+                  : input.id === "email"
                   ? `${input.id}${coun[2]++}`
-                  : `${input.id}${coun[3]++}`
+                  : input.id === " number_phone"
+                  ? `${input.id}${coun[3]++}`
+                  : `${input.id}${coun[4]++}`
               }
               label={input.label}
               paraghrap={input.paraghrap}>
@@ -58,18 +52,24 @@ const Return = () => {
                 type="text"
                 placeholder={input.label}
                 id={
-                  input.id === "job"
-                    ? `${input.id}${coun[4]++}`
-                    : input.id === "jobTitle"
+                  input.id === "name"
                     ? `${input.id}${coun[5]++}`
-                    : `${input.id}${coun[6]++}`
+                    : input.id === "email"
+                    ? `${input.id}${coun[6]++}`
+                    : input.id === "number_phone"
+                    ? `${input.id}${coun[7]++}`
+                    : input.id === "esy"
+                    ? `${input.id}${coun[8]++}`
+                    : ""
                 }
                 value={
-                  input.id === "job"
-                    ? dataReturn[`${input.id}${coun[7]++}`]
-                    : input.id === "jobTitle"
-                    ? dataReturn[`${input.id}${coun[8]++}`]
-                    : dataReturn[`${input.id}${coun[9]++}`]
+                  input.id === "name"
+                    ? dataReturn[`${input.id}${coun[9]++}`]
+                    : input.id === "email"
+                    ? dataReturn[`${input.id}${coun[10]++}`]
+                    : input.id === " number_phone"
+                    ? dataReturn[`${input.id}${coun[11]++}`]
+                    : dataReturn[`${input.id}${coun[12]++}`]
                 }
               />
             </ParentInput>
@@ -79,7 +79,9 @@ const Return = () => {
     );
   };
   let [returnNumber, setReturnNumber] = useState(
-    getFormValues(true, "returnNumber", false)
+    getFormValues(
+      targetSeirah !== null ? `returnNumber${targetSeirah}` : "returnNumber1"
+    )
   );
   return (
     <UsePages
@@ -89,12 +91,10 @@ const Return = () => {
       naState2={"returnNumber"}
       setState2={setReturnNumber}
       b1={"أضف شخص جديد"}
-      b2={"حفظ المراجع"}
-      numbCol={coun[coun.length - 1]}>
+      b2={"حفظ المراجع"}>
       {returnNumber.map((ele, ind) => createqualifi(ind))}
     </UsePages>
   );
 };
 
 export default Return;
-// Update 93

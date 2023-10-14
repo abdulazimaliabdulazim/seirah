@@ -10,10 +10,11 @@ import hendlerData, { getFormValues } from "../hendlerData/hendlerData";
 import UsePages from "../UsePage/UsePages";
 
 const Hobbies = () => {
+  const targetSeirah = window.localStorage.getItem("targetSeirah");
   let coun = [1, 1, 1, 1, 3];
   document.title = "الهوايات";
   const [hobbies, setHobbies] = useState(
-    getFormValues(true, "hobbies", true, true, coun[coun.length - 1], "hobbie")
+    getFormValues(targetSeirah !== null ? `hobbies${targetSeirah}` : "hobbies1")
   );
   const createqualifi = (ind) => {
     return (
@@ -45,7 +46,9 @@ const Hobbies = () => {
     );
   };
   let [hobbiesNumber, setHobbiesNumber] = useState(
-    getFormValues(true, "hobbiesNumber", false)
+    getFormValues(
+      targetSeirah !== null ? `hobbiesNumber${targetSeirah}` : "hobbiesNumber1"
+    )
   );
   return (
     <UsePages
@@ -55,12 +58,10 @@ const Hobbies = () => {
       naState2={"hobbiesNumber"}
       setState2={setHobbiesNumber}
       b1={"أضف هواية جديدة"}
-      b2={"حفظ الهويات"}
-      numbCol={coun[coun.length - 1]}>
+      b2={"حفظ الهويات"}>
       {hobbiesNumber.map((ele, ind) => createqualifi(ind))}
     </UsePages>
   );
 };
 
 export default Hobbies;
-// Update 87
