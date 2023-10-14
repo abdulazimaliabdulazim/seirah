@@ -11,6 +11,8 @@
     color: white;
     margin: auto;
     text-align: center;
+    padding: 20px;
+
 }
 .register .continer p a {
     color: var(--color-ylo);
@@ -40,4 +42,19 @@
 }
 .register  button {
     width: 90%;
+}
+
+@media (max-width: 767px) {
+    .register .parent {
+        width: auto;
+    }
+    .register .parent .login div {
+        width: 100% !important;
+    }
+    .register .continer {
+        width: auto;
+    }
+    .register .parent .login div input,.register  button {
+        width: 100%;
+    }
 }

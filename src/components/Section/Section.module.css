@@ -41,10 +41,11 @@
     color: var(--color-ylo);
 }
 .section .child_parent ul li {
-    line-height: 1.5rem;
+    line-height: 2rem;
     color: #8da2fb;
     padding: 1px 2px;
     display: flex;
+    font-size: 1.5rem;
 }
 .section .child_parent ul li span {
     color: var(--color-ylo);
@@ -86,4 +87,9 @@
     -moz-border-radius: 8px;
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
+}
+@media (max-width: 992px) {
+    .section .image {
+        display: none;
+    }
 }

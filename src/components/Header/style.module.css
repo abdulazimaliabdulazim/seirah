@@ -39,3 +39,9 @@
 .header .maniger a:first-of-type {
     background-color: #1c64f2;
 }
+@media (max-width: 767px) {
+    .header .maniger a {
+       padding: 10px 5px;
+       font-weight: bold;
+    }
+}

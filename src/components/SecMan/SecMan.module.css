@@ -10,6 +10,11 @@
     line-height: 2;
     text-align: center;
 }
+@media (max-width: 767px) {
+    .parent h1 {
+        width: fit-content;
+    }
+}
 .parent button {
     width: fit-content;
     color: #9f580a;

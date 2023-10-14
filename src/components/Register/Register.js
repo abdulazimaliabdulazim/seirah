@@ -11,24 +11,12 @@ import hendlerData, {
 } from "../Form/Pages/hendlerData/hendlerData";
 import { useDispatch } from "react-redux";
 import { counterActions } from "../../sliceStores/sliceTwo";
+import Container from "../Container/Container";
 
 const Register = () => {
   const date = new Date().getDate();
   const [userDetuls, setUserDetuls] = useState(
-    getFormValues(
-      "detulsUser",
-      true,
-      false,
-      0,
-      "",
-      "",
-      "",
-      {
-        name: "",
-        password: "",
-      },
-      false
-    )
+    getFormValues("detulsUser", false)
   );
 
   const navigate = useNavigate();
@@ -37,9 +25,12 @@ const Register = () => {
   const arryOfObjectData = [userDetuls, { date: date }, { id: generatorId }];
 
   const onSubmit = (e) => {
+    e.preventDefault();
     window.localStorage.setItem("detulsUser", JSON.stringify(arryOfObjectData));
     dispatch(counterActions.detulsUser(arryOfObjectData));
-    navigate("/dashboard", { replace: true });
+    if (userDetuls.name !== undefined && userDetuls.password !== undefined) {
+      navigate("/dashboard", { replace: true });
+    }
   };
 
   return (
@@ -54,34 +45,34 @@ const Register = () => {
             </p>
           </div>
         </div>
-        <div className={style.login}>
-          <form>
-            <ParentInput hedinSpan={false}>
-              {json[10].map((input, ind) => {
-                return (
-                  <Fragment key={ind}>
-                    <label htmlFor={input.id}>{input.label}</label>
-                    <input
-                      autoComplete={userDetuls[input.id]}
-                      required
-                      onChange={(e) => hendlerData(e, setUserDetuls)}
-                      id={input.id}
-                      type={input.type}
-                      value={userDetuls[input.id]}
-                    />
-                  </Fragment>
-                );
-              })}
-              <Buttom
-                onClick={(e) => {
-                  onSubmit(e);
-                  window.open("/dashboard", "_self", "noreferrer");
-                }}>
-                أنشئ الحساب
-              </Buttom>
-            </ParentInput>
-          </form>
-        </div>
+        <Container>
+          <div className={style.login}>
+            <form>
+              <ParentInput hedinSpan={false}>
+                {json[10].map((input, ind) => {
+                  return (
+                    <Fragment key={ind}>
+                      <label htmlFor={input.id}>{input.label}</label>
+                      <input
+                        autoComplete={
+                          userDetuls !== undefined ? userDetuls[input.id] : ""
+                        }
+                        required
+                        onChange={(e) => hendlerData(e, setUserDetuls)}
+                        id={input.id}
+                        type={input.type}
+                        value={
+                          userDetuls !== undefined ? userDetuls[input.id] : ""
+                        }
+                      />
+                    </Fragment>
+                  );
+                })}
+                <Buttom onClick={onSubmit}>أنشئ الحساب</Buttom>
+              </ParentInput>
+            </form>
+          </div>
+        </Container>
       </div>
     </div>
   );

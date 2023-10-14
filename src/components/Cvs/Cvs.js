@@ -32,7 +32,6 @@ const Cvs = () => {
 
   const [seirsAll, setSeirsAll] = useState(dataAllFun());
   window.localStorage.setItem("countseirah", seirsAll.length);
-  console.log(seirsAll);
 
   const navigat = useNavigate();
 

@@ -28,8 +28,6 @@ import DownloadShare from "../components/Download-share/DownloadShare";
 import { checkUser } from "../components/Form/Pages/hendlerData/hendlerData";
 
 const App = () => {
-  const detulsUser = useSelector((state) => state.detulsUser);
-
   return (
     <ContextProvider>
       <BrowserRouter>
@@ -46,13 +44,7 @@ const App = () => {
               </Fragment>
             }
           />
-          <Route
-            path={"dashboard/cvs/data"}
-            element={
-              <RequireAuth>
-                <Form />
-              </RequireAuth>
-            }>
+          <Route path={"dashboard/cvs/data"} element={<Form />}>
             <Route path="personal" element={<PersonalData />} />
             <Route path="qualifications" element={<Qualifications />} />
             <Route path="experiences" element={<Experiences />} />
@@ -66,30 +58,12 @@ const App = () => {
             <Route path="address" element={<Address />} />
           </Route>
           <Route path="register" element={<Register />} />
-          <Route
-            path="dashboard"
-            element={
-              <RequireAuth>
-                <Dashboard />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="dashboard/cvs"
-            element={
-              <RequireAuth>
-                <Cvs />
-              </RequireAuth>
-            }
-          />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="dashboard/cvs" element={<Cvs />} />
           <Route path={"seirah"} element={<Templet1 />} />
           <Route
             path={`dashboard/cvs/data/download-share`}
-            element={
-              <RequireAuth>
-                <DownloadShare />
-              </RequireAuth>
-            }
+            element={<DownloadShare />}
           />
         </Routes>
       </BrowserRouter>

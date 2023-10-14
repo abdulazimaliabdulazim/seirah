@@ -1,28 +1,28 @@
 import React from "react";
 import style from "./style.module.css";
 import Container from "../Container/Container";
-import { useAuth } from "../Auth/Auth";
 import Icons from "../Icons/Icons";
 import { Link } from "react-router-dom";
 import LogoHeader from "./LogoHeader/LogoHeader";
+import { useSelector } from "react-redux";
 
 const Header = () => {
-  const auth = useAuth();
-  const nullUser = auth.user === null;
+  const getUser = useSelector((state) => state.detulsUser);
+  const checkd = getUser === null;
 
   return (
     <div className={style.header}>
       <Container>
         <LogoHeader />
         <div className={style.maniger}>
-          <Link to={nullUser ? "register" : "dashboard"}>
+          <Link to={checkd ? "register" : "dashboard"}>
             <Icons path={"M12 6v6m0 0v6m0-6h6m-6 0H6"} viewBox={"0 0 24 24"} />
-            {nullUser ? "أنشئ حساب جديد" : "إدارة الحساب"}
+            {checkd ? "أنشئ حساب جديد" : "إدارة الحساب"}
           </Link>
           <a
             onClick={() => {
-              auth.logout();
               window.localStorage.removeItem("detulsUser");
+              window.location.reload();
             }}
             href="#a">
             <Icons
@@ -31,7 +31,7 @@ const Header = () => {
               }
               viewBox={"0 0 24 24"}
             />
-            {nullUser ? "دخول" : "خروج"}
+            {checkd ? "دخول" : "خروج"}
           </a>
         </div>
       </Container>

@@ -30,3 +30,12 @@
 .detuls .box .name .email span {
     color: initial;
 }
+
+@media (max-width: 767px) {
+    .detulsPersonal .detuls {
+        width: fit-content;
+    }
+    .detuls .box .name .date, .paca,.email {
+        font-size: 10px;
+    }
+}

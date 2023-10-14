@@ -11,6 +11,18 @@
     padding: 40px;
     color: #6b7280;
 }
+@media (max-width: 767px) {
+    .parent .col {
+        width: 100%;
+        padding: 40px 0;
+        flex-direction: column;
+    }
+    .parent .col div {
+        font-size: 1.5rem;
+        line-height: 2rem;
+        margin-bottom: 5px;
+    }
+}
 .parent .col div {
     display: flex;
     justify-content: center;
