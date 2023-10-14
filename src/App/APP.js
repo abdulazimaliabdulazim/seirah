@@ -82,7 +82,7 @@ const App = () => {
               </RequireAuth>
             }
           />
-          <Route path={checkUser(detulsUser, 2, "id")} element={<Templet1 />} />
+          <Route path={"seirah"} element={<Templet1 />} />
           <Route
             path={`dashboard/cvs/data/download-share`}
             element={
