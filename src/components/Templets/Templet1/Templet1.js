@@ -103,7 +103,13 @@ const Templet1 = () => {
   outbotValuesArrayInMineObjectPages(hobbiesFinal, hobbies, false, "hobbie");
 
   return (
-    <div id="faund" className={templet.templetOne}>
+    <div
+      onClick={() => {
+        dawnloadPdf(pdfRef);
+        dawnloadImg(pdfRef);
+      }}
+      id="faund"
+      className={templet.templetOne}>
       <div className={templet.header}>
         <Container>
           <img src={logo} alt="logo" />
