@@ -65,7 +65,7 @@ const DownloadShare = () => {
                 نسخ الرابط
               </button>
               {`http://localhost:3000/seirah.com`}
-              <Link to={`/seirah`}>
+              <Link to={`seirah`}>
                 معاينة السيرة
                 <Icons
                   path={

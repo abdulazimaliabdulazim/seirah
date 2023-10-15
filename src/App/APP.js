@@ -57,7 +57,10 @@ const App = () => {
           <Route path="register" element={<Register />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="dashboard/cvs" element={<Cvs />} />
-          <Route path={"seirah"} element={<Templet1 />} />
+          <Route
+            path={"dashboard/cvs/data/download-share/seirah"}
+            element={<Templet1 />}
+          />
           <Route
             path={`dashboard/cvs/data/download-share`}
             element={<DownloadShare />}
