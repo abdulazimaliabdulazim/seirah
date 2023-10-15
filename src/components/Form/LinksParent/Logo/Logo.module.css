@@ -12,7 +12,6 @@
     margin-right: 5%;
 }
 .parent .child .box {
-    width: 50%;
     display: flex;
     align-items: center;
 }

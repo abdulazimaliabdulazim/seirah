@@ -8,15 +8,25 @@ import { counterActions } from "../../../../sliceStores/sliceTwo";
 import json from "../JSON_date/data_inputs.json";
 import { nextPage } from "../hendlerData/hendlerData";
 
+export const transform = (nav, disp) => {
+  const ulrsPages = json[13];
+  const varNextPages = ulrsPages[ulrsPages.indexOf(nextPage().join("")) + 1];
+  nav(varNextPages);
+  if (
+    varNextPages !== undefined &&
+    varNextPages !== "/dashboard/cvs/data/download-share"
+  ) {
+    disp(counterActions[`name_${varNextPages.split("/")[4]}`]());
+  }
+};
+
 const NewTranfrom = () => {
   const textPage = useSelector((state) => state.textPage);
   window.localStorage.setItem("textPage", textPage);
 
-  const ulrsPages = json[13];
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const varNextPages = ulrsPages[ulrsPages.indexOf(nextPage().join("")) + 1];
   return (
     <div className={style.transfrom}>
       <div className={style.flex}>
@@ -27,18 +37,17 @@ const NewTranfrom = () => {
           viewBox={"0 0 20 20"}
         />
         <div className={style.text}>
-          <strong>{textPage}</strong>
+          <strong>
+            {textPage !== null
+              ? textPage
+              : "معلومات الشخصية, وبيانات الإتصال الضرورية"}
+          </strong>
         </div>
       </div>
       <Button
+        style={{ fontSixe: "30px" }}
         onClick={() => {
-          navigate(varNextPages);
-          if (
-            varNextPages !== undefined &&
-            varNextPages !== "/dashboard/cvs/data/download-share"
-          ) {
-            dispatch(counterActions[`name_${varNextPages.split("/")[4]}`]());
-          }
+          transform(navigate, dispatch);
         }}
         text={"التالي"}
       />

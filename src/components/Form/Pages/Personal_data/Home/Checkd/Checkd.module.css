@@ -5,8 +5,9 @@
     margin-bottom: 7px;
 }
 .parentCheckd .checkd {
-    width: 80%;
-    background-color: #f4f5f7;
+    width: 80% !important;
+    background-color: #f4f5f7 !important;
+    background-color: #f4f5f7 !important;
 }
 .parentCheckd .checkd .col {
     border-radius: 5px;
@@ -16,6 +17,9 @@
     -o-border-radius: 5px;
     display: flex;
     justify-content: flex-start;
+    background-color: #f4f5f7 !important;
+    width: 100%;
+    overflow: auto;
 }
 .parentCheckd .checkd .col input[type="radio"] {
     -webkit-appearance: none;
@@ -48,7 +52,6 @@
 }
 .parentCheckd .checkd .col input[type="radio"]:checked + div {
     border: 2px solid blue;
-    
 }
 .parentCheckd .checkd .col input[type="radio"]:checked + div::before {
     content: "";

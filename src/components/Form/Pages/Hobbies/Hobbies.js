@@ -8,6 +8,7 @@ import {
 import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
 import hendlerData, { getFormValues } from "../hendlerData/hendlerData";
 import UsePages from "../UsePage/UsePages";
+import { Icones } from "../Qualifications/Home/Qualifications";
 
 const Hobbies = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
@@ -18,30 +19,29 @@ const Hobbies = () => {
   );
   const createqualifi = (ind) => {
     return (
-      <div
-        onDragStart={(e) => dargItem(e.target)}
-        onDragEnd={(e) => dargEnd(e.target)}
-        onDragOver={(e) => dargOver(e.target)}
-        draggable={true}
-        className={style.qualificBox}
-        key={ind}>
-        <span className={style.numberQuali}>{ind + 1}</span>
-        <div className={style.controlBut}>
-          <div type="button"></div>
-          <div draggable={true} type="button"></div>
+      <div key={ind} className={style.parentPages}>
+        <Icones />
+        <div
+          onDragStart={(e) => dargItem(e.target)}
+          onDragEnd={(e) => dargEnd(e.target)}
+          onDragOver={(e) => dargOver(e.target)}
+          draggable={true}
+          className={style.qualificBox}
+          key={ind}>
+          <span className={style.numberQuali}>{ind + 1}</span>
+          <ParentInput
+            forId={`hobbie${coun[0]++}`}
+            label={"الهواية"}
+            paraghrap={"يُفضّل من كلمة إلى 4 كلمات كحد أقصى."}>
+            <input
+              onChange={(e) => hendlerData(e, setHobbies)}
+              id={`hobbie${coun[1]++}`}
+              value={hobbies[`hobbie${coun[2]++}`]}
+              type="text"
+              placeholder="الهواية"
+            />
+          </ParentInput>
         </div>
-        <ParentInput
-          forId={`hobbie${coun[0]++}`}
-          label={"الهواية"}
-          paraghrap={"يُفضّل من كلمة إلى 4 كلمات كحد أقصى."}>
-          <input
-            onChange={(e) => hendlerData(e, setHobbies)}
-            id={`hobbie${coun[1]++}`}
-            value={hobbies[`hobbie${coun[2]++}`]}
-            type="text"
-            placeholder="الهواية"
-          />
-        </ParentInput>
       </div>
     );
   };

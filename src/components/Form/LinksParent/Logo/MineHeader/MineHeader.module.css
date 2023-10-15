@@ -1,9 +1,13 @@
 .parent {
     position: absolute;
     bottom: 0;
-    width: 2000px;
     right: 0;
     overflow: auto;
+}
+@media (max-width: 767px) {
+    .parent {
+        width: 100%;
+    }
 }
 .parent nav {
     display: flex;
@@ -12,4 +16,8 @@
     background-color: #e2e8f0;
     color: #6b7280;
     padding:  10px;
+    word-break: break-all;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: bold;
 }

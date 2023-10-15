@@ -35,17 +35,17 @@ const Register = () => {
 
   return (
     <div className={style.register}>
-      <div className={style.parent}>
-        <div className={style.continer}>
-          <div className={style.content}>
-            <LogoHeader />
-            <h1>أنشئ حساب جديد</h1>
-            <p>
-              أو <Link to={"/login"}>سجّل دخولك من هنا</Link>
-            </p>
+      <Container>
+        <div className={style.parent}>
+          <div className={style.continer}>
+            <div className={style.content}>
+              <LogoHeader />
+              <h1>أنشئ حساب جديد</h1>
+              <p>
+                أو <Link to={"/login"}>سجّل دخولك من هنا</Link>
+              </p>
+            </div>
           </div>
-        </div>
-        <Container>
           <div className={style.login}>
             <form>
               <ParentInput hedinSpan={false}>
@@ -72,8 +72,8 @@ const Register = () => {
               </ParentInput>
             </form>
           </div>
-        </Container>
-      </div>
+        </div>
+      </Container>
     </div>
   );
 };

@@ -16,6 +16,7 @@ import {
 } from "../Qualifications/Home/DateQualifi/LettersNmbers";
 import json from "../JSON_date/data_inputs.json";
 import UsePages from "../UsePage/UsePages";
+import { Icones } from "../Qualifications/Home/Qualifications";
 
 const Coursess = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
@@ -28,56 +29,55 @@ const Coursess = () => {
   );
   const createqualifi = (ind) => {
     return (
-      <div className={style.qualificBox} key={ind}>
-        <span className={style.numberQuali}>{ind + 1}</span>
-        <div className={style.controlBut}>
-          <div type="button"></div>
-          <div draggable={true} type="button"></div>
+      <div key={ind} className={style.parentPages}>
+        <div className={style.qualificBox} key={ind}>
+          <span className={style.numberQuali}>{ind + 1}</span>
+          <Icones />
+          {json[5].map((input, ind) => {
+            return (
+              <ParentInput
+                key={ind}
+                forId={
+                  input.id === "cours"
+                    ? `${input.id}${coun[0]++}`
+                    : input.id === "mantur"
+                    ? `${input.id}${coun[1]++}`
+                    : `${input.id}${coun[2]++}`
+                }
+                label={input.label}
+                paraghrap={input.paraghrap}>
+                <input
+                  id={
+                    input.id === "cours"
+                      ? `${input.id}${coun[3]++}`
+                      : input.id === "mantur"
+                      ? `${input.id}${coun[4]++}`
+                      : `${input.id}${coun[5]++}`
+                  }
+                  value={
+                    input.id === "cours"
+                      ? coursess[`${input.id}${coun[6]++}`]
+                      : input.id === "mantur"
+                      ? coursess[`${input.id}${coun[7]++}`]
+                      : coursess[`${input.id}${coun[8]++}`]
+                  }
+                  type="text"
+                  placeholder={input.label}
+                  className={`${input.id}${coun[9]++}`}
+                  onChange={(e) => hendlerData(e, setCoursess)}
+                />
+              </ParentInput>
+            );
+          })}
+          <DateQualifi forId={coun[10]++} lable={"تاريخها"}>
+            <Day id={`day${coun[11]++}`} state={setCoursess} />
+            <Manth id={`manth${coun[12]++}`} state={setCoursess} />
+            <Yar id={`yar${coun[13]++}`} state={setCoursess} />
+            <span>{coursess[`day${coun[14]++}`]}</span>
+            <span>{coursess[`manth${coun[15]++}`]}</span>
+            <span>{coursess[`yar${coun[16]++}`]}</span>
+          </DateQualifi>
         </div>
-        {json[5].map((input, ind) => {
-          return (
-            <ParentInput
-              key={ind}
-              forId={
-                input.id === "cours"
-                  ? `${input.id}${coun[0]++}`
-                  : input.id === "mantur"
-                  ? `${input.id}${coun[1]++}`
-                  : `${input.id}${coun[2]++}`
-              }
-              label={input.label}
-              paraghrap={input.paraghrap}>
-              <input
-                id={
-                  input.id === "cours"
-                    ? `${input.id}${coun[3]++}`
-                    : input.id === "mantur"
-                    ? `${input.id}${coun[4]++}`
-                    : `${input.id}${coun[5]++}`
-                }
-                value={
-                  input.id === "cours"
-                    ? coursess[`${input.id}${coun[6]++}`]
-                    : input.id === "mantur"
-                    ? coursess[`${input.id}${coun[7]++}`]
-                    : coursess[`${input.id}${coun[8]++}`]
-                }
-                type="text"
-                placeholder={input.label}
-                className={`${input.id}${coun[9]++}`}
-                onChange={(e) => hendlerData(e, setCoursess)}
-              />
-            </ParentInput>
-          );
-        })}
-        <DateQualifi forId={coun[10]++} lable={"تاريخها"}>
-          <Day id={`day${coun[11]++}`} state={setCoursess} />
-          <Manth id={`manth${coun[12]++}`} state={setCoursess} />
-          <Yar id={`yar${coun[13]++}`} state={setCoursess} />
-          <span>{coursess[`day${coun[14]++}`]}</span>
-          <span>{coursess[`manth${coun[15]++}`]}</span>
-          <span>{coursess[`yar${coun[16]++}`]}</span>
-        </DateQualifi>
       </div>
     );
   };

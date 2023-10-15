@@ -3,10 +3,10 @@ import style from "../Qualifications/Home/Qualifications.module.css";
 import styleBut from "../../....//../Buttom/Buttom.module.css";
 import Buttom from "../../Buttom/Buttom";
 import { useDispatch } from "react-redux";
-import { nextPage, progress, sendActionData } from "../hendlerData/hendlerData";
+import { progress, sendActionData } from "../hendlerData/hendlerData";
 import { counterActions } from "../../../../sliceStores/sliceTwo";
 import { useNavigate } from "react-router-dom";
-import json from "../JSON_date/data_inputs.json";
+import { transform } from "../NewTranfrom/NewTranfrom";
 
 const UsePages = ({
   children,
@@ -19,9 +19,6 @@ const UsePages = ({
   b2,
 }) => {
   const navigate = useNavigate();
-  const ulrsPages = json[13];
-  const varNextPages = ulrsPages[ulrsPages.indexOf(nextPage().join("")) + 1];
-
   // Progress
   progress(state);
 
@@ -53,7 +50,7 @@ const UsePages = ({
                 : `${naState2}1`,
               state2
             );
-            navigate(varNextPages);
+            transform(navigate, dispatch);
           }}
           text={b2}
         />

@@ -10,12 +10,13 @@
     -o-border-radius: 5px;
     margin-bottom: 7px;
     padding: 10px;
+    background-color: #f9fafb;
 }
 .colInput .detulsInput {
     position: relative;
-    width: 80%;
-    background-color: #f4f5f7;
-    padding: 40px 5px 5px 5px;
+    width: 80% !important;
+    background-color: #f4f5f7 !important;
+    padding: 35px 5px 0 5px;
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -49,18 +50,14 @@
     color: var(--coloring);
     font-size: .875rem;
 }
-label {
-    cursor: pointer;
-}
-
 .colInput .detulsInput .spans {
     position: absolute;
     direction: ltr;
-    margin-bottom: 8px;
     color: var(--coloring);
     cursor: pointer;
     top: 10px;
     left: 10px;
+    background-color: inherit;
 }
 .colInput .detulsInput .spans span:last-of-type {
     margin-left: 10px;
@@ -71,4 +68,11 @@ label {
 .colInput .detulsInput .spans span:hover {
     color: var(--background-main-alt);
 }
-
+label {
+    cursor: pointer;
+}
+@media (max-width: 767px) {   
+    .colInput .detulsInput p {
+        font-size: 11px;
+    }
+}

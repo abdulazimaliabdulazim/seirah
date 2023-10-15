@@ -1,12 +1,19 @@
+.parent {
+    
+    background-color: #f9fafb;
+}
 .parent .col {
     display: flex;
     align-items: center;
     width: 100% !important;
+    padding: 10px;
 }
 .parent .img {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    background-color: #f4f5f7 !important;
+    width: 80%;
 }
 .parent .img img {
     width: 80px;

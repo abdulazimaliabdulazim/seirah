@@ -285,7 +285,7 @@ const Templet1 = () => {
             <div className={templet.parent}>
               {coursessFinal.map((ele, ind) => {
                 return (
-                  ele.mantur !== undefined && (
+                  ele.cours !== undefined && (
                     <div key={ind} className={templet.detuls}>
                       <div className={templet.date}>
                         <Icons

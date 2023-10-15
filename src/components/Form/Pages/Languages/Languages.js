@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import style from "../Qualifications/Home/Qualifications.module.css";
 import {
   dargItem,
@@ -11,6 +11,7 @@ import Checkd from "../Personal_data/Home/Checkd/Checkd";
 import hendlerData, { getFormValues } from "../hendlerData/hendlerData";
 import jsonD from "../JSON_date/data_inputs.json";
 import UsePages from "../UsePage/UsePages";
+import { Icones } from "../Qualifications/Home/Qualifications";
 
 const Languages = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
@@ -23,7 +24,8 @@ const Languages = () => {
   );
   const createqualifi = (ind) => {
     return (
-      <Fragment key={ind}>
+      <div key={ind} className={style.parentPages}>
+        <Icones />
         <div
           onDragStart={(e) => dargItem(e.target)}
           onDragEnd={(e) => dargEnd(e.target)}
@@ -31,10 +33,6 @@ const Languages = () => {
           draggable={true}
           className={style.qualificBox}>
           <span className={style.numberQuali}>{ind + 1}</span>
-          <div className={style.controlBut}>
-            <div type="button"></div>
-            <div draggable={true} type="button"></div>
-          </div>
           <ParentInput
             forId={`lang${coun[12]++}`}
             hedinSpan={false}
@@ -109,7 +107,7 @@ const Languages = () => {
             </label>
           </Checkd>
         </div>
-      </Fragment>
+      </div>
     );
   };
   let [languagesNumber, setLanguagesNumber] = useState(
@@ -121,33 +119,6 @@ const Languages = () => {
   );
   return (
     <div onDrop={(e) => drop(e.target)} className={style.parent}>
-      <div className={style.signlanguages}>
-        🤘 ✊
-        <Checkd label={"هل تتحدث لغة الإشارة؟"}>
-          <label className={style.parent_tog}>
-            <input
-              onChange={(e) => hendlerData(e, setLanguages)}
-              value={"نعم"}
-              id="signlanguages"
-              type="radio"
-              name="sign"
-            />
-            نعم
-            <div className={style.tog}></div>
-          </label>
-          <label className={style.parent_tog}>
-            <input
-              onChange={(e) => hendlerData(e, setLanguages)}
-              value={"لا"}
-              id="signlanguages"
-              type="radio"
-              name="sign"
-            />
-            لا
-            <div className={style.tog}></div>
-          </label>
-        </Checkd>
-      </div>
       <UsePages
         state={languages}
         naState={"languages"}

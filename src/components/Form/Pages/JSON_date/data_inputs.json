@@ -16,13 +16,13 @@
     [
         {"label": "اسمك","id": "name","placeholder": "اسمك بالكامل..."},
         {"label": "مسمى الوظيفة","id": "position","placeholder": "مسمى الوظيفة"},
+        { "label": "ايميلك", "id": "email", "placeholder": "lybdh295@gmail.com"},
+        { "label": "رقم الجوال", "id": "phone_number", "placeholder": "01141629495"},
         { "label": "تاريخ الميلاد", "id": "date", "placeholder": "مثال: 2000/9/23"},
         { "label": "موقعك الشخصي", "id": "personal_website", "placeholder": "https://abdulazimaliabdulazim.github.io/Tamplat-3/"},
         { "label": "الدولة", "id": "country", "placeholder": "مصر"},
         { "label": "الجنسية", "id": "nationality", "placeholder": "مصري"},
-        { "label":"معلومات أخرى", "id": "", "placeholder": "معلومات تخص بعض الدول العربية، قم بتعبئة ما يتناسب مع قوانين بلدك."},
-        { "label": "ايميلك", "id": "email", "placeholder": "lybdh295@gmail.com"},
-        { "label": "رقم الجوال", "id": "phone_number", "placeholder": "01141629495"}
+        { "label":"معلومات أخرى", "id": "", "apr": "معلومات تخص بعض الدول العربية، قم بتعبئة ما يتناسب مع قوانين بلدك."}
     ],
     [
         { "label": "الجهة التعليمية", "paraghrap": "اسم الجامعة أو الجهة التعليمية التي حصلت على الشهادة منها.", "id": "education"},

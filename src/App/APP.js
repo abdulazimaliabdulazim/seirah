@@ -13,7 +13,7 @@ import Coursess from "../components/Form/Pages/Coursess/Coursess";
 import Skils from "../components/Form/Pages/Skils/Skils";
 import Projects from "../components/Form/Pages/Projects/Projects";
 import Return from "../components/Form/Pages/Return/Return";
-import Languages from "../components/Form/Pages/Langutch/Langutch";
+import Languages from "../components/Form/Pages/Languages/Languages";
 import Hobbies from "../components/Form/Pages/Hobbies/Hobbies";
 import Address from "../components/Form/Pages/Address/Address";
 import LinksPage from "../components/Form/Pages/LinksPage/LinksPage";
@@ -21,11 +21,8 @@ import { ContextProvider } from "../components/Auth/Auth";
 import Register from "../components/Register/Register";
 import Dashboard from "../components/Dashboard/Dashboard";
 import Cvs from "../components/Cvs/Cvs";
-import RequireAuth from "../components/RequireAuth/RequireAuth";
 import Templet1 from "../components/Templets/Templet1/Templet1";
-import { useSelector } from "react-redux";
 import DownloadShare from "../components/Download-share/DownloadShare";
-import { checkUser } from "../components/Form/Pages/hendlerData/hendlerData";
 
 const App = () => {
   return (

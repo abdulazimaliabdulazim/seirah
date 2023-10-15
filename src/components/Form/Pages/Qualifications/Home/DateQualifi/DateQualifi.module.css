@@ -3,6 +3,11 @@
     display: flex;
     justify-content: space-between;
 }
+@media (max-width: 767px) {
+    .parebtTest {
+        justify-content: normal;
+    }
+}
 .parebtTest .colDate {
     text-align: center;
 }

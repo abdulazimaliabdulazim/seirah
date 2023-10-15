@@ -45,7 +45,6 @@ const Cvs = () => {
       <Container>
         <div className={style.listSeirah}>
           <span>قائمة السير الذاتية</span>
-          <Link to={"data/personal"}></Link>
           <Buttom
             onClick={() => {
               setStateCoun([...stateCoun, 1]);

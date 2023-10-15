@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import style from "./Links.module.css";
 import Container from "../../../Container/Container";
-import { useSelector } from "react-redux";
 
 const Links = () => {
   return (

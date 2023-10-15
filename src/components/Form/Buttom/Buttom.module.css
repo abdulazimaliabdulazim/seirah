@@ -2,13 +2,16 @@ button.mani {
     background-image: linear-gradient(45deg, #9292ff, #2a2a83);
     color: white;
     padding: 10px 15px;
-    font-size: .90em;
+    font-size: 1rem;
     transition: var(--transform-s);
     -webkit-transition: var(--transform-s);
     -moz-transition: var(--transform-s);
     -ms-transition: var(--transform-s);
     -o-transition: var(--transform-s);
     cursor: pointer;
+    font-weight: bold;
+    width: fit-content;
+    height: fit-content;
 }
 button.mani:hover {
     background-image: linear-gradient(45deg, #ff6c6c, #2a2a83);

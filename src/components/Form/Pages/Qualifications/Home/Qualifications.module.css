@@ -7,12 +7,22 @@
     width: 90%;
     margin: auto;
     background-color: white;
-    padding: 30px 0;
+    padding: 20px 10px;
     position: relative;
 }
+.parentPages {
+    border: 1px dashed #6875f559;;
+    background-color: #f4f5f7;
+    position: relative;
+    margin-bottom: 10px;
+}
 .parent .box .qualificBox {
-    width: calc(100% - 20%);
-    background-color: #f9fafb;
+    width: 60%;
+}
+@media (max-width: 767px) {
+    .parent .box .qualificBox {
+        width: 100%;
+    }
 }
 .parent label {
     width: 20%;
@@ -28,6 +38,7 @@ hr {
     left: 10px;
     font-size: .80em;
     background-image: linear-gradient(45deg , rgba(255, 255, 255, 0.383),  rgb(0, 0, 0) );
+    margin-top: 10px;
 }
 .box button.but:hover {
     background-image: linear-gradient(45deg, white,  rgb(103, 99, 99) );
@@ -51,18 +62,14 @@ select:focus {
 hr.hr {
     margin-top: 90px;
 }
-.qualificBox {
-    position: relative;
-    margin-bottom: 50px;
-    border: 2px solid var(--background-main-alt);
-    background-color: #f4f5f7;
-}
 .numberQuali {
-    padding: 5px 10px;
+    padding: 0 5px;
     display: block;
     background-color: #c3ddfd;
+    width: -moz-fit-content;
     width: fit-content;
     color: white;
+    margin-right: 5px;
 }
 .controlBut {
     position: absolute;
@@ -81,4 +88,27 @@ hr.hr {
 }
 .controlBut div:last-of-type {
     cursor: all-scroll;
+}
+.icon:first-child  svg{
+    width: 18px !important; 
+    margin: 5px 11px !important;
+}
+.icon:last-of-type svg {
+    width: 11px !important; 
+    margin: 2px 11px !important;
+}
+@media (max-width: 767px) {
+    .controlBut {
+        left: 10px;
+        top: 0px;
+    }
+    .controlBut div {
+        margin-left: 5px;
+    }
+    .icon:first-child  svg{
+        width: 10px !important; 
+    }
+    .icon:last-of-type svg {
+        width: 7px !important; 
+    }
 }

@@ -11,20 +11,13 @@ import hendlerData, {
 const Address = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
   document.title = "العنوان";
-  const [address, setAddress] = useState(
-    getFormValues(`address${targetSeirah}`)
-  );
+  const [address, setAddress] = useState(getFormValues("address"));
   const dispatch = useDispatch();
   const hindlerAction = () => dispatch({ type: { address } });
   return (
     <div className={style.parent}>
       <div className={style.box}>
         <div className={style.qualificBox}>
-          <span className={style.numberQuali}>{"1"}</span>
-          <div className={style.controlBut}>
-            <div type="button"></div>
-            <div draggable={true} type="button"></div>
-          </div>
           <ParentInput
             forId={"address"}
             label={"العنوان الوطني"}

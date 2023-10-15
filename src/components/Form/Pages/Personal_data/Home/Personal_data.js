@@ -38,7 +38,12 @@ const Inputs = () => {
       <div className={style.box}>
         {json[2].map((input, ind) => {
           return (
-            <ParentInput key={ind} forId={input.id} label={input.label}>
+            <ParentInput
+              hedinSpan={input.hedinSpan}
+              paraghrap={input.apr}
+              key={ind}
+              forId={input.id}
+              label={input.label}>
               {input.id !== "" ? (
                 <input
                   onChange={(e) => hendlerData(e, setPersonal)}
@@ -53,7 +58,7 @@ const Inputs = () => {
             </ParentInput>
           );
         })}
-        <ParentInput forId={"iam"} label={"نبذة بسيطة"}>
+        <ParentInput hedinSpan={true} forId={"iam"} label={"نبذة بسيطة"}>
           <textarea
             onChange={(e) => hendlerData(e, setPersonal)}
             id="iam"

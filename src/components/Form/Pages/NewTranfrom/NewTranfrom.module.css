@@ -4,14 +4,27 @@
     border: 2px solid #c3ddfd;
     color: #1a56db;
     justify-content: space-between;
+    align-items: center;
     font-size: 16px;
     margin: 20px 0 0 0;
-    padding: 8px 70px;
+    padding: 3px 8px;
+    width: 90%;
+    margin:  20px auto 0;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
-.flex {
+.transfrom .flex {
     display: flex;
     align-items: center;
 }
-.text {
-    font-size: .75em;
+.transfrom .flex .text strong {
+    font-size: 1rem ;
+}
+@media (max-width: 767px) {
+    .transfrom .flex .text strong {
+        font-size: .75rem ;
+    }
 }
