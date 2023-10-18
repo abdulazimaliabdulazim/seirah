@@ -14,6 +14,15 @@
     --color4: #9b1c1c;
     --background1:#f1f5f9;
     --background2:#fde8e8;
+    --color5: #e5e7eb;
+    --color6: #4b5563;
+    --color7: #3f83f8;
+    --color8: #1e429f;
+    --color9: #e2e8f0;
+    --color10: #27303f;
+    --color11: #475569;
+    --color12: #d2d6dc;
+    --color13: #cfd8e3;
 }
 * {
     -webkit-box-sizing: border-box;
@@ -37,13 +46,17 @@ ul {
     margin: 0;
     padding: 0
 }
-.active {
+header div .active {
+    background-color: #f9fafb !important;
+    color: #1c64f2;
+    border-bottom: 2px solid var(--background-main);
+}
+header .active {
     background-color: white !important;
 }
 button {
     border: none;
 }
-
 /* Small */
 @media (min-width: 768px) {
   .container {

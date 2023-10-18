@@ -29,7 +29,8 @@ const Profile = () => {
           </Link>
         </div>
         <div className={header.name_dash}>
-          <span>{name}</span>
+          <span className={header.full_name}>{name}</span>
+          <span className={header.part_name}>{name.split(" ")[0]}</span>
           <UserImg
             srcImg={
               allSeirah("personal")[0] !== undefined

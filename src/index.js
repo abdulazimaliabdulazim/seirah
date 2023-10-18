@@ -5,6 +5,7 @@ import "normalize.css";
 import "./index.css";
 import { Provider } from "react-redux";
 import sliceStares from "./sliceStores/sliceTwo";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 createRoot(document.getElementById("root")).render(
   <Provider store={sliceStares}>
@@ -13,3 +14,5 @@ createRoot(document.getElementById("root")).render(
     </StrictMode>
   </Provider>
 );
+
+serviceWorkerRegistration.register();

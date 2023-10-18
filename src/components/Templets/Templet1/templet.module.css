@@ -1,23 +1,7 @@
 .templetOne {
     background-color: #aa3333;
 }
-.templetOne .header {
-    background-color: var(--black);
-    color: white;
-}
-.templetOne .header div {
-    display: flex;
-    align-items: center;
-}
-.templetOne .header img {
-    width: 30px;
-    height: 30px;
-    margin: 0 20px;
-}
-.templetOne .header a {
-    color: inherit;
-    margin: 0 20px;
-}
+
 .templetOne .box {
     margin-top: 80px;
     background-color: white;
@@ -28,6 +12,7 @@
     -ms-border-radius: 30px;
     -o-border-radius: 30px;
     border: 5px solid #852c2c;
+    overflow: hidden;
 }
 .templetOne .box .colOne {
     width: 50%;
@@ -85,7 +70,6 @@
     color: var(--main-background);
 }
 
-
 .textAria {
     background-color: #fdf2f2;
     margin: 50px 0;
@@ -96,8 +80,6 @@
     font-size: .90rem;
     font-weight: bold;
 }
-
-
 .pacedg .space {
     position: relative;
 }
@@ -139,13 +121,20 @@
 .pacedg .detuls .date {
     color: var(--color4);
     font-weight: bold;
-    margin-left: 50px;
+    margin-left: 40px;
+    width: 200px;
 }
 .pacedg .detuls .date svg {
     width: 15px !important;
 }
 .pacedg .detuls .date span {
-    margin-left: 10px;
+    word-break: break-all;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 12px;
+}
+.pacedg .detuls .info {
+    width: 510px;
 }
 .pacedg .detuls .info h1 {
     margin: 0;
@@ -201,7 +190,6 @@
     background-color: var(--color1);
     padding: 8px;
 }
-
 /* languages */
 .pacedg .boxLevils {
     padding: 30px 0 0;
@@ -212,9 +200,7 @@
     padding-bottom: 2px;
     border-bottom: 1px dashed #fde8e8;
 }
-
 /* hobbie */
-
 .pacedg .boxhobbie {
     display: flex;
 }
@@ -223,4 +209,36 @@
     padding: 5px 10px;
     margin: 20px 5px;
     color: #73230d;
+}
+@media (max-width: 767px) {
+    .templetOne .box {
+        margin-top: 10px;
+        padding: 40px 10px;
+    }
+    .templetOne .box .colOne  {
+        width: 100%;
+    }
+    .box .colTwo {
+        grid-template-columns: repeat(1, 1fr);
+        width: 100%;
+    }
+    .templetOne .box .colOne h1 {
+        font-size: 1.5em;
+    }
+    .box .colTwo .col span {
+        width: 77%;
+    }
+    .textAria {
+        margin: 25px 0;
+    }
+    .pacedg .detuls .date span {
+        font-size: 9px;
+    }
+    .pacedg .detuls .date {
+        margin-left: 10px;
+    }
+    .pacedg .boxLevils {
+        display: flex;
+        flex-direction: column;
+    }
 }

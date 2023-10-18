@@ -39,19 +39,21 @@
 .box2 div {
     background-color: white;
 }
-
-.copyLink  {
-    height: 60px;
-}
 .copyLink {
     display: flex;
     align-items: center;
     background-color: white;
     padding: 10px;
     margin: 20px 0;
+    height: 60px;
 }
 .copyLink P {
     margin-left: 10px;
+}
+@media (max-width: 767px) {
+    .copyLink P {
+        display: none;
+    }
 }
 .copyLink div.url {
     position: relative;
@@ -59,8 +61,15 @@
     height: 100%;
     border: 1px solid #d2d6dc;
     border-radius: 8px;
-    padding: 9px 500px 0 0;
     color: var(--coloring);
+    align-items: center;
+    display: flex;
+    padding-right: 30px;
+}
+@media (min-width: 1200px) {
+    .copyLink div.url {
+        padding: 9px 500px 0 0;
+    }
 }
 .copyLink button,.copyLink a {
     top: 0;
@@ -88,7 +97,7 @@
     background-color: #31c48d;
     color: #fff;
     padding: 12px;
-     border-top-left-radius: 4px;
+    border-top-left-radius: 4px;
     border-bottom-left-radius: 4px; 
 }
 .copyLink a svg {
@@ -97,12 +106,10 @@
 .copyLink a:hover {
     background-color: #0e9f6e;
 }
-
 .link {
     display: flex;
     width: 125px;
 }
-
 .pdf {
     display: flex;
     flex-direction: column;
@@ -114,11 +121,23 @@
     margin: 20px 0;
 }
 .pdf .parent {
-    margin: 10px;
+    margin: 18px;
 }
 .pdf .parent span {
     cursor: pointer;
     padding: 10px 15px;
+}
+@media (max-width: 767px) {
+    .pdf {
+        padding: 10px 5px;
+    }
+    .pdf .parent {
+        margin: 11px 0;
+    }
+    .pdf .parent span {
+        padding: 10px;
+        font-size: 12px;
+    }
 }
 .pdf .headin {
     width: 98%;
@@ -140,6 +159,7 @@
     background-color: #f6f5ff;
     color: #7e3af2;
     font-size: 20px;
+    font-weight: bold;
 }
 .pdf .parent span svg {
     color: white !important;
@@ -157,9 +177,34 @@
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
 }
-
 .DownloadShare img {
     position: absolute;
     top: 0;
     z-index: -41;
+}
+@media (max-width: 767px) {
+    .copyLink div.url {
+        padding: 0;
+    }
+    .copyLink button, .copyLink a {
+        width: 85px;
+        word-break: break-all;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .copyLink a {
+        left: -90px;
+    }
+    .copyLink button:first-of-type {
+        left: -5px;
+    }
+    .copyLink button svg, .copyLink a svg {
+        display: none !important;
+    }
+    .copyLink {
+        padding: 10px 5px;
+    }
+    .link {
+        width: 32px;
+    }
 }

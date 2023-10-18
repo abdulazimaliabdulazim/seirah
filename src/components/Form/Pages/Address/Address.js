@@ -9,9 +9,11 @@ import hendlerData, {
 } from "../hendlerData/hendlerData";
 
 const Address = () => {
-  const targetSeirah = window.localStorage.getItem("targetSeirah");
   document.title = "العنوان";
-  const [address, setAddress] = useState(getFormValues("address"));
+  const targetSeirah = window.localStorage.getItem("targetSeirah");
+  const [address, setAddress] = useState(
+    getFormValues(targetSeirah !== null ? `address${targetSeirah}` : "address1")
+  );
   const dispatch = useDispatch();
   const hindlerAction = () => dispatch({ type: { address } });
   return (
@@ -33,7 +35,11 @@ const Address = () => {
         </div>
         <Buttom
           onClick={() => {
-            sendActionData(hindlerAction, `address${targetSeirah}`, address);
+            sendActionData(
+              hindlerAction,
+              targetSeirah !== null ? `address${targetSeirah}` : "address1",
+              address
+            );
           }}
           text={"حفظ العنوان الوطني"}
         />

@@ -7,6 +7,7 @@ function Icons({ path, viewBox }) {
       fill="none"
       stroke="currentColor"
       viewBox={viewBox}
+      height="1em"
       xmlns="http://www.w3.org/2000/svg">
       <path
         strokeLinecap="round"

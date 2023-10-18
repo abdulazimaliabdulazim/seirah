@@ -41,7 +41,7 @@
 }
 @media (max-width: 767px) {
     .header .maniger a {
-       padding: 10px 5px;
+       padding: 10px;
        font-weight: bold;
     }
 }

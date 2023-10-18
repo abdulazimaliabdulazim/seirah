@@ -7,6 +7,9 @@ const initState = {
   detulsUser: "",
   textPage: "معلومات الشخصية, وبيانات الإتصال الضرورية",
   [`progress${targetSeirah}`]: 0,
+  downloadPdf: "no",
+  transformSeirah: "one",
+  transformSeirahTemplet: "start",
 };
 // Get Item In Local Storage
 initState.detulsUser = JSON.parse(window.localStorage.getItem("detulsUser"));
@@ -76,6 +79,21 @@ const counterSlice = createSlice({
     },
     name_address: (state) => {
       state.textPage = "العنوان الوطني . بيانات العنوان الوطني";
+    },
+    downloadPDF: (state) => {
+      state.downloadPdf = true;
+    },
+    downloadIMG: (state) => {
+      state.downloadPdf = false;
+    },
+    transformSeirahOne: (state) => {
+      state.transformSeirah = "one";
+    },
+    transformSeirahTwo: (state) => {
+      state.transformSeirah = "two";
+    },
+    transformSeirah: (state) => {
+      state.transformSeirah = "oneTemplet";
     },
   },
 });

@@ -2,7 +2,7 @@ import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 
 const dawnloadPdf = (pdfRef, name) => {
-  const input = pdfRef.current;
+  const input = pdfRef;
   html2canvas(input).then((canvas) => {
     const imgDate = canvas.toDataURL();
     const pdf = new jsPDF();

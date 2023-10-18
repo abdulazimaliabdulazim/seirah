@@ -1,6 +1,7 @@
 .parent {
     background-color: #cfd8e3;
     overflow: hidden;
+    padding-top: 20px;
 }
 .parent .child {
     position: relative;

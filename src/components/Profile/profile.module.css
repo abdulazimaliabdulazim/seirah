@@ -51,17 +51,28 @@ header.profile .name_dash {
     justify-content: space-between;
     cursor: pointer;
 }
-header.profile .name_dash > span {
+header.profile .name_dash .full_name,
+header.profile .name_dash .part_name {
     margin-left: 15px;
+}
+header.profile .name_dash .part_name {
+    display: none;
 }
 header.profile .name_dash:hover {
     opacity: .75;
 }
 @media (max-width:567px) {
-    header.profile .name_dash > span {
+    header.profile .name_dash .full_name {
         display: none;
+    }
+    header.profile .name_dash .part_name {
+        display: block;
+        margin-left: 8px;
     }
     header.profile .right {
         justify-content: space-around;
+    }
+    header.profile .right {
+        width: 220px;
     }
 } 

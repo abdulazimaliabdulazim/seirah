@@ -1,0 +1,249 @@
+/* Start Framwork */
+.frimwork_o {
+    color: #1a56db;
+    position: relative;
+    padding-bottom: 12px;
+}
+.frimwork_o::before {
+    content: '';
+    position: absolute;
+    width: 35%;
+    height: 2px;
+    background-image: linear-gradient( to left,#1e429f, #76a9fa);
+    bottom: 0;
+    right: 0;
+}
+.frimwork_o::after {
+    content: '';
+    position: absolute;
+    width: 63%;
+    height: 2px;
+    background-color: var(--color9);
+    bottom: 0;
+    left: 0;
+}
+/* End Framwork */
+.parent {
+    background: #243876;
+    min-height: 100vh;
+}
+.parent .container {
+    padding: 40px 0;
+    min-height: 200vh;
+    display: grid;
+    grid-template-columns: 350px 1fr;
+}
+@media (max-width: 767px) {
+    .parent .container {
+        grid-template-columns: 1fr;
+    }
+}
+.persnal_date {
+    background-color: #f1f5f9;
+    padding: 50px 20px;
+}
+.detuls_information {
+    background-color: white;
+}
+
+/* Start persnal_date */
+.col_one {
+    text-align: center;
+    position: relative;
+    padding-bottom: 20px;
+}
+.col_one::before {
+    content: '';
+    position: absolute;
+    width: 350px;
+    height: 2px;
+    background-color: var(--color9);
+    bottom: 0;
+    left: -20px;
+}
+.col_one .name_position h2 {
+    margin: 10px 0 5px 0;
+    color: #000000;
+}
+.col_one .name_position h4 {
+    color: #1a56db;
+    font-weight: normal;
+    margin: 0;
+}
+/* End persnal_date */
+
+/* Start Iam */
+.cor_two {
+    padding: 20px 0;
+}
+.cor_two p {
+    color: #252f3f;
+}
+/* End Iam */
+
+/* Start  conect*/
+.conect {
+    padding-bottom: 20px;
+}
+.conect .parent_icons .col {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    margin-bottom: 5px;
+}
+.conect .parent_icons .col span {
+    padding: 10px;
+    color: #161e2e;
+}
+.conect .parent_icons .col span svg {
+    color: #9fa6b2;
+}
+.conect .parent_icons .col span:first-of-type {
+    background-color: var(--color5);
+}
+.conect .parent_icons .col span:last-of-type {
+    background-color: #f8fafc;
+}
+/* End  conect*/
+
+/* Start  Address*/
+.address {
+    padding-bottom: 20px;
+}
+.address p {
+    color: var(--color6);
+    font-weight: bold;
+}
+/* End  Address*/
+
+/* Start  Skils*/    
+.skils {
+    padding-bottom: 20px;
+}
+.skils .boxLevils {
+    color: white;
+}
+.skils .boxLevils,
+.languages .boxLevils {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 12px;
+}
+.skils .boxLevils .skil {
+    background-color: var(--color9);
+    position: relative;
+    margin: 0 7px;
+}
+.skils .boxLevils .skil > div {
+    content: '';
+    position: absolute;
+    height: 100%;
+    background-image: linear-gradient(to left,var(--color8),var(--color7));
+    top: 0;
+    right: 0;
+    padding: 8px;
+
+}
+.skils .boxLevils .lesvel {
+    background-color: var(--color2);
+    padding: 8px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+/* End  Skils*/
+    
+/* Start  languages*/
+.languages {
+    padding-bottom: 20px;
+}
+.languages .boxLevils,
+.links .boxLevils {
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.137);
+    padding-bottom: 4px;
+}
+.languages .boxLevils .langua,
+.links .boxLevils .langua  {
+    color: #27303f;
+    font-size: 1rem;
+    color: var(--color10);
+}
+.languages .boxLevils .lesvel,
+.links .boxLevils .lesvel {
+    color: var(--black);
+    background-color: var(--color9);
+}
+/* End  languages*/
+
+/* Start  Hobbies*/
+
+.hobbies .par {
+    display: flex;
+}
+.hobbies .hobbie {
+    background-color: var(--color9);
+    padding: 5px 10px;
+    margin: 20px 5px;
+    color: #73230d;
+}
+/* End  Hobbies*/
+
+/* Start  Experiences & coursess & projects & return */
+.detuls_information {
+    padding: 50px 20px;
+}
+.detuls_information .experiences .detuls,
+.detuls_information .qualifications .detuls,
+.detuls_information .coursess .detuls,
+.detuls_information .projects .detuls,
+.detuls_information .return .detuls {
+    border-bottom: 1px solid var(--color12);
+    padding: 5px 0;
+}
+.detuls_information .experiences .detuls .date span:not(span:nth-of-type(2)),
+.detuls_information .qualifications .detuls .date span:not(span:nth-of-type(2)),
+.detuls_information .coursess .detuls .date span:not(span:nth-of-type(2)),
+.detuls_information .projects .detuls .date span:not(span:nth-of-type(2)),
+.detuls_information .return .detuls .date span:not(span:nth-of-type(2)) {
+    color: var(--color11);
+    background-color: var(--color9);
+    padding: 2px;
+    font-size: .75em;
+    margin-left: 5px;
+}
+.detuls_information .experiences .detuls .date span:nth-of-type(2),
+.detuls_information .return .detuls .date span:nth-of-type(2) {
+    margin: 0 2px;
+}
+.detuls_information .experiences .detuls .info,
+.detuls_information .qualifications .detuls .info ,
+.detuls_information .coursess .detuls .info,
+.detuls_information .projects .detuls .info,
+.detuls_information .return .detuls .info {
+    margin: 10px 0;
+}
+.detuls_information .experiences .detuls .info span:first-of-type,
+.detuls_information .qualifications .detuls .info span:first-of-type,
+.detuls_information .coursess .detuls .info span:last-of-type,
+.detuls_information .projects .detuls .info span:last-of-type,
+.detuls_information .return .detuls .info span:last-of-type {
+    font-size: 1.25em;
+    font-weight: bold;
+    margin-left: 10px;
+}
+.detuls_information .experiences .detuls .info span:last-of-type,
+.detuls_information .experiences .detuls .info p,
+.detuls_information .qualifications .detuls .info span:last-of-type,
+.detuls_information .qualifications .detuls .info p,
+.detuls_information .coursess .detuls .info span:last-of-type,
+.detuls_information .coursess .detuls .info p,
+.detuls_information .projects .detuls .info span:last-of-type,
+.detuls_information .projects .detuls .info p,
+.detuls_information .return .detuls .info span:last-of-type,
+.detuls_information .return .detuls .info p  {
+    color: var(--color2);
+}
+/* End  Experiences*/  

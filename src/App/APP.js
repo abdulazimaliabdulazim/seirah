@@ -23,6 +23,8 @@ import Dashboard from "../components/Dashboard/Dashboard";
 import Cvs from "../components/Cvs/Cvs";
 import Templet1 from "../components/Templets/Templet1/Templet1";
 import DownloadShare from "../components/Download-share/DownloadShare";
+import Templet2 from "../components/Templets/Templet2/Templet2";
+import Design from "../components/Design/Design";
 
 const App = () => {
   return (
@@ -57,14 +59,13 @@ const App = () => {
           <Route path="register" element={<Register />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="dashboard/cvs" element={<Cvs />} />
-          <Route
-            path={"dashboard/cvs/data/download-share/seirah"}
-            element={<Templet1 />}
-          />
+          <Route path={"seirah"} element={<Templet1 />} />
+          <Route path={"seirah"} element={<Templet2 />} />
           <Route
             path={`dashboard/cvs/data/download-share`}
             element={<DownloadShare />}
           />
+          <Route path={`dashboard/cvs/data/design`} element={<Design />} />
         </Routes>
       </BrowserRouter>
     </ContextProvider>

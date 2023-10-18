@@ -7,12 +7,11 @@ import { counterActions } from "../../../../../sliceStores/sliceTwo";
 
 const MineHeader = () => {
   const dispatch = useDispatch();
-  const data = dataUrlJson;
 
   return (
     <header className={style.parent}>
       <nav>
-        {data[0].map((ele, ind) => {
+        {dataUrlJson[0].map((ele, ind) => {
           return (
             <NavLink
               key={ind}

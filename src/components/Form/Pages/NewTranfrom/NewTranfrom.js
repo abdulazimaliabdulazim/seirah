@@ -14,7 +14,7 @@ export const transform = (nav, disp) => {
   nav(varNextPages);
   if (
     varNextPages !== undefined &&
-    varNextPages !== "/dashboard/cvs/data/download-share"
+    varNextPages !== "/dashboard/cvs/data/design"
   ) {
     disp(counterActions[`name_${varNextPages.split("/")[4]}`]());
   }

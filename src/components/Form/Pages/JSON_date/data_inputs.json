@@ -58,5 +58,5 @@
     ],
     [ "يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "اغسطس", "سبتمبر", "اكتوبر", "نوفمبر", "ديسمبر"],
     [ "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"],
-    [ "/dashboard/cvs/data/personal", "/dashboard/cvs/data/qualifications", "/dashboard/cvs/data/experiences", "/dashboard/cvs/data/coursess", "/dashboard/cvs/data/skils", "/dashboard/cvs/data/projects", "/dashboard/cvs/data/return", "/dashboard/cvs/data/languages", "/dashboard/cvs/data/links", "/dashboard/cvs/data/hobbies", "/dashboard/cvs/data/address", "/dashboard/cvs/data/download-share"]
+    [ "/dashboard/cvs/data/personal", "/dashboard/cvs/data/qualifications", "/dashboard/cvs/data/experiences", "/dashboard/cvs/data/coursess", "/dashboard/cvs/data/skils", "/dashboard/cvs/data/projects", "/dashboard/cvs/data/return", "/dashboard/cvs/data/languages", "/dashboard/cvs/data/links", "/dashboard/cvs/data/hobbies", "/dashboard/cvs/data/address", "/dashboard/cvs/data/design"]
 ]

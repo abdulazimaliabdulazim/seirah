@@ -135,12 +135,23 @@ export const allSeirah = (nameObj) => {
   const personal = [];
   const countseirahAll = window.localStorage.getItem("countseirah");
   if (countseirahAll !== null) {
-    for (let i = 1; i <= countseirahAll; i++) {
-      const personals = JSON.parse(
-        window.localStorage.getItem(`${nameObj}${i}`)
-      );
-      if (personals !== null) {
-        personal.push(personals);
+    if (countseirahAll >= 1) {
+      for (let i = 1; i <= countseirahAll + 1; i++) {
+        const personals = JSON.parse(
+          window.localStorage.getItem(`${nameObj}${i}`)
+        );
+        if (personals !== null) {
+          personal.push(personals);
+        }
+      }
+    } else {
+      for (let i = 1; i <= 1; i++) {
+        const personals = JSON.parse(
+          window.localStorage.getItem(`${nameObj}${i}`)
+        );
+        if (personals !== null) {
+          personal.push(personals);
+        }
       }
     }
   }

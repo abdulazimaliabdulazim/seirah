@@ -14,7 +14,7 @@ const ContentDashboard = () => {
             <img src={img1} alt="" />
             <div className={style.col}>
               <h3>السير الذاتية</h3>
-              <h4>{countseirahAll === null ? "1" : countseirahAll}</h4>
+              <h4>{countseirahAll === null ? "0" : countseirahAll}</h4>
             </div>
           </Link>
           <p>أنشئ سير متخصصة حسب الجهات التي ترغب بالتقديم لها.</p>

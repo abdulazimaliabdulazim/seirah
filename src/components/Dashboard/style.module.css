@@ -17,6 +17,7 @@
     display: flex;
     justify-content: space-around;
     width: fit-content;
+    font-weight: bold;
 }
 .detuls .box .name .date, .paca,.email {
     display: flex;
@@ -36,6 +37,6 @@
         width: fit-content;
     }
     .detuls .box .name .date, .paca,.email {
-        font-size: 10px;
+        font-size: 12px;
     }
 }

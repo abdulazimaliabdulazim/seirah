@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { allSeirah } from "../Form/Pages/hendlerData/hendlerData";
 
 const Dashboard = () => {
+  document.title = "لوحة التحكم";
   const dateNew = new Date().getDate();
   const [{ name }, { date }] = useSelector((state) => state.detulsUser);
 
