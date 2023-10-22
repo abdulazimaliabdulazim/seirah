@@ -10,8 +10,7 @@ import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
 import Checkd from "../Personal_data/Home/Checkd/Checkd";
 import hendlerData, { getFormValues } from "../hendlerData/hendlerData";
 import jsonD from "../JSON_date/data_inputs.json";
-import UsePages from "../UsePage/UsePages";
-import { Icones } from "../Qualifications/Home/Qualifications";
+import UsePages, { Icones } from "../UsePage/UsePages";
 
 const Languages = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
@@ -25,7 +24,7 @@ const Languages = () => {
   const createqualifi = (ind) => {
     return (
       <div key={ind} className={style.parentPages}>
-        <Icones />
+        <Icones index={ind + 1} state1={languages} state2={languagesNumber} />
         <div
           onDragStart={(e) => dargItem(e.target)}
           onDragEnd={(e) => dargEnd(e.target)}
@@ -121,9 +120,7 @@ const Languages = () => {
     <div onDrop={(e) => drop(e.target)} className={style.parent}>
       <UsePages
         state={languages}
-        naState={"languages"}
         state2={languagesNumber}
-        naState2={"languagesNumber"}
         setState2={setLanguagesNumber}
         b1={"أضف لغة جديدة"}
         b2={"حفظ اللغات"}>

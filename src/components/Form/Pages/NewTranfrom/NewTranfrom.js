@@ -12,10 +12,7 @@ export const transform = (nav, disp) => {
   const ulrsPages = json[13];
   const varNextPages = ulrsPages[ulrsPages.indexOf(nextPage().join("")) + 1];
   nav(varNextPages);
-  if (
-    varNextPages !== undefined &&
-    varNextPages !== "/dashboard/cvs/data/design"
-  ) {
+  if (varNextPages !== "/dashboard/cvs/data/design") {
     disp(counterActions[`name_${varNextPages.split("/")[4]}`]());
   }
 };

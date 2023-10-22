@@ -14,6 +14,9 @@ const DownloadShare = () => {
   document.title = "التحميل والمشاركة";
   const navigat = useNavigate();
   const dispatch = useDispatch();
+  const targetSeirah = localStorage.getItem("targetSeirah");
+  const progressAll = JSON.parse(localStorage.getItem("progressAll"));
+
   return (
     <Fragment>
       <Profile />
@@ -43,7 +46,7 @@ const DownloadShare = () => {
               />
               <p>نسبة اكتمال السيرة</p>
             </div>
-            <Progress />
+            <Progress progress={progressAll[targetSeirah - 1]} />
           </div>
           <div className={styleing.copyLink}>
             <div className={styleing.link}>
@@ -61,7 +64,7 @@ const DownloadShare = () => {
                 />
                 نسخ الرابط
               </button>
-              http://localhost:3000/seirah.com
+              http://seirah-60293.web.app/seirah.com
               <Link to={`/seirah`}>
                 معاينة السيرة
                 <Icons
@@ -104,10 +107,8 @@ const DownloadShare = () => {
             <div className={styleing.parent}>
               <span>
                 <Icons
-                  path={
-                    "M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                  }
-                  viewBox={"0 0 24 24"}
+                  path="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                  viewBox="0 0 24 24"
                 />
                 تحميل السيرة بصيغة صورة PNG
               </span>
@@ -116,21 +117,8 @@ const DownloadShare = () => {
           </div>
           <div className={styleing.pdf}>
             <div className={styleing.headin}>
-              <Icons
-                path={
-                  "M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                }
-              />
-              <p>تحميل السيرة PDF</p>
-            </div>
-            <div className={styleing.mauty}>
-              <Icons
-                path={
-                  "M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm56 256c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120z"
-                }
-                viewBox={"0 0 384 512"}
-              />
-              متعددة الصفحات
+              <Icons path="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              <p>تحميل السيرة بصيغة PDF</p>
             </div>
             <div
               onClick={() => {
@@ -155,10 +143,8 @@ const DownloadShare = () => {
             <div className={styleing.parent}>
               <span>
                 <Icons
-                  path={
-                    "M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                  }
-                  viewBox={"0 0 24 24"}
+                  path="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                  viewBox="0 0 24 24"
                 />
                 تحميل السيرة بصيغة PDF
               </span>

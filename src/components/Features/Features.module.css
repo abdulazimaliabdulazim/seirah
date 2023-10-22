@@ -32,19 +32,19 @@
 }
 .boxFeature {
     display: flex;
-}
-.boxFeature .boxImg {
-    width: 170px;
-    height: 110px;
     background-color: white;
-    display: flex;
-    justify-content: center;
+    margin: 10px;
     align-items: center;
-    margin-left: 20px;
+}
+.boxFeature .boxImg svg {
+    font-size: 100px;
+    width: 50px !important;
+    margin-left: 10px !important;
+    color: var(--background-main);
 }
 .boxFeature img {
-    width: 70%;
-    height: 70%;
+    width: 100%;
+    height: 100%;
 }
 .parentCol {
     display: grid;
@@ -53,8 +53,5 @@
 @media (max-width: 767px) {
     .parentCol  {
         grid-template-columns: repeat(1, 1fr);
-    }
-    .boxFeature .boxImg {
-        display: none;
     }
 }

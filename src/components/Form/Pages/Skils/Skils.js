@@ -9,8 +9,7 @@ import {
 import style from "../Qualifications/Home/Qualifications.module.css";
 import Checkd from "../Personal_data/Home/Checkd/Checkd";
 import hendlerData, { getFormValues } from "../hendlerData/hendlerData";
-import UsePages from "../UsePage/UsePages";
-import { Icones } from "../Qualifications/Home/Qualifications";
+import UsePages, { Icones } from "../UsePage/UsePages";
 
 const Skils = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
@@ -30,7 +29,7 @@ const Skils = () => {
           className={style.qualificBox}
           key={ind}>
           <span className={style.numberQuali}>{ind + 1}</span>
-          <Icones />
+          <Icones index={ind + 1} state1={skils} state2={skilsNumber} />
           <ParentInput
             forId={`skilsId${coun[0]++}`}
             label={"المهارة"}
@@ -114,9 +113,7 @@ const Skils = () => {
   return (
     <UsePages
       state={skils}
-      naState={"skils"}
       state2={skilsNumber}
-      naState2={"skilsNumber"}
       setState2={setSkilsNumb}
       b1={"أضف خبرة مهارة"}
       b2={"حفظ المهارات"}>

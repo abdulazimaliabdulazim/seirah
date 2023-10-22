@@ -9,20 +9,19 @@ import {
 import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
 import hendlerData, { getFormValues } from "../hendlerData/hendlerData";
 import json from "../JSON_date/data_inputs.json";
-import UsePages from "../UsePage/UsePages";
-import { Icones } from "../Qualifications/Home/Qualifications";
+import UsePages, { Icones } from "../UsePage/UsePages";
 
 const Return = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
   let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
   document.title = "المراجع";
-  const [dataReturn, setDataReturn] = useState(
+  const [returnP, setreturnP] = useState(
     getFormValues(targetSeirah !== null ? `return${targetSeirah}` : "return1")
   );
   const createqualifi = (ind) => {
     return (
       <div key={ind} className={style.parentPages}>
-        <Icones />
+        <Icones index={ind + 1} state1={returnP} state2={returnNumber} />
         <div
           onDragStart={(e) => dargItem(e.target)}
           onDragEnd={(e) => dargEnd(e.target)}
@@ -31,10 +30,6 @@ const Return = () => {
           className={style.qualificBox}
           key={ind}>
           <span className={style.numberQuali}>{ind + 1}</span>
-          <div className={style.controlBut}>
-            <div type="button"></div>
-            <div draggable={true} type="button"></div>
-          </div>
           {json[7].map((input, ind) => {
             return (
               <ParentInput
@@ -53,7 +48,7 @@ const Return = () => {
                 label={input.label}
                 paraghrap={input.paraghrap}>
                 <input
-                  onChange={(e) => hendlerData(e, setDataReturn)}
+                  onChange={(e) => hendlerData(e, setreturnP)}
                   type="text"
                   placeholder={input.label}
                   id={
@@ -69,13 +64,13 @@ const Return = () => {
                   }
                   value={
                     input.id === "name"
-                      ? dataReturn[`${input.id}${coun[9]++}`]
+                      ? returnP[`${input.id}${coun[9]++}`]
                       : input.id === "email"
-                      ? dataReturn[`${input.id}${coun[10]++}`]
+                      ? returnP[`${input.id}${coun[10]++}`]
                       : input.id === "number_phone"
-                      ? dataReturn[`${input.id}${coun[11]++}`]
+                      ? returnP[`${input.id}${coun[11]++}`]
                       : input.id === "esy"
-                      ? dataReturn[`${input.id}${coun[12]++}`]
+                      ? returnP[`${input.id}${coun[12]++}`]
                       : ""
                   }
                 />
@@ -93,10 +88,8 @@ const Return = () => {
   );
   return (
     <UsePages
-      state={dataReturn}
-      naState={"return"}
+      state={returnP}
       state2={returnNumber}
-      naState2={"returnNumber"}
       setState2={setReturnNumber}
       b1={"أضف شخص جديد"}
       b2={"حفظ المراجع"}>

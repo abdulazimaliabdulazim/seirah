@@ -15,8 +15,7 @@ import {
   Yar,
 } from "../Qualifications/Home/DateQualifi/LettersNmbers";
 import json from "../JSON_date/data_inputs.json";
-import UsePages from "../UsePage/UsePages";
-import { Icones } from "../Qualifications/Home/Qualifications";
+import UsePages, { Icones } from "../UsePage/UsePages";
 
 const Coursess = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
@@ -32,7 +31,7 @@ const Coursess = () => {
       <div key={ind} className={style.parentPages}>
         <div className={style.qualificBox} key={ind}>
           <span className={style.numberQuali}>{ind + 1}</span>
-          <Icones />
+          <Icones index={ind + 1} state1={coursess} state2={coursessNumber} />
           {json[5].map((input, ind) => {
             return (
               <ParentInput
@@ -91,9 +90,7 @@ const Coursess = () => {
   return (
     <UsePages
       state={coursess}
-      naState={"coursess"}
       state2={coursessNumber}
-      naState2={"coursessNumber"}
       setState2={setCoursessNum}
       b1={"أضف دورة جديدة"}
       b2={"حفظ الدورات"}>

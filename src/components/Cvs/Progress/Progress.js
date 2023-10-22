@@ -2,13 +2,18 @@ import React from "react";
 import style from "../style.module.css";
 
 const Progress = ({ progress }) => {
+  const checkd = `${
+    progress >= 100 ? "100" : progress !== "" ? progress : "0"
+  }%`;
   return (
     <div className={style.line}>
       <div className={style.havi}>
         <div
-          style={{ width: `${progress >= 100 ? "100" : progress}%` }}
+          style={{
+            width: checkd,
+          }}
           className={style.infuk}>
-          {progress >= 100 ? "100%" : `${progress}%`}
+          {checkd}
         </div>
       </div>
     </div>

@@ -7,8 +7,7 @@ import {
 } from "../Qualifications/Home/f_drag_drop/drag_drop";
 import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
 import hendlerData, { getFormValues } from "../hendlerData/hendlerData";
-import UsePages from "../UsePage/UsePages";
-import { Icones } from "../Qualifications/Home/Qualifications";
+import UsePages, { Icones } from "../UsePage/UsePages";
 
 const Hobbies = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
@@ -20,7 +19,7 @@ const Hobbies = () => {
   const createqualifi = (ind) => {
     return (
       <div key={ind} className={style.parentPages}>
-        <Icones />
+        <Icones index={ind + 1} state1={hobbies} state2={hobbiesNumber} />
         <div
           onDragStart={(e) => dargItem(e.target)}
           onDragEnd={(e) => dargEnd(e.target)}
@@ -53,9 +52,7 @@ const Hobbies = () => {
   return (
     <UsePages
       state={hobbies}
-      naState={"hobbies"}
       state2={hobbiesNumber}
-      naState2={"hobbiesNumber"}
       setState2={setHobbiesNumber}
       b1={"أضف هواية جديدة"}
       b2={"حفظ الهويات"}>

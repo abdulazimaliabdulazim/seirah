@@ -7,7 +7,7 @@
     margin-top: 130px;
     font-size: 16px;
 }
-.section .child_parent a.link {
+.section .child_parent p.link {
     background-color: #1a202e80;
     color: white;
     padding: 4px 6px;
@@ -17,8 +17,9 @@
     -moz-border-radius: 1em;
     -ms-border-radius: 1em;
     -o-border-radius: 1em;
+    width: fit-content;
 }
-.section .child_parent a.link span:first-of-type {
+.section .child_parent p.link span:first-of-type {
     display: inline-block;
     background-color: var(--background-main-alt);
     padding: 2px 15px;
@@ -29,7 +30,7 @@
     -o-border-radius: 10px;
     
 }
-.section .child_parent a.link span:nth-of-type(2) {
+.section .child_parent p.link span:nth-of-type(2) {
     color: var(--color-ylo);
 }
 .section .child_parent h1 {
@@ -64,6 +65,7 @@
     -moz-transition: var(--transform-s);
     -ms-transition: var(--transform-s);
     -o-transition: var(--transform-s);
+    cursor: pointer;
 }
 .section .child_parent button.butManger:hover {
     background-color: #e3a008;

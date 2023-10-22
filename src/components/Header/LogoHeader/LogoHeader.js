@@ -7,7 +7,7 @@ const LogoHeader = () => {
   return (
     <Link aria-label="home" className={style.logo} to={"/"}>
       <img src={logo} alt="logo" />
-      <span>سيرة</span>
+      <span>سيَرٍتگ</span>
     </Link>
   );
 };

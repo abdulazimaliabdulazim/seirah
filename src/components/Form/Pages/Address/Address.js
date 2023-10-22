@@ -7,6 +7,7 @@ import hendlerData, {
   getFormValues,
   sendActionData,
 } from "../hendlerData/hendlerData";
+import { Link } from "react-router-dom";
 
 const Address = () => {
   document.title = "العنوان";
@@ -33,16 +34,18 @@ const Address = () => {
             />
           </ParentInput>
         </div>
-        <Buttom
-          onClick={() => {
-            sendActionData(
-              hindlerAction,
-              targetSeirah !== null ? `address${targetSeirah}` : "address1",
-              address
-            );
-          }}
-          text={"حفظ العنوان الوطني"}
-        />
+        <Link to="/dashboard/cvs/data/design">
+          <Buttom
+            onClick={() => {
+              sendActionData(
+                hindlerAction,
+                targetSeirah !== null ? `address${targetSeirah}` : "address1",
+                address
+              );
+            }}
+            text={"حفظ العنوان الوطني"}
+          />
+        </Link>
       </div>
     </div>
   );

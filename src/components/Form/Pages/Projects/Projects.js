@@ -15,8 +15,7 @@ import {
   Yar,
 } from "../Qualifications/Home/DateQualifi/LettersNmbers";
 import json from "../JSON_date/data_inputs.json";
-import UsePages from "../UsePage/UsePages";
-import { Icones } from "../Qualifications/Home/Qualifications";
+import UsePages, { Icones } from "../UsePage/UsePages";
 
 const Projects = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
@@ -29,15 +28,15 @@ const Projects = () => {
   );
   const createqualifi = (ind) => {
     return (
-      <div key={ind} className={style.parentPages}>
-        <Icones />
-        <div
-          onDragStart={(e) => dargItem(e.target)}
-          onDragEnd={(e) => dargEnd(e.target)}
-          onDragOver={(e) => dargOver(e.target)}
-          draggable={true}
-          className={style.qualificBox}
-          key={ind}>
+      <div
+        onDragStart={(e) => dargItem(e.target)}
+        onDragEnd={(e) => dargEnd(e.target)}
+        onDragOver={(e) => dargOver(e.target)}
+        draggable
+        key={ind}
+        className={style.parentPages}>
+        <Icones index={ind + 1} state1={projects} state2={projectsNumber} />
+        <div className={style.qualificBox} key={ind}>
           <span className={style.numberQuali}>{ind + 1}</span>
           {json[6].map((input, ind) => {
             return (
@@ -86,21 +85,21 @@ const Projects = () => {
       </div>
     );
   };
-  let [projectNumber, setProjectNumber] = useState(
+  let [projectsNumber, setProjectsNumber] = useState(
     getFormValues(
-      targetSeirah !== null ? `projectNumber${targetSeirah}` : "projectNumber1"
+      targetSeirah !== null
+        ? `projectsNumber${targetSeirah}`
+        : "projectsNumber1"
     )
   );
   return (
     <UsePages
       state={projects}
-      naState={"projects"}
-      state2={projectNumber}
-      naState2={"projectNumber"}
-      setState2={setProjectNumber}
+      state2={projectsNumber}
+      setState2={setProjectsNumber}
       b1={"أضف مشروع جديد"}
       b2={"حفظ المشروعات"}>
-      {projectNumber.map((ele, ind) => createqualifi(ind))}
+      {projectsNumber.map((ele, ind) => createqualifi(ind))}
     </UsePages>
   );
 };

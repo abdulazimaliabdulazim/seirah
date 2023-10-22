@@ -25,6 +25,7 @@ import Templet1 from "../components/Templets/Templet1/Templet1";
 import DownloadShare from "../components/Download-share/DownloadShare";
 import Templet2 from "../components/Templets/Templet2/Templet2";
 import Design from "../components/Design/Design";
+import RequireAuth from "../components/RequireAuth/RequireAuth";
 
 const App = () => {
   return (
@@ -43,7 +44,13 @@ const App = () => {
               </Fragment>
             }
           />
-          <Route path={"dashboard/cvs/data"} element={<Form />}>
+          <Route
+            path={"dashboard/cvs/data"}
+            element={
+              <RequireAuth>
+                <Form />
+              </RequireAuth>
+            }>
             <Route path="personal" element={<PersonalData />} />
             <Route path="qualifications" element={<Qualifications />} />
             <Route path="experiences" element={<Experiences />} />
@@ -57,15 +64,40 @@ const App = () => {
             <Route path="address" element={<Address />} />
           </Route>
           <Route path="register" element={<Register />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="dashboard/cvs" element={<Cvs />} />
+          <Route
+            path="dashboard"
+            element={
+              <RequireAuth>
+                <Dashboard />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="dashboard/cvs"
+            element={
+              <RequireAuth>
+                <Cvs />
+              </RequireAuth>
+            }
+          />
           <Route path={"seirah"} element={<Templet1 />} />
           <Route path={"seirah"} element={<Templet2 />} />
           <Route
             path={`dashboard/cvs/data/download-share`}
-            element={<DownloadShare />}
+            element={
+              <RequireAuth>
+                <DownloadShare />
+              </RequireAuth>
+            }
           />
-          <Route path={`dashboard/cvs/data/design`} element={<Design />} />
+          <Route
+            path={`dashboard/cvs/data/design`}
+            element={
+              <RequireAuth>
+                <Design />
+              </RequireAuth>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </ContextProvider>

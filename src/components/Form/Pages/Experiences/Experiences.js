@@ -15,8 +15,7 @@ import {
   Yar,
 } from "../Qualifications/Home/DateQualifi/LettersNmbers";
 import Json from "../JSON_date/data_inputs.json";
-import UsePages from "../UsePage/UsePages";
-import { Icones } from "../Qualifications/Home/Qualifications";
+import UsePages, { Icones } from "../UsePage/UsePages";
 
 const Experiences = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
@@ -41,7 +40,11 @@ const Experiences = () => {
           className={style.qualificBox}
           key={ind}>
           <span className={style.numberQuali}>{ind + 1}</span>
-          <Icones />
+          <Icones
+            index={ind + 1}
+            state1={experiences}
+            state2={experiencesNumber}
+          />
           {Json[4].map((input, ind) => {
             return (
               <ParentInput
@@ -106,23 +109,21 @@ const Experiences = () => {
       </div>
     );
   };
-  let [experienNumber, setExperNumber] = useState(
+  let [experiencesNumber, setExperNumber] = useState(
     getFormValues(
       targetSeirah !== null
-        ? `experienNumber${targetSeirah}`
-        : "experienNumber1"
+        ? `experiencesNumber${targetSeirah}`
+        : "experiencesNumber1"
     )
   );
   return (
     <UsePages
       state={experiences}
-      naState={"experiences"}
-      state2={experienNumber}
-      naState2={"experienNumber"}
+      state2={experiencesNumber}
       setState2={setExperNumber}
       b1={"أضف خبرة جديدة"}
       b2={"حفظ الخبرات"}>
-      {experienNumber.map((ele, ind) => createexperiences(ind))}
+      {experiencesNumber.map((ele, ind) => createexperiences(ind))}
     </UsePages>
   );
 };

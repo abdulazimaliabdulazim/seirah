@@ -9,8 +9,7 @@ import {
 import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
 import hendlerData, { getFormValues } from "../hendlerData/hendlerData";
 import json from "../JSON_date/data_inputs.json";
-import UsePages from "../UsePage/UsePages";
-import { Icones } from "../Qualifications/Home/Qualifications";
+import UsePages, { Icones } from "../UsePage/UsePages";
 
 const LinksPage = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
@@ -22,7 +21,7 @@ const LinksPage = () => {
   const createqualifi = (ind) => {
     return (
       <div key={ind} className={style.parentPages}>
-        <Icones />
+        <Icones index={ind + 1} state1={links} state2={linksNumber} />
         <div
           onDragStart={(e) => dargItem(e.target)}
           onDragEnd={(e) => dargEnd(e.target)}
@@ -62,9 +61,7 @@ const LinksPage = () => {
   return (
     <UsePages
       state={links}
-      naState={"links"}
       state2={linksNumber}
-      naState2={"linksNumber"}
       setState2={setLinksNumber}
       b1={"أضف رابط جديد"}
       b2={"حفظ الروابط"}>
