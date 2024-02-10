@@ -3,8 +3,9 @@ import templet2 from "./Templet2.module.css";
 import Container from "../../Container/Container";
 import UserImg from "../../UserImg/UserImg";
 import Icons from "../../Icons/Icons";
-import { HeaderTemplet, download } from "../Templet1/Templet1";
+import { HeaderTemplet } from "../Templet1/Templet1";
 import { useSelector } from "react-redux";
+import download from "../../../Framework/pdf";
 
 const Templet2 = ({
   personal,

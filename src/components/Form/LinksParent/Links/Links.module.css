@@ -23,6 +23,9 @@ header.parent nav a {
         padding-left: 8px;
         font-size: .85em;
     }
+    header.parent nav a:last-of-type {
+        display: none;
+    }
 }
 header.parent nav a::before {
     content: '';

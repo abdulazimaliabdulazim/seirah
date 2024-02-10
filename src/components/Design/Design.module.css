@@ -16,6 +16,9 @@
 .design .images .parent_img p {
     margin: 0;
     color: var(--color-opacity);
+    word-break: break-all;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .design .images .parent_img:hover {
     outline: 2px solid var(--background-main);
@@ -28,11 +31,6 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding: 20px;
-}
-@media (max-width: 767px) {
-    .parent_design {
-        grid-template-columns: repeat(1, 1fr);
-    }
 }
 .background {
     background-color: var(--background1);
@@ -83,4 +81,20 @@
 }
 .parent_design img {
     width: 100%;
+}
+
+@media (max-width: 767px) {
+    .parent_design {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .design .images .parent_img img {
+        width: 80px;
+        height: 100px;  
+    }
+    .design .images .parent_img {
+        margin: 0 5px;
+    }
+    .view p:first-of-type {
+        font-size: .75em;
+    }
 }

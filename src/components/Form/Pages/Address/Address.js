@@ -15,8 +15,7 @@ const Address = () => {
   const [address, setAddress] = useState(
     getFormValues(targetSeirah !== null ? `address${targetSeirah}` : "address1")
   );
-  const dispatch = useDispatch();
-  const hindlerAction = () => dispatch({ type: { address } });
+
   return (
     <div className={style.parent}>
       <div className={style.box}>
@@ -38,7 +37,6 @@ const Address = () => {
           <Buttom
             onClick={() => {
               sendActionData(
-                hindlerAction,
                 targetSeirah !== null ? `address${targetSeirah}` : "address1",
                 address
               );

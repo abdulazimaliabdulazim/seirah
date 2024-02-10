@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Header from "../components/Header/Header";
 import Section from "../components/Section/Section";
 import Features from "../components/Features/Features";
@@ -26,10 +26,23 @@ import DownloadShare from "../components/Download-share/DownloadShare";
 import Templet2 from "../components/Templets/Templet2/Templet2";
 import Design from "../components/Design/Design";
 import RequireAuth from "../components/RequireAuth/RequireAuth";
+import palestine from "../images/logo.png";
+import style from "./APP.module.css";
+import DynamicForms from "../components/Test";
 
 const App = () => {
+  const [updateSta, setUpdateSet] = useState({});
+  const getState = (val) => {
+    setUpdateSet(val);
+  };
+
   return (
     <ContextProvider>
+      <div className={style.palestine}>
+        <img src={palestine} alt="palestine" />
+        <p>STAND WITH PALESTINE</p>
+        <img src={palestine} alt="palestine" />
+      </div>
       <BrowserRouter>
         <Routes>
           <Route
@@ -48,10 +61,13 @@ const App = () => {
             path={"dashboard/cvs/data"}
             element={
               <RequireAuth>
-                <Form />
+                <Form name={updateSta.name} />
               </RequireAuth>
             }>
-            <Route path="personal" element={<PersonalData />} />
+            <Route
+              path="personal"
+              element={<PersonalData getState={getState} />}
+            />
             <Route path="qualifications" element={<Qualifications />} />
             <Route path="experiences" element={<Experiences />} />
             <Route path="coursess" element={<Coursess />} />
@@ -98,6 +114,7 @@ const App = () => {
               </RequireAuth>
             }
           />
+          <Route path="test" element={<DynamicForms />} />
         </Routes>
       </BrowserRouter>
     </ContextProvider>

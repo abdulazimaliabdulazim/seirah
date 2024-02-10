@@ -1,11 +1,33 @@
-import React, { useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import style from "./Qualifications.module.css";
 import DateQualifi from "../Home/DateQualifi/DateQualifi";
 import ParentInput from "../../Personal_data/Home/ParentInput/ParentInput";
 import hendlerData, { getFormValues } from "../../hendlerData/hendlerData";
-import { Day, Manth, Yar } from "./DateQualifi/LettersNmbers";
+import DateCopy, { Day, Manth, Yar } from "./DateQualifi/DateCopy";
 import Json from "../../JSON_date/data_inputs.json";
 import UsePages, { Icones } from "../../UsePage/UsePages";
+import Icons from "../../../../Icons/Icons";
+
+// Handle Input
+export const handleInputChange = (index, value, type, state, setState) => {
+  // تحديث قيمة الحقل النصي للنموذج الخاص بالفهرس المعطى
+  const updatedForms = [...state];
+  updatedForms[index][type] = value;
+  setState(updatedForms);
+};
+// Delete Item
+export const handleDelete = (index, state, setState) => {
+  // حذف النموذج بناءً على الفهرس المعطى
+  const updatedForms = state.filter((form, i) => i !== index);
+  setState(updatedForms);
+};
+export const handleSubmit = (state) => {
+  // يمكنك هنا إجراء أي عمليات إضافية على البيانات قبل التخزين في localStorage
+  console.log("تم تقديم النماذج:", state);
+
+  // تحديث localStorage
+  localStorage.setItem("formData", JSON.stringify(state));
+};
 
 const Qualifications = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
@@ -18,6 +40,34 @@ const Qualifications = () => {
         : "qualifications1"
     )
   );
+
+  // New
+  const [forms, setForms] = useState([]);
+
+  useEffect(() => {
+    // قراءة البيانات من localStorage عند تحميل المكون
+    const storedData = JSON.parse(localStorage.getItem("formData"));
+    if (storedData) {
+      setForms(storedData);
+    }
+  }, []);
+
+  const addForm = () => {
+    // إضافة نموذج جديد
+    const newForm = {
+      education: "",
+      specializat: "",
+      esy: "",
+      degree: "",
+      day: "",
+      manth: "",
+      yar: "",
+    };
+
+    // تحديث الحالة لتضمين النموذج الجديد
+    setForms([...forms, newForm]);
+  };
+
   const createqualifi = (ind) => {
     return (
       <div key={ind} className={style.parentPages}>
@@ -94,15 +144,134 @@ const Qualifications = () => {
         : "qualificationsNumber1"
     )
   );
+  console.log(forms);
   return (
-    <UsePages
-      state={qualifications}
-      state2={qualificationsNumber}
-      setState2={setQualificationsNumber}
-      b1={"أضف مؤهل جديد"}
-      b2={"حفظ المؤهلات"}>
-      {qualificationsNumber.map((ele, ind) => createqualifi(ind))}
-    </UsePages>
+    <Fragment>
+      {forms.map((form, index) => (
+        <div key={index} className={style.parentPages}>
+          <div className={style.controlBut}>
+            <div
+              onClick={() => handleDelete(index, forms, setForms)}
+              className={style.icon}
+              type="button">
+              <Icons
+                viewBox={"0 0 448 512"}
+                path={
+                  "M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z"
+                }
+              />
+            </div>
+            <div className={style.icon} draggable={true} type="button">
+              <Icons
+                viewBox={"0 0 192 512"}
+                path={
+                  "M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V448c0 17.7 14.3 32 32 32s32-14.3 32-32V64zm128 0c0-17.7-14.3-32-32-32s-32 14.3-32 32V448c0 17.7 14.3 32 32 32s32-14.3 32-32V64z"
+                }
+              />
+            </div>
+          </div>
+          <div className={style.qualificBox} id={index} key={index}>
+            <span className={style.numberQuali}>{index + 1}</span>
+            <ParentInput
+              forId="education"
+              label="الجهة التعليمية"
+              paraghrap="اسم الجامعة أو الجهة التعليمية التي حصلت على الشهادة منها.">
+              <input
+                onChange={(e) =>
+                  handleInputChange(
+                    index,
+                    e.target.value,
+                    "education",
+                    forms,
+                    setForms
+                  )
+                }
+                id="education"
+                value={form.education}
+                type="text"
+                placeholder="الجهة التعليمية"
+              />
+            </ParentInput>
+            <ParentInput
+              forId="specializat"
+              label="التخصص"
+              paraghrap="المجال أو التخصص الذي درسته.">
+              <input
+                onChange={(e) =>
+                  handleInputChange(
+                    index,
+                    e.target.value,
+                    "specializat",
+                    forms,
+                    setForms
+                  )
+                }
+                id="specializat"
+                value={form.specializat}
+                type="text"
+                placeholder="التخصص"
+              />
+            </ParentInput>
+            <ParentInput
+              label="وصف بسيط"
+              paraghrap="اكتب وصف بسيط عن هذه المرحلة الدارسية (اختياري)">
+              <input
+                onChange={(e) => {
+                  handleInputChange(
+                    index,
+                    e.target.value,
+                    "esy",
+                    forms,
+                    setForms
+                  );
+                  console.log(e.target.value, index);
+                }}
+                id="esy"
+                value={form.esy}
+                type="text"
+                placeholder="وصف بسيط"
+              />
+            </ParentInput>
+
+            <ParentInput forId="degree" label="الدرجة العلمية">
+              <select
+                id="degree"
+                onChange={(e) =>
+                  handleInputChange(
+                    index,
+                    e.target.value,
+                    "degree",
+                    forms,
+                    setForms
+                  )
+                }
+                value={form.degree}>
+                {Json[8].map((option, ind) => {
+                  return <option key={ind}>{option}</option>;
+                })}
+              </select>
+            </ParentInput>
+
+            <ParentInput
+              forId={"coun[1]++"}
+              label="تاريخ التخرج"
+              hedinSpan={false}>
+              <DateCopy index={index} forms={forms} setForms={setForms} />
+            </ParentInput>
+          </div>
+        </div>
+      ))}
+      <UsePages
+        handleSubmit={handleSubmit}
+        addForm={addForm}
+        state={forms}
+        state2={qualificationsNumber}
+        setState2={setQualificationsNumber}
+        b1={"أضف مؤهل جديد"}
+        b2={"حفظ المؤهلات"}>
+        {qualificationsNumber.map((ele, ind) => createqualifi(ind))}
+      </UsePages>
+    </Fragment>
   );
 };
 

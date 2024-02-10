@@ -1,6 +1,8 @@
 .parent {
     background-color: #f4f5f7;
     padding: 50px 0;
+}
+.parent .child {
     font-size: 16px;
     margin: 0 15px;
 }
@@ -20,6 +22,7 @@
     color: #1e429f;
     font-size: 2em;
     position: relative;
+    text-align: center;
 }
 .parent h3::before {
     content: '';
@@ -53,5 +56,15 @@
 @media (max-width: 767px) {
     .parentCol  {
         grid-template-columns: repeat(1, 1fr);
+    }
+    .parent {
+        padding: 20px 0;
+    }
+    .parent h3 {
+        font-size: 1.5em;   
+        margin: 20px auto;
+    }
+    .boxFeature {
+        margin: 10px 0;
     }
 }

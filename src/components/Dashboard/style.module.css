@@ -10,33 +10,35 @@
 .detuls .box {
     margin-right: 20px;
 }
-.detuls .box h2 span, .detuls .box .name .date  {
+.detuls .box h2 span, .name .date  {
     color: #64748b;
 }
-.detuls .box .name {
+.name {
     display: flex;
     justify-content: space-around;
     width: fit-content;
     font-weight: bold;
+    padding-bottom: 10px;
 }
-.detuls .box .name .date, .paca,.email {
+.name .date, .paca,.email {
     display: flex;
 }
-.detuls .box .name .paca {
+.name .paca {
     color: #e74694;
 }
-.detuls .box .name .email {
+.name .email {
     color: #31c48d;
 }
-.detuls .box .name .email span {
+.name .email span {
     color: initial;
 }
 
 @media (max-width: 767px) {
     .detulsPersonal .detuls {
         width: fit-content;
+        padding: 10px 0;
     }
-    .detuls .box .name .date, .paca,.email {
+    .name .date, .paca,.email {
         font-size: 12px;
     }
 }

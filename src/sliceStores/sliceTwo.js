@@ -1,37 +1,23 @@
 import { createSlice, createStore } from "@reduxjs/toolkit";
 
-const targetSeirah = window.localStorage.getItem("targetSeirah");
-
 const initState = {
   value: [" أعزب", "متزوج"],
   detulsUser: "",
   textPage: "معلومات الشخصية, وبيانات الإتصال الضرورية",
-  [`progress${targetSeirah}`]: 0,
   downloadPdf: "no",
   transformSeirah: "one",
-  transformSeirahTemplet: "start",
 };
+
 // Get Item In Local Storage
 initState.detulsUser = JSON.parse(window.localStorage.getItem("detulsUser"));
 initState.textPage = window.localStorage.getItem("textPage");
-initState[`progress${targetSeirah}`] =
-  JSON.parse(window.localStorage.getItem(`progressStory${targetSeirah}`)) !==
-  null
-    ? JSON.parse(window.localStorage.getItem(`progressStory${targetSeirah}`))
-    : 0;
+initState.transformSeirah = window.localStorage.getItem("transformSeirah");
 
 const counterSlice = createSlice({
   name: "counter",
   initialState: initState,
   reducers: {
     // Get Date In Pages
-    progress: (state, action) => {
-      state[`progress${targetSeirah}`] += action.payload;
-      window.localStorage.setItem(
-        `progressStory${targetSeirah}`,
-        JSON.stringify(state[`progress${targetSeirah}`])
-      );
-    },
     detulsUser: (state, action) => {
       state.detulsUser = action.payload;
     },
@@ -86,14 +72,8 @@ const counterSlice = createSlice({
     downloadIMG: (state) => {
       state.downloadPdf = false;
     },
-    transformSeirahOne: (state) => {
-      state.transformSeirah = "one";
-    },
-    transformSeirahTwo: (state) => {
-      state.transformSeirah = "two";
-    },
-    transformSeirah: (state) => {
-      state.transformSeirah = "oneTemplet";
+    transformSeirah: (state, action) => {
+      state.transformSeirah = action.payload;
     },
   },
 });

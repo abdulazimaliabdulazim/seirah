@@ -1,5 +1,6 @@
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
+import dawnloadImg from "./png";
 
 const dawnloadPdf = (pdfRef, name) => {
   const input = pdfRef;
@@ -18,4 +19,16 @@ const dawnloadPdf = (pdfRef, name) => {
   });
 };
 
-export default dawnloadPdf;
+const download = (checkdPdf, name) => {
+  if (checkdPdf === true) {
+    setTimeout(() => {
+      dawnloadPdf(document.getElementById("faund"), name);
+    }, 10);
+  } else if (checkdPdf === false) {
+    setTimeout(() => {
+      dawnloadImg(document.getElementById("faund"), name);
+    }, 10);
+  }
+};
+
+export default download;

@@ -9,11 +9,7 @@ import {
 } from "../Qualifications/Home/f_drag_drop/drag_drop";
 import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
 import hendlerData, { getFormValues } from "../hendlerData/hendlerData";
-import {
-  Day,
-  Manth,
-  Yar,
-} from "../Qualifications/Home/DateQualifi/LettersNmbers";
+import { Day, Manth, Yar } from "../Qualifications/Home/DateQualifi/DateCopy";
 import json from "../JSON_date/data_inputs.json";
 import UsePages, { Icones } from "../UsePage/UsePages";
 

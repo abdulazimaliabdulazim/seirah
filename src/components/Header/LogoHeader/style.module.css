@@ -4,7 +4,7 @@
 }
 .logo span {
     position: relative;
-    color: white;
+    color: var(--color-ylo);
     margin-right: 5px;
     font-size: 30px;
     font-weight: bold;
@@ -14,7 +14,7 @@
     position: absolute;
     width: .375rem;
     height: .375rem;
-    background-color: #faca15;
+    background-color: var(--background-main);
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -31,4 +31,9 @@
 .logo img {
     width: 50px;
     height: 30px;
+}
+@media (max-width: 767px) {
+    .logo span {
+        font-size: 25px;
+    }
 }

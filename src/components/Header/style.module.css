@@ -41,7 +41,10 @@
 }
 @media (max-width: 767px) {
     .header .maniger a {
-       padding: 10px;
-       font-weight: bold;
+        padding: 10px;
+        font-weight: bold;
+    }
+    .header .maniger a:last-of-type {
+        display: none;
     }
 }

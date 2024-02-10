@@ -4,8 +4,11 @@ import Container from "../../../Container/Container";
 import MineHeader from "./MineHeader/MineHeader";
 import UserImg from "../../../UserImg/UserImg";
 
-const Logo = () => {
-  const targetSeirah = window.localStorage.getItem("targetSeirah");
+const Logo = ({ name }) => {
+  const targetSeirah =
+    window.localStorage.getItem("targetSeirah") !== null
+      ? window.localStorage.getItem("targetSeirah")
+      : "1";
   const personal = JSON.parse(
     window.localStorage.getItem(`personal${targetSeirah}`)
   );
@@ -22,7 +25,7 @@ const Logo = () => {
               />
             </div>
             <div className={style.detuls}>
-              <h1>{personal !== null ? personal.name : "مستخدم جديد"}</h1>
+              <h1>{personal !== null ? name : "مستخدم جديد"}</h1>
               <span>{personal !== null ? personal.position : "مجهول"}</span>
             </div>
           </div>

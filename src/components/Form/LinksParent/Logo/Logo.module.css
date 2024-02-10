@@ -19,6 +19,11 @@
 .parent .child .box .detuls h1 {
     margin: 5px 0;
 }
+@media (max-width: 767px) {
+    .parent .child .box .detuls h1 {
+        font-size: 16px;
+    }
+}
 .parent .child .logo img {
     width: 80px;
     height: 80px;

@@ -3,13 +3,21 @@
     display: flex;
     justify-content: space-between;
 }
-@media (max-width: 767px) {
-    .parebtTest {
-        justify-content: normal;
-    }
-}
 .parebtTest .colDate {
     text-align: center;
+}
+@media (max-width: 767px) {
+    .parebtTest {
+        flex-direction: column;
+    }
+    .parebtTest .colDate {
+        width: 140px;
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+        flex-direction: row-reverse;
+        align-items: center;
+    }
 }
 .parebtTest .colDate > span {
     margin-bottom: 5px;
@@ -74,4 +82,16 @@
 }
 .test div span:hover {
     background-color: var(--background-main-alt);
+}
+
+.parentDate {
+    display: flex;
+    justify-content: space-between;
+}
+.selectBox {
+    width: calc((100% / 3 ) - 20px);
+}
+.selectBox option {
+    font-size: 20px;
+    text-align: center;
 }

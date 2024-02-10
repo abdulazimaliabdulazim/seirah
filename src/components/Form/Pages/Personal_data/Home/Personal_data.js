@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./Personal_data.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import Upload from "./Upload_img/Upload";
@@ -7,6 +7,7 @@ import ParentInput from "./ParentInput/ParentInput";
 import Checkd from "./Checkd/Checkd";
 import hendlerData, {
   getFormValues,
+  messageSave,
   progress,
   sendActionData,
 } from "../../hendlerData/hendlerData";
@@ -14,7 +15,7 @@ import json from "../../JSON_date/data_inputs.json";
 import { counterActions } from "../../../../../sliceStores/sliceTwo";
 import { useNavigate } from "react-router-dom";
 
-const Inputs = () => {
+const Inputs = ({ getState }) => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
   document.title = "البيانات الشخصية";
   const selector = useSelector((state) => state.value);
@@ -27,12 +28,12 @@ const Inputs = () => {
   // Set Value Progress
   progress(personal);
 
+  getState(personal);
+
   const navigator = useNavigate();
 
   // Send Personals Data In Story
   const dispatch = useDispatch();
-  const hindlerAction = () =>
-    dispatch(counterActions.progress(personal.progress));
   return (
     <div className={style.parent}>
       <div className={style.box}>
@@ -237,11 +238,11 @@ const Inputs = () => {
         <Buttom
           onClick={() => {
             sendActionData(
-              hindlerAction,
               targetSeirah !== null ? `personal${targetSeirah}` : "personal1",
               personal
             );
             navigator("/dashboard/cvs/data/qualifications");
+            messageSave("تم حفظ البيانات الشخصية");
           }}
           text={"حفظ البيانات الشخصية"}
         />

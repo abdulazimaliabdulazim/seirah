@@ -33,6 +33,11 @@
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
 }
+@media (max-width: 767px) {
+    .colInput .detulsInput input {
+        padding: 5px;
+    }
+}
 .colInput input:focus,textarea {
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -64,6 +69,9 @@
     background-color: white;
     padding: 0 2px;
     color: var(--background-main-alt);
+}
+.colInput .detulsInput .spans span:first-of-type {
+    cursor: no-drop;
 }
 .colInput .detulsInput .spans span:hover {
     color: var(--background-main-alt);

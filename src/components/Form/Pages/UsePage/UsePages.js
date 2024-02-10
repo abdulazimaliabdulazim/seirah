@@ -1,44 +1,24 @@
 import React from "react";
 import style from "../Qualifications/Home/Qualifications.module.css";
-import styleBut from "../../....//../Buttom/Buttom.module.css";
+import styleBut from "../../Buttom/Buttom.module.css";
 import Buttom from "../../Buttom/Buttom";
 import { useDispatch } from "react-redux";
-import { progress, sendActionData } from "../hendlerData/hendlerData";
-import { counterActions } from "../../../../sliceStores/sliceTwo";
+import {
+  messageSave,
+  progress,
+  sendActionData,
+} from "../hendlerData/hendlerData";
 import { useNavigate } from "react-router-dom";
 import { transform } from "../NewTranfrom/NewTranfrom";
 import Icons from "../../../Icons/Icons";
 
 // Component Icones And Function Delete Col
-export const Icones = ({ index, state1, state2 }) => {
-  const deleteCol = () => {
-    const targetSeirah =
-      window.localStorage.getItem("targetSeirah") !== null
-        ? window.localStorage.getItem("targetSeirah")
-        : "1";
-    const pathName = window.location.pathname.split("/");
-    const pathNameFinal = pathName[pathName.length - 1];
-    const key = Object.keys(state1);
-    key
-      .filter((ele) => {
-        return Number(ele.slice((0, -1))) === index;
-      })
-      .filter((ele) => {
-        delete state1[ele];
-        window.localStorage.setItem(
-          `${pathNameFinal}${targetSeirah}`,
-          JSON.stringify(state1)
-        );
-      });
-    window.localStorage.setItem(
-      `${pathNameFinal}Number${targetSeirah}`,
-      JSON.stringify(state2.slice(1))
-    );
-  };
+export const Icones = ({ handleDelete, handleDeleteInd }) => {
+  console.log(handleDeleteInd);
   return (
     <div className={style.controlBut}>
       <div
-        onClick={() => deleteCol(index)}
+        onClick={() => handleDelete(handleDeleteInd)}
         className={style.icon}
         type="button">
         <Icons
@@ -60,7 +40,16 @@ export const Icones = ({ index, state1, state2 }) => {
   );
 };
 
-const UsePages = ({ children, state, state2, setState2, b1, b2 }) => {
+const UsePages = ({
+  children,
+  state,
+  state2,
+  setState2,
+  b1,
+  b2,
+  addForm,
+  handleSubmit,
+}) => {
   const pathName = window.location.pathname.split("/");
   const pathNameFinal = pathName[pathName.length - 1];
   const targetSeirah =
@@ -72,23 +61,19 @@ const UsePages = ({ children, state, state2, setState2, b1, b2 }) => {
   progress(state);
 
   const dispatch = useDispatch();
-  const hindlerAction = () => dispatch(counterActions.progress(state.progress));
   const hendlreNum = () => setState2((pre) => [...pre, 1]);
-
   return (
     <div className={style.parent}>
       <div className={style.box}>
         {children}
-        <button
-          onClick={() => hendlreNum()}
-          className={`${style.but} ${styleBut.mani}`}>
+        <button onClick={addForm} className={`${style.but} ${styleBut.mani}`}>
           {b1}
         </button>
         <hr className={style.hr} />
         <Buttom
           onClick={() => {
+            handleSubmit(state);
             sendActionData(
-              hindlerAction,
               targetSeirah !== null
                 ? `${pathNameFinal}${targetSeirah}`
                 : `${pathNameFinal}1`,
@@ -99,6 +84,7 @@ const UsePages = ({ children, state, state2, setState2, b1, b2 }) => {
               state2
             );
             transform(navigate, dispatch);
+            messageSave(`تم ${b2}`);
           }}
           text={b2}
         />

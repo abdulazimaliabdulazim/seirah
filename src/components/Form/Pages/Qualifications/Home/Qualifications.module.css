@@ -2,6 +2,7 @@
     width: 100%;
     background-color: #f1f5f9;
     font-size: 16px;
+    overflow: hidden;
 }
 .box {
     width: 90%;
@@ -15,8 +16,10 @@
     background-color: #f4f5f7;
     position: relative;
     margin-bottom: 10px;
+    width: 90%;
+    margin: 20px auto;
 }
-.parent .box .qualificBox {
+.qualificBox {
     width: 60%;
 }
 @media (max-width: 767px) {

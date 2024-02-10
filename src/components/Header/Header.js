@@ -13,7 +13,7 @@ const Header = () => {
   return (
     <div className={style.header}>
       <Container>
-        <LogoHeader />
+        <LogoHeader checkd={true} />
         <div className={style.maniger}>
           <Link to={checkd ? "register" : "dashboard"}>
             <Icons path={"M12 6v6m0 0v6m0-6h6m-6 0H6"} viewBox={"0 0 24 24"} />

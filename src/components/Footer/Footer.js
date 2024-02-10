@@ -39,8 +39,10 @@ const Footer = () => {
           viewBox="0 0 24 24"
         />
         <p>
-          © {new Date().getFullYear()} سيَرٍتگ{" "}
-          <a href="https://abdulazimaliabdulazim.github.io/haitham/index.html">
+          © {new Date().getFullYear()} سيَرٍتگ
+          <a
+            href="https://abdulazimaliabdulazim.github.io/Tamplat-3/"
+            target="_blanck">
             Designed And DevelopedBy Abdul_azim Ali
           </a>
         </p>

@@ -29,9 +29,22 @@
     margin-right: 10px;
     color: white;
     cursor: pointer;
+    word-break: break-all;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .parent p {
     margin-right: 20%;
+}
+@media (max-width: 767px) {
+    .parent p {
+        margin-right: 0;
+        padding: 10px;
+    }
+    .parent .img img {
+        width: 70px;
+        height: 70px;
+    }
 }
 .parent hr {
     margin-bottom: 0.75rem;

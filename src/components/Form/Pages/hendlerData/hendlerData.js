@@ -1,4 +1,3 @@
-import clickInTop from "../../../Functionalty/funs";
 import json from "../JSON_date/data_inputs.json";
 
 export const generatNmaeObj = (numb, ...name) => {
@@ -21,17 +20,14 @@ export const getFormValues = (nameLocal, all = true) => {
   }
 };
 
-export const sendActionData = (
-  sendAction,
-  nameLocal,
-  dataLocal,
-  nameCoun,
-  count
-) => {
-  sendAction();
+export const sendActionData = (nameLocal, dataLocal, nameCoun, count) => {
   window.localStorage.setItem(nameLocal, JSON.stringify(dataLocal));
   window.localStorage.setItem(nameCoun, JSON.stringify(count));
-  clickInTop();
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
 };
 
 const hendlerData = (
@@ -177,4 +173,16 @@ export const fetchDateAllSeirah = (numberSeirh, add = true) => {
     }
   });
   return data;
+};
+
+// Add Product
+export const messageSave = async (text) => {
+  const resolve = await new Promise((res) => {
+    let div = document.createElement("div");
+    div.innerHTML = text;
+    div.style.cssText = `position: fixed; top: 90%; left: 50%; transform: translate(-50%, -50%) ;background-color: #1c64f2; color: white; font-size: 20px; font-weight: bold; padding: 7px 10px; border: 2px solid white; border-radius: 5px`;
+    res(div);
+  });
+  document.body.appendChild(resolve);
+  setTimeout(() => resolve.remove(), 3000);
 };
