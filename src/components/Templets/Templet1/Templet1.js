@@ -12,6 +12,7 @@ import {
 import { useSelector } from "react-redux";
 import Templet2 from "../Templet2/Templet2";
 import download from "../../../Framework/pdf";
+import { getTitlePage } from "../../Form/Pages/Qualifications/Home/Qualifications";
 
 export const HeaderTemplet = () => {
   return (
@@ -28,8 +29,8 @@ export const HeaderTemplet = () => {
 };
 
 const Templet1 = () => {
+  getTitlePage();
   const checkdPdf = useSelector((state) => state.downloadPdf);
-  document.title = "سيرتك الذاتية";
   const transformSeirah = useSelector((state) => state.transformSeirah);
   const pdfRef = useRef(),
     targetSeirah =

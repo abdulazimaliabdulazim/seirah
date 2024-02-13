@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import style from "../Qualifications/Home/Qualifications.module.css";
 import Buttom from "../../Buttom/Buttom";
 import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
-import { useDispatch } from "react-redux";
 import hendlerData, {
   getFormValues,
   sendActionData,
 } from "../hendlerData/hendlerData";
 import { Link } from "react-router-dom";
+import { getTitlePage } from "../Qualifications/Home/Qualifications";
 
 const Address = () => {
-  document.title = "العنوان";
+  getTitlePage();
   const targetSeirah = window.localStorage.getItem("targetSeirah");
   const [address, setAddress] = useState(
     getFormValues(targetSeirah !== null ? `address${targetSeirah}` : "address1")
@@ -21,12 +21,12 @@ const Address = () => {
       <div className={style.box}>
         <div className={style.qualificBox}>
           <ParentInput
-            forId={"address"}
-            label={"العنوان الوطني"}
-            paraghrap={"تفاصيل العنوان الوطني"}>
+            forId="address"
+            label="العنوان الوطني"
+            paraghrap="تفاصيل العنوان الوطني">
             <input
               onChange={(e) => hendlerData(e, setAddress)}
-              id={"address"}
+              id="address"
               value={address.address}
               type="text"
               placeholder="العنوان الوطني"
@@ -41,7 +41,7 @@ const Address = () => {
                 address
               );
             }}
-            text={"حفظ العنوان الوطني"}
+            text="حفظ العنوان الوطني"
           />
         </Link>
       </div>

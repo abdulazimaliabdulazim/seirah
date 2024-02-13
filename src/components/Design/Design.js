@@ -9,8 +9,10 @@ import { Link } from "react-router-dom";
 import Icons from "../Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import { counterActions } from "../../sliceStores/sliceTwo";
+import { getTitlePage } from "../Form/Pages/Qualifications/Home/Qualifications";
 
 const Design = () => {
+  getTitlePage();
   const transformSeirah = useSelector((state) => state.transformSeirah);
   const dispatch = useDispatch();
   const [detulsTem] = useState([

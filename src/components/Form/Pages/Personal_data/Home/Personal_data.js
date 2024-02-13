@@ -5,33 +5,57 @@ import Upload from "./Upload_img/Upload";
 import Buttom from "../../../Buttom/Buttom";
 import ParentInput from "./ParentInput/ParentInput";
 import Checkd from "./Checkd/Checkd";
-import hendlerData, {
-  getFormValues,
-  messageSave,
-  progress,
-  sendActionData,
-} from "../../hendlerData/hendlerData";
+import { messageSave, progress } from "../../hendlerData/hendlerData";
 import json from "../../JSON_date/data_inputs.json";
 import { counterActions } from "../../../../../sliceStores/sliceTwo";
 import { useNavigate } from "react-router-dom";
+import {
+  getTitlePage,
+  handleInputChange,
+  handleSubmit,
+} from "../../Qualifications/Home/Qualifications";
 
 const Inputs = ({ getState }) => {
-  const targetSeirah = window.localStorage.getItem("targetSeirah");
-  document.title = "البيانات الشخصية";
+  getTitlePage();
+  // const targetSeirah = window.localStorage.getItem("targetSeirah");
   const selector = useSelector((state) => state.value);
   const [halth, setHalth] = useState(false);
-  const [personal, setPersonal] = useState(
-    getFormValues(
-      targetSeirah !== null ? `personal${targetSeirah}` : "personal1"
-    )
-  );
+
+  const [personal, setPersonal] = useState([]);
+  useEffect(() => {
+    // قراءة البيانات من localStorage عند تحميل المكون
+    const storedData = JSON.parse(localStorage.getItem("personal"));
+    if (storedData) {
+      setPersonal(storedData);
+    }
+  }, []);
+
+  const addForm = () => {
+    // إضافة نموذج جديد
+    const newForm = {
+      name: "",
+      position: "",
+      email: "",
+      phone_number: "",
+      date: "",
+      personal_website: "",
+      country: "",
+      nationality: "",
+      iam: "",
+      progress: "",
+      image: "",
+    };
+    // تحديث الحالة لتضمين النموذج الجديد
+    setPersonal([newForm]);
+  };
   // Set Value Progress
   progress(personal);
 
-  getState(personal);
+  useEffect(() => {
+    getState(personal);
+  }, [personal, getState]);
 
   const navigator = useNavigate();
-
   // Send Personals Data In Story
   const dispatch = useDispatch();
   return (
@@ -47,8 +71,16 @@ const Inputs = ({ getState }) => {
               label={input.label}>
               {input.id !== "" ? (
                 <input
-                  onChange={(e) => hendlerData(e, setPersonal)}
-                  value={personal[input.id]}
+                  onChange={(e) =>
+                    handleInputChange(
+                      0,
+                      e.target.value,
+                      input.id,
+                      personal,
+                      setPersonal
+                    )
+                  }
+                  value={""}
                   id={input.id}
                   type="text"
                   placeholder={input.placeholder}
@@ -59,21 +91,30 @@ const Inputs = ({ getState }) => {
             </ParentInput>
           );
         })}
-        <ParentInput hedinSpan={true} forId={"iam"} label={"نبذة بسيطة"}>
+        <ParentInput hedinSpan={true} forId="iam" label="نبذة بسيطة">
           <textarea
-            onChange={(e) => hendlerData(e, setPersonal)}
+            onChange={(e) =>
+              handleInputChange(0, e.target.value, "iam", personal, setPersonal)
+            }
             id="iam"
-            value={personal.iam}
+            value={"personal[0].iam"}
             placeholder="نبذة بسيطة"
-            typeof="text"></textarea>
+            typeof="text"
+          />
         </ParentInput>
-        <Checkd forID={"six"} label={"الجنس"}>
+        <Checkd forID="six" label="الجنس">
           <label onClick={() => dispatch(counterActions.man())}>
             <input
               onChange={(e) => {
-                hendlerData(e, setPersonal);
+                handleInputChange(
+                  0,
+                  e.target.value,
+                  "six",
+                  personal,
+                  setPersonal
+                );
               }}
-              value={"رجل"}
+              value="رجل"
               id="six"
               type="radio"
               name="six"
@@ -84,9 +125,15 @@ const Inputs = ({ getState }) => {
           <label onClick={() => dispatch(counterActions.famil())}>
             <input
               onChange={(e) => {
-                hendlerData(e, setPersonal);
+                handleInputChange(
+                  0,
+                  e.target.value,
+                  "six",
+                  personal,
+                  setPersonal
+                );
               }}
-              value={"أنثى"}
+              value="أنثى"
               id="six"
               type="radio"
               name="six"
@@ -95,10 +142,18 @@ const Inputs = ({ getState }) => {
             <div></div>
           </label>
         </Checkd>
-        <Checkd forID={"stits"} label={"الحالة الزوجية"}>
+        <Checkd forID="stits" label="الحالة الزوجية">
           <label>
             <input
-              onChange={(e) => hendlerData(e, setPersonal)}
+              onChange={(e) =>
+                handleInputChange(
+                  0,
+                  e.target.value,
+                  "stits",
+                  personal,
+                  setPersonal
+                )
+              }
               id="stits"
               type="radio"
               name="stits"
@@ -109,7 +164,15 @@ const Inputs = ({ getState }) => {
           </label>
           <label>
             <input
-              onChange={(e) => hendlerData(e, setPersonal)}
+              onChange={(e) =>
+                handleInputChange(
+                  0,
+                  e.target.value,
+                  "stits",
+                  personal,
+                  setPersonal
+                )
+              }
               id="stits"
               type="radio"
               name="stits"
@@ -119,36 +182,60 @@ const Inputs = ({ getState }) => {
             <div></div>
           </label>
         </Checkd>
-        <Checkd forID={"statis_health"} label={"♿️ الحالة الصحية"}>
+        <Checkd forID="statis_health" label="♿️ الحالة الصحية">
           <label onClick={() => setHalth(false)}>
             <input
-              onChange={(e) => hendlerData(e, setPersonal)}
+              onChange={(e) =>
+                handleInputChange(
+                  0,
+                  e.target.value,
+                  "statis_health",
+                  personal,
+                  setPersonal
+                )
+              }
               id="statis_health"
               type="radio"
               name="statis_health"
-              value={"سليم"}
+              value="سليم"
             />
             سليم
             <div></div>
           </label>
           <label onClick={() => setHalth(true)}>
             <input
-              onChange={(e) => hendlerData(e, setPersonal)}
+              onChange={(e) =>
+                handleInputChange(
+                  0,
+                  e.target.value,
+                  "statis_health",
+                  personal,
+                  setPersonal
+                )
+              }
               id="statis_health"
               type="radio"
               name="statis_health"
-              value={"لدي حالة"}
+              value="لدي حالة"
             />
             لدي حالة
             <div></div>
           </label>
         </Checkd>
         {halth && (
-          <Checkd forID={"health"} label={"نوع الحالة الصحية"}>
+          <Checkd forID="health" label="نوع الحالة الصحية">
             <label>
               <input
-                onChange={(e) => hendlerData(e, setPersonal)}
-                value={"إعاقة حركية"}
+                onChange={(e) =>
+                  handleInputChange(
+                    0,
+                    e.target.value,
+                    "health",
+                    personal,
+                    setPersonal
+                  )
+                }
+                value="إعاقة حركية"
                 id="health"
                 type="radio"
                 name="health"
@@ -158,8 +245,16 @@ const Inputs = ({ getState }) => {
             </label>
             <label>
               <input
-                onChange={(e) => hendlerData(e, setPersonal)}
-                value={"إعاقة سمعية"}
+                onChange={(e) =>
+                  handleInputChange(
+                    0,
+                    e.target.value,
+                    "health",
+                    personal,
+                    setPersonal
+                  )
+                }
+                value="إعاقة سمعية"
                 id="health"
                 type="radio"
                 name="health"
@@ -169,8 +264,16 @@ const Inputs = ({ getState }) => {
             </label>
             <label>
               <input
-                onChange={(e) => hendlerData(e, setPersonal)}
-                value={"إعاقة بصرية"}
+                onChange={(e) =>
+                  handleInputChange(
+                    0,
+                    e.target.value,
+                    "health",
+                    personal,
+                    setPersonal
+                  )
+                }
+                value="إعاقة بصرية"
                 id="health"
                 type="radio"
                 name="health"
@@ -180,8 +283,16 @@ const Inputs = ({ getState }) => {
             </label>
             <label>
               <input
-                onChange={(e) => hendlerData(e, setPersonal)}
-                value={"إعاقة ذهنية"}
+                onChange={(e) =>
+                  handleInputChange(
+                    0,
+                    e.target.value,
+                    "health",
+                    personal,
+                    setPersonal
+                  )
+                }
+                value="إعاقة ذهنية"
                 id="health"
                 type="radio"
                 name="health"
@@ -191,8 +302,16 @@ const Inputs = ({ getState }) => {
             </label>
             <label>
               <input
-                onChange={(e) => hendlerData(e, setPersonal)}
-                value={"أخرى"}
+                onChange={(e) =>
+                  handleInputChange(
+                    0,
+                    e.target.value,
+                    "health",
+                    personal,
+                    setPersonal
+                  )
+                }
+                value="أخرى"
                 id="health"
                 type="radio"
                 name="health"
@@ -202,49 +321,67 @@ const Inputs = ({ getState }) => {
             </label>
           </Checkd>
         )}
-        <Checkd forID={"service"} label={"الخدمة العسكرية"}>
+        <Checkd forID="service" label="الخدمة العسكرية">
           <label>
             <input
-              onChange={(e) => hendlerData(e, setPersonal)}
+              onChange={(e) =>
+                handleInputChange(
+                  0,
+                  e.target.value,
+                  "service",
+                  personal,
+                  setPersonal
+                )
+              }
               id="service"
               type="radio"
               name="service"
-              value={"الخدمة العسكرية: تم"}
+              value="الخدمة العسكرية: تم"
             />
             نعم
             <div></div>
           </label>
           <label>
             <input
-              onChange={(e) => hendlerData(e, setPersonal)}
+              onChange={(e) =>
+                handleInputChange(
+                  0,
+                  e.target.value,
+                  "service",
+                  personal,
+                  setPersonal
+                )
+              }
               id="service"
               type="radio"
               name="service"
-              value={"الخدمة العسكرية: لا"}
+              value="الخدمة العسكرية: لا"
             />
             لا
-            <div></div>
           </label>
         </Checkd>
         <hr />
         <Upload
-          id={`srcImg1`}
-          text={"الصورة الشخصية"}
-          p={"الصوره يجب ان تكون بحجم 300*300 بكسل"}
+          text="الصورة الشخصية"
+          p="الصوره يجب ان تكون بحجم 300*300 بكسل"
+          state={personal}
           setState={setPersonal}
-          srcImg={personal.srcImg1}
+          index={0}
         />
         <hr />
         <Buttom
           onClick={() => {
-            sendActionData(
-              targetSeirah !== null ? `personal${targetSeirah}` : "personal1",
-              personal
-            );
+            addForm();
+            handleSubmit(personal, "personal");
+
+            // sendActionData(
+            //   targetSeirah !== null ? `personal${targetSeirah}` : "personal1",
+            //   personal
+            // );
             navigator("/dashboard/cvs/data/qualifications");
             messageSave("تم حفظ البيانات الشخصية");
           }}
-          text={"حفظ البيانات الشخصية"}
+          text="حفظ البيانات الشخصية"
         />
       </div>
     </div>

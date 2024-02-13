@@ -1,16 +1,17 @@
 import React, { Fragment } from "react";
-import hendlerData from "../Form/Pages/hendlerData/hendlerData";
 import img from "../../images/user.png";
+import { handleInputChange } from "../Form/Pages/Qualifications/Home/Qualifications";
 
 const UserImg = ({
+  state,
+  setState,
+  index,
   hidden = false,
   width = "70px",
   radius = "0",
-  srcImg,
-  setState,
 }) => {
   // Get Image In Users
-  const uploadImage = (e) => {
+  const uploadImage = () => {
     const upload = document.createElement("input");
     upload.type = "file";
     upload.accept = ".jpg";
@@ -19,15 +20,18 @@ const UserImg = ({
       const newFiles = new FileReader();
       newFiles.readAsDataURL(upload.files[0]);
       newFiles.onload = () => {
-        hendlerData(e, setState, false, false, false, false, newFiles.result);
+        handleInputChange(index, newFiles.result, "image", state, setState);
       };
     };
   };
   // Check For Image
   const checkForImg = () => {
-    if (srcImg === "" || srcImg === undefined) {
-      return img;
-    } else return srcImg;
+    // if (state !== undefined) {
+    //   if (state[index].image === "" || state[index].image === undefined) {
+    //     return img;
+    //   } else return state[index].image;
+    // }
+    "5";
   };
   return (
     <Fragment>
@@ -41,7 +45,7 @@ const UserImg = ({
         alt="img"
       />
       {hidden && (
-        <button onClick={(e) => uploadImage(e)} type="button">
+        <button onClick={uploadImage} type="button">
           تغيير الصورة
         </button>
       )}

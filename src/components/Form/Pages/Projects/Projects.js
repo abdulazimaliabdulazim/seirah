@@ -16,7 +16,6 @@ import UsePages, { Icones } from "../UsePage/UsePages";
 const Projects = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
   let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5];
-  document.title = "المشاريع";
   const [projects, setProjects] = useState(
     getFormValues(
       targetSeirah !== null ? `projects${targetSeirah}` : "projects1"

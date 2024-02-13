@@ -8,9 +8,10 @@ import UserImg from "../UserImg/UserImg";
 import Profile from "../Profile/Profile";
 import Progress from "./Progress/Progress";
 import { fetchDateAllSeirah } from "../Form/Pages/hendlerData/hendlerData";
+import { getTitlePage } from "../Form/Pages/Qualifications/Home/Qualifications";
 
 const Cvs = () => {
-  document.title = "أعدادات السيرة";
+  getTitlePage();
   const counViewSe = window.localStorage.getItem("counViewSe");
   const [stateCoun, setStateCoun] = useState(
     counViewSe !== null ? JSON.parse(counViewSe) : []

@@ -5,12 +5,12 @@ import { Outlet } from "react-router-dom";
 import NewTranfrom from "./Pages/NewTranfrom/NewTranfrom";
 import Profile from "../Profile/Profile";
 
-const Form = ({ name }) => {
+const Form = ({ personal }) => {
   return (
     <Fragment>
       <Profile />
       <Links />
-      <Logo name={name} />
+      <Logo personalLive={personal} />
       <NewTranfrom />
       <Outlet />
     </Fragment>

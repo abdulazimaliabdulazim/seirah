@@ -14,7 +14,6 @@ import UsePages, { Icones } from "../UsePage/UsePages";
 const Return = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
   let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-  document.title = "المراجع";
   const [returnP, setreturnP] = useState(
     getFormValues(targetSeirah !== null ? `return${targetSeirah}` : "return1")
   );

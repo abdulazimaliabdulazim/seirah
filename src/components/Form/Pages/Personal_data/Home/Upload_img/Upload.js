@@ -2,18 +2,19 @@ import React from "react";
 import style from "./Upload.module.css";
 import UserImg from "../../../../../UserImg/UserImg";
 
-const Upload = ({ id, text, p, srcImg, setState }) => {
+const Upload = ({ text, p, state, setState, index }) => {
   return (
     <div className={style.parent}>
       <div className={style.col}>
         <label htmlFor="img">{text}</label>
-        <div id={id} className={style.img}>
+        <div className={style.img}>
           <UserImg
-            srcImg={srcImg}
+            state={state}
             setState={setState}
-            radius={"12px"}
+            radius="12px"
             width="80px"
             hidden={true}
+            index={index}
           />
         </div>
       </div>

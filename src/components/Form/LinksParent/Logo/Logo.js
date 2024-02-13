@@ -4,7 +4,7 @@ import Container from "../../../Container/Container";
 import MineHeader from "./MineHeader/MineHeader";
 import UserImg from "../../../UserImg/UserImg";
 
-const Logo = ({ name }) => {
+const Logo = ({ personalLive }) => {
   const targetSeirah =
     window.localStorage.getItem("targetSeirah") !== null
       ? window.localStorage.getItem("targetSeirah")
@@ -20,12 +20,24 @@ const Logo = ({ name }) => {
           <div className={style.box}>
             <div className={style.logo}>
               <UserImg
-                srcImg={personal !== null ? personal.srcImg1 : ""}
+                srcImg={
+                  personal !== null
+                    ? personalLive.srcImg1 !== undefined
+                      ? personalLive.srcImg1
+                      : personal.srcImg1
+                    : ""
+                }
                 radius={"50%"}
               />
             </div>
             <div className={style.detuls}>
-              <h1>{personal !== null ? name : "مستخدم جديد"}</h1>
+              <h1>
+                {personal !== null
+                  ? personalLive.name !== undefined
+                    ? personalLive.name
+                    : personal.name
+                  : "مستخدم جديد"}
+              </h1>
               <span>{personal !== null ? personal.position : "مجهول"}</span>
             </div>
           </div>

@@ -7,9 +7,10 @@ import Container from "../Container/Container";
 import Icons from "../Icons/Icons";
 import { useSelector } from "react-redux";
 import { allSeirah } from "../Form/Pages/hendlerData/hendlerData";
+import { getTitlePage } from "../Form/Pages/Qualifications/Home/Qualifications";
 
 const Dashboard = () => {
-  document.title = "لوحة التحكم";
+  getTitlePage();
   const dateNew = new Date().getDate();
   const [{ name }, { date }] = useSelector((state) => state.detulsUser);
 

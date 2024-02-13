@@ -16,7 +16,6 @@ import UsePages, { Icones } from "../UsePage/UsePages";
 const Coursess = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
   let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5];
-  document.title = "الدورات التدريبية";
   const [coursess, setCoursess] = useState(
     getFormValues(
       targetSeirah !== null ? `coursess${targetSeirah}` : "coursess1"

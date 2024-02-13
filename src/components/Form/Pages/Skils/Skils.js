@@ -14,7 +14,6 @@ import UsePages, { Icones } from "../UsePage/UsePages";
 const Skils = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
   let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5];
-  document.title = "المهارات";
   const [skils, setSkils] = useState(
     getFormValues(targetSeirah !== null ? `skils${targetSeirah}` : "skils1")
   );

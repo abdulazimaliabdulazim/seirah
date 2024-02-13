@@ -10,9 +10,10 @@ import { useDispatch } from "react-redux";
 import copy from "../../Framework/copy";
 import { counterActions } from "../../sliceStores/sliceTwo";
 import { messageSave } from "../Form/Pages/hendlerData/hendlerData";
+import { getTitlePage } from "../Form/Pages/Qualifications/Home/Qualifications";
 
 const DownloadShare = () => {
-  document.title = "التحميل والمشاركة";
+  getTitlePage();
   const navigat = useNavigate();
   const dispatch = useDispatch();
   const targetSeirah = localStorage.getItem("targetSeirah");

@@ -12,7 +12,6 @@ import UsePages, { Icones } from "../UsePage/UsePages";
 const Hobbies = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
   let coun = [1, 1, 1, 1, 3];
-  document.title = "الهوايات";
   const [hobbies, setHobbies] = useState(
     getFormValues(targetSeirah !== null ? `hobbies${targetSeirah}` : "hobbies1")
   );

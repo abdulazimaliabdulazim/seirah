@@ -15,7 +15,6 @@ import UsePages, { Icones } from "../UsePage/UsePages";
 const Languages = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
   let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3];
-  document.title = "اللغات";
   const [languages, setLanguages] = useState(
     getFormValues(
       targetSeirah !== null ? `languages${targetSeirah}` : "languages1"

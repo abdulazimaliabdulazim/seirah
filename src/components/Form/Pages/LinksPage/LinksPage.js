@@ -14,7 +14,6 @@ import UsePages, { Icones } from "../UsePage/UsePages";
 const LinksPage = () => {
   const targetSeirah = window.localStorage.getItem("targetSeirah");
   let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3];
-  document.title = "الروابط";
   const [links, setLinks] = useState(
     getFormValues(targetSeirah !== null ? `links${targetSeirah}` : "links1")
   );

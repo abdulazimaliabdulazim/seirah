@@ -88,9 +88,16 @@
     display: flex;
     justify-content: space-between;
 }
-.selectBox {
+.parentDate .box {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     width: calc((100% / 3 ) - 20px);
 }
+.parentDate .box span {
+    margin-bottom: 7px;
+}
+
 .selectBox option {
     font-size: 20px;
     text-align: center;

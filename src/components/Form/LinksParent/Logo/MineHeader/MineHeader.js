@@ -13,12 +13,14 @@ const MineHeader = () => {
       <nav>
         {dataUrlJson[0].map((ele, ind) => {
           return (
-            <NavLink
-              key={ind}
-              onClick={() => dispatch(counterActions[`name_${ele.url}`]())}
-              to={ele.url}>
-              {ele.name}
-            </NavLink>
+            ind <= 10 && (
+              <NavLink
+                key={ind}
+                onClick={() => dispatch(counterActions[`name_${ele.url}`]())}
+                to={ele.url}>
+                {ele.name}
+              </NavLink>
+            )
           );
         })}
       </nav>

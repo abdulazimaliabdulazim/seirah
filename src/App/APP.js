@@ -1,9 +1,4 @@
-import React, { Fragment, useState } from "react";
-import Header from "../components/Header/Header";
-import Section from "../components/Section/Section";
-import Features from "../components/Features/Features";
-import SecMan from "../components/SecMan/SecMan";
-import Footer from "../components/Footer/Footer";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Form from "../components/Form/Form";
 import PersonalData from "../components/Form/Pages/Personal_data/Home/Personal_data";
@@ -26,42 +21,26 @@ import DownloadShare from "../components/Download-share/DownloadShare";
 import Templet2 from "../components/Templets/Templet2/Templet2";
 import Design from "../components/Design/Design";
 import RequireAuth from "../components/RequireAuth/RequireAuth";
-import palestine from "../images/logo.png";
-import style from "./APP.module.css";
-import DynamicForms from "../components/Test";
+import Palestine from "../components/Palestine/Palestine";
+import HomePage from "../components/HomePage/HomePage";
 
 const App = () => {
-  const [updateSta, setUpdateSet] = useState({});
+  const [personal, setPersonal] = useState({});
   const getState = (val) => {
-    setUpdateSet(val);
+    setPersonal(val);
   };
 
   return (
     <ContextProvider>
-      <div className={style.palestine}>
-        <img src={palestine} alt="palestine" />
-        <p>STAND WITH PALESTINE</p>
-        <img src={palestine} alt="palestine" />
-      </div>
+      <Palestine />
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Fragment>
-                <Header />
-                <Section />
-                <Features />
-                <SecMan />
-                <Footer />
-              </Fragment>
-            }
-          />
+          <Route path="/" element={<HomePage />} />
           <Route
             path={"dashboard/cvs/data"}
             element={
               <RequireAuth>
-                <Form name={updateSta.name} />
+                <Form personal={personal} />
               </RequireAuth>
             }>
             <Route
@@ -114,7 +93,6 @@ const App = () => {
               </RequireAuth>
             }
           />
-          <Route path="test" element={<DynamicForms />} />
         </Routes>
       </BrowserRouter>
     </ContextProvider>
