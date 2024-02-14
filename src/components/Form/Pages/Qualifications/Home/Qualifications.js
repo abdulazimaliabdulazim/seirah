@@ -22,7 +22,6 @@ export const handleDelete = (index, state, setState) => {
 export const handleSubmit = (state, nameData) => {
   // يمكنك هنا إجراء أي عمليات إضافية على البيانات قبل التخزين في localStorage
   console.log("تم تقديم النماذج:", state);
-
   // تحديث localStorage
   localStorage.setItem(nameData, JSON.stringify(state));
 };

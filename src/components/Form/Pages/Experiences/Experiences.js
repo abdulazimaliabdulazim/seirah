@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Upload from "../Personal_data/Home/Upload_img/Upload";
-import DateQualifi from "../Qualifications/Home/DateQualifi/DateQualifi";
 import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
 import {
   dargItem,
@@ -8,18 +7,9 @@ import {
   dargOver,
 } from "../Qualifications/Home/f_drag_drop/drag_drop";
 import style from "../Qualifications/Home/Qualifications.module.css";
-import hendlerData, { getFormValues } from "../hendlerData/hendlerData";
-import DateCopy, {
-  Day,
-  Manth,
-  Yar,
-} from "../Qualifications/Home/DateQualifi/DateCopy";
-import Json from "../JSON_date/data_inputs.json";
+import DateCopy from "../Qualifications/Home/DateQualifi/DateCopy";
 import UsePages, { Icones } from "../UsePage/UsePages";
-import {
-  handleInputChange,
-  handleSubmit,
-} from "../Qualifications/Home/Qualifications";
+import { handleInputChange } from "../Qualifications/Home/Qualifications";
 
 const Experiences = () => {
   const [experiences, setexpEriences] = useState([]);
@@ -43,7 +33,7 @@ const Experiences = () => {
     // تحديث الحالة لتضمين النموذج الجديد
     setexpEriences([...experiences, newForm]);
   };
-  console.log(experiences);
+
   return (
     <Fragment>
       {experiences.map((form, ind) => (

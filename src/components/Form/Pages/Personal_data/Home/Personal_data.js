@@ -259,6 +259,7 @@ const Inputs = ({ getState }) => {
               <div></div>
             </label>
           </Checkd>
+
           <Checkd forID="stits" label="الحالة الزوجية">
             <label>
               <input
@@ -299,6 +300,7 @@ const Inputs = ({ getState }) => {
               <div></div>
             </label>
           </Checkd>
+
           <Checkd forID="statis_health" label="♿️ الحالة الصحية">
             <label onClick={() => setHalth(false)}>
               <input
@@ -339,6 +341,7 @@ const Inputs = ({ getState }) => {
               <div></div>
             </label>
           </Checkd>
+
           {halth && (
             <Checkd forID="health" label="نوع الحالة الصحية">
               <label>
@@ -438,6 +441,7 @@ const Inputs = ({ getState }) => {
               </label>
             </Checkd>
           )}
+
           <Checkd forID="service" label="الخدمة العسكرية">
             <label>
               <input
@@ -477,6 +481,7 @@ const Inputs = ({ getState }) => {
               لا
             </label>
           </Checkd>
+
           <hr />
           <Upload
             text="الصورة الشخصية"

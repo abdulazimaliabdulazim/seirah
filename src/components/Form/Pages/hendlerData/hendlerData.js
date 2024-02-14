@@ -156,9 +156,9 @@ export const allSeirah = (nameObj) => {
 
 // progress
 export const progress = (obj) => {
-  // const lengthObj = Object.values(obj).length; // Keys Of Object
-  // obj["progress"] =
-  //   Math.ceil((lengthObj * 1) / 2) >= 10 ? 10 : Math.ceil((lengthObj * 1) / 2);
+  const lengthObj = Object.values(obj).length; // Keys Of Object
+  obj["progress"] =
+    Math.ceil((lengthObj * 1) / 2) >= 10 ? 10 : Math.ceil((lengthObj * 1) / 2);
 };
 
 export const fetchDateAllSeirah = (numberSeirh, add = true) => {
