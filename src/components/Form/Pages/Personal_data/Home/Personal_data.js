@@ -55,6 +55,7 @@ const Inputs = ({ getState }) => {
   const navigator = useNavigate();
   // Send Personals Data In Story
   const dispatch = useDispatch();
+
   return personal.map((form, index) => {
     return (
       <div key={index} className={style.parent}>
