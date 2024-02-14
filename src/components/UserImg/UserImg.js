@@ -26,12 +26,11 @@ const UserImg = ({
   };
   // Check For Image
   const checkForImg = () => {
-    // if (state !== undefined) {
-    //   if (state[index].image === "" || state[index].image === undefined) {
-    //     return img;
-    //   } else return state[index].image;
-    // }
-    "5";
+    if (state !== undefined) {
+      if (state[index].image === "" || state[index].image === undefined) {
+        return img;
+      } else return state[index].image;
+    }
   };
   return (
     <Fragment>

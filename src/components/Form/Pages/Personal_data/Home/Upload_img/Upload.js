@@ -11,10 +11,10 @@ const Upload = ({ text, p, state, setState, index }) => {
           <UserImg
             state={state}
             setState={setState}
+            index={index}
             radius="12px"
             width="80px"
             hidden={true}
-            index={index}
           />
         </div>
       </div>
