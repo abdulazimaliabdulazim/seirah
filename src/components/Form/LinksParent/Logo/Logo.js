@@ -3,15 +3,18 @@ import style from "./Logo.module.css";
 import Container from "../../../Container/Container";
 import MineHeader from "./MineHeader/MineHeader";
 import UserImg from "../../../UserImg/UserImg";
+import { useSelector } from "react-redux";
 
 const Logo = ({ personalLive }) => {
   const targetSeirah =
     window.localStorage.getItem("targetSeirah") !== null
       ? window.localStorage.getItem("targetSeirah")
       : "1";
-  const personal = JSON.parse(
-    window.localStorage.getItem(`personal${targetSeirah}`)
-  );
+  const personal = JSON.parse(window.localStorage.getItem("personal"));
+
+  // const reduxPersonal = useSelector((state) => state.personal);
+
+  // console.log(reduxPersonal);
 
   return (
     <div className={style.parent}>
@@ -20,25 +23,24 @@ const Logo = ({ personalLive }) => {
           <div className={style.box}>
             <div className={style.logo}>
               <UserImg
-                srcImg={
-                  personal !== null
-                    ? personalLive.srcImg1 !== undefined
-                      ? personalLive.srcImg1
-                      : personal.srcImg1
-                    : ""
-                }
-                radius={"50%"}
+                state={personalLive}
+                index={0}
+                radius="12px"
+                width="80px"
+                hidden={false}
               />
             </div>
             <div className={style.detuls}>
               <h1>
-                {personal !== null
-                  ? personalLive.name !== undefined
-                    ? personalLive.name
-                    : personal.name
+                {personalLive[0].name !== ""
+                  ? personalLive[0].name
                   : "مستخدم جديد"}
               </h1>
-              <span>{personal !== null ? personal.position : "مجهول"}</span>
+              <span>
+                {Array.isArray(personalLive)
+                  ? personalLive[0].position
+                  : "مجهول"}
+              </span>
             </div>
           </div>
         </Container>

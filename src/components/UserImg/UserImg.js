@@ -27,7 +27,7 @@ const UserImg = ({
   // Check For Image
   const checkForImg = () => {
     if (state !== undefined) {
-      if (state[index].image === "" || state[index].image === undefined) {
+      if (state[index].image === "") {
         return img;
       } else return state[index].image;
     }

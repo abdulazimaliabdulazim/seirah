@@ -1,12 +1,15 @@
 import { createSlice, createStore } from "@reduxjs/toolkit";
 
-const initState = {
+let initState = {
   value: [" أعزب", "متزوج"],
   detulsUser: "",
   textPage: "معلومات الشخصية, وبيانات الإتصال الضرورية",
   downloadPdf: "no",
   transformSeirah: "one",
+  personal: "",
 };
+
+let test = "";
 
 // Get Item In Local Storage
 initState.detulsUser = JSON.parse(window.localStorage.getItem("detulsUser"));
@@ -18,6 +21,10 @@ const counterSlice = createSlice({
   initialState: initState,
   reducers: {
     // Get Date In Pages
+    getPersonalDataOnload: (state, action) => {
+      test = action.payload;
+      // console.log(action.payload);
+    },
     detulsUser: (state, action) => {
       state.detulsUser = action.payload;
     },
@@ -77,7 +84,7 @@ const counterSlice = createSlice({
     },
   },
 });
-
+console.log(test);
 const store = createStore(counterSlice.reducer);
 
 export const counterActions = counterSlice.actions;

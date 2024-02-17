@@ -25,7 +25,7 @@ import Palestine from "../components/Palestine/Palestine";
 import HomePage from "../components/HomePage/HomePage";
 
 const App = () => {
-  const [personal, setPersonal] = useState({});
+  const [personal, setPersonal] = useState([{}]);
   const getState = (val) => {
     setPersonal(val);
   };

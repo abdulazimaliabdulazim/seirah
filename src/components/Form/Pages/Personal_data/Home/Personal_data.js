@@ -46,7 +46,7 @@ const Inputs = ({ getState }) => {
     }
   }, []);
   // Set Value Progress
-  progress(personal);
+  // progress(personal);
 
   useEffect(() => {
     getState(personal);
@@ -55,6 +55,10 @@ const Inputs = ({ getState }) => {
   const navigator = useNavigate();
   // Send Personals Data In Story
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(counterActions.getPersonalDataOnload(personal));
+  }, [personal]);
 
   return personal.map((form, index) => {
     return (
