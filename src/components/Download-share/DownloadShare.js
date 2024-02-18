@@ -8,7 +8,7 @@ import Progress from "../Cvs/Progress/Progress";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import copy from "../../Framework/copy";
-import { counterActions } from "../../sliceStores/sliceTwo";
+import { storePagesActions } from "../../sliceStores/sliceTwo";
 import { messageSave } from "../Form/Pages/hendlerData/hendlerData";
 import { getTitlePage } from "../Form/Pages/Qualifications/Home/Qualifications";
 
@@ -87,7 +87,7 @@ const DownloadShare = () => {
             </div>
             <div
               onClick={() => {
-                dispatch(counterActions.downloadIMG());
+                dispatch(storePagesActions.downloadIMG());
                 navigat("/seirah");
                 setTimeout(
                   () => navigat("/dashboard/cvs/data/download-share"),
@@ -124,7 +124,7 @@ const DownloadShare = () => {
             </div>
             <div
               onClick={() => {
-                dispatch(counterActions.downloadPDF());
+                dispatch(storePagesActions.downloadPDF());
                 navigat("/seirah");
                 setTimeout(() => {
                   navigat("/dashboard/cvs/data/download-share");

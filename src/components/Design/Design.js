@@ -8,7 +8,7 @@ import seirah2 from "../../images/seirah1.png";
 import { Link } from "react-router-dom";
 import Icons from "../Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
-import { counterActions } from "../../sliceStores/sliceTwo";
+import { storePagesActions } from "../../sliceStores/sliceTwo";
 import { getTitlePage } from "../Form/Pages/Qualifications/Home/Qualifications";
 
 const Design = () => {
@@ -31,7 +31,7 @@ const Design = () => {
                 <div
                   key={ele.dispatch}
                   onClick={() => {
-                    dispatch(counterActions.transformSeirah(ele.dispatch));
+                    dispatch(storePagesActions.transformSeirah(ele.dispatch));
                     window.localStorage.setItem(
                       "transformSeirah",
                       ele.dispatch

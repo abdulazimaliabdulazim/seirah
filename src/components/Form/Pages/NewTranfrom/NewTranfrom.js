@@ -4,7 +4,7 @@ import Icons from "../../../Icons/Icons";
 import Button from "../../Buttom/Buttom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { counterActions } from "../../../../sliceStores/sliceTwo";
+import { storePagesActions } from "../../../../sliceStores/sliceTwo";
 import json from "../JSON_date/data_inputs.json";
 import { nextPage } from "../hendlerData/hendlerData";
 
@@ -13,7 +13,7 @@ export const transform = (nav, disp) => {
   const varNextPages = ulrsPages[ulrsPages.indexOf(nextPage().join("")) + 1];
   nav(varNextPages);
   if (varNextPages !== "/dashboard/cvs/data/design") {
-    disp(counterActions[`name_${varNextPages.split("/")[4]}`]());
+    disp(storePagesActions[`name_${varNextPages.split("/")[4]}`]());
   }
 };
 

@@ -10,13 +10,13 @@ import {
   progress,
   sendActionData,
 } from "../../hendlerData/hendlerData";
-import { counterActions } from "../../../../../sliceStores/sliceTwo";
 import { useNavigate } from "react-router-dom";
 import {
   getTitlePage,
   handleInputChange,
   handleSubmit,
 } from "../../Qualifications/Home/Qualifications";
+import { storePagesActions } from "../../../../../sliceStores/sliceTwo";
 
 const Inputs = ({ getState }) => {
   const newForm = {
@@ -35,8 +35,9 @@ const Inputs = ({ getState }) => {
   getTitlePage();
   // const targetSeirah = window.localStorage.getItem("targetSeirah");
   const selector = useSelector((state) => state.value);
+  // const storePersonal = useSelector((state) => state.personal);
+  // console.log(storePersonal);
   const [halth, setHalth] = useState(false);
-
   const [personal, setPersonal] = useState([newForm]);
   useEffect(() => {
     // قراءة البيانات من localStorage عند تحميل المكون
@@ -57,8 +58,14 @@ const Inputs = ({ getState }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(counterActions.getPersonalDataOnload(personal));
-  }, [personal]);
+    window.localStorage.setItem("yes", personal[0].position);
+    dispatch(storePagesActions.getPersonalDataOnload(personal));
+  }, [personal, dispatch]);
+
+  const one = JSON.parse(window.localStorage.getItem("one"));
+  console.log(one[0].name);
+  const position = window.localStorage.getItem("yes");
+  console.log(position);
 
   return personal.map((form, index) => {
     return (
@@ -224,7 +231,7 @@ const Inputs = ({ getState }) => {
           </ParentInput>
 
           <Checkd forID="six" label="الجنس">
-            <label onClick={() => dispatch(counterActions.man())}>
+            <label>
               <input
                 onChange={(e) => {
                   handleInputChange(
@@ -243,7 +250,7 @@ const Inputs = ({ getState }) => {
               رجل
               <div></div>
             </label>
-            <label onClick={() => dispatch(counterActions.famil())}>
+            <label>
               <input
                 onChange={(e) => {
                   handleInputChange(
@@ -279,9 +286,9 @@ const Inputs = ({ getState }) => {
                 id="stits"
                 type="radio"
                 name="stits"
-                value={selector[0]}
+                value={"selector[0]"}
               />
-              {selector[0]}
+              {"selector[0]"}
               <div></div>
             </label>
             <label>
@@ -298,9 +305,9 @@ const Inputs = ({ getState }) => {
                 id="stits"
                 type="radio"
                 name="stits"
-                value={selector[1]}
+                value={"selector[1]"}
               />
-              {selector[1]}
+              {"selector[1]"}
               <div></div>
             </label>
           </Checkd>

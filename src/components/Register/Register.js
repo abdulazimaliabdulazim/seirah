@@ -10,7 +10,7 @@ import hendlerData, {
   getFormValues,
 } from "../Form/Pages/hendlerData/hendlerData";
 import { useDispatch } from "react-redux";
-import { counterActions } from "../../sliceStores/sliceTwo";
+import { storePagesActions } from "../../sliceStores/sliceTwo";
 import Container from "../Container/Container";
 
 const Register = () => {
@@ -27,7 +27,7 @@ const Register = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     window.localStorage.setItem("detulsUser", JSON.stringify(arryOfObjectData));
-    dispatch(counterActions.detulsUser(arryOfObjectData));
+    dispatch(storePagesActions.detulsUser(arryOfObjectData));
     if (userDetuls.name !== undefined && userDetuls.password !== undefined) {
       navigate("/dashboard", { replace: true });
     }

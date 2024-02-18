@@ -9,8 +9,6 @@ let initState = {
   personal: "",
 };
 
-let test = "";
-
 // Get Item In Local Storage
 initState.detulsUser = JSON.parse(window.localStorage.getItem("detulsUser"));
 initState.textPage = window.localStorage.getItem("textPage");
@@ -21,18 +19,14 @@ const counterSlice = createSlice({
   initialState: initState,
   reducers: {
     // Get Date In Pages
-    getPersonalDataOnload: (state, action) => {
-      test = action.payload;
-      // console.log(action.payload);
-    },
     detulsUser: (state, action) => {
       state.detulsUser = action.payload;
     },
     famil: (state) => {
-      state.value = [" آنسة", " متزوجة"];
+      state.value = ["آنسة", "متزوجة"];
     },
     man: (state) => {
-      state.value = [" أعزب", "متزوج"];
+      state.value = ["أعزب", "متزوج"];
     },
     // Transform Pages
     name_personal: (state) => {
@@ -84,9 +78,9 @@ const counterSlice = createSlice({
     },
   },
 });
-console.log(test);
-const store = createStore(counterSlice.reducer);
 
-export const counterActions = counterSlice.actions;
+const storePages = createStore(counterSlice.reducer);
 
-export default store;
+export const storePagesActions = counterSlice.actions;
+
+export default storePages;
