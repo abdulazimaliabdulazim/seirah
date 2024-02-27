@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import style from "./Qualifications.module.css";
 import ParentInput from "../../Personal_data/Home/ParentInput/ParentInput";
 import DateCopy from "./DateQualifi/DateCopy";
@@ -37,30 +37,8 @@ export const getTitlePage = () => {
 };
 
 const Qualifications = () => {
-  const [qualifications, setQualifications] = useState([]);
-  useEffect(() => {
-    // قراءة البيانات من localStorage عند تحميل المكون
-    const storedData = JSON.parse(localStorage.getItem("qualifications"));
-    if (storedData) {
-      setQualifications(storedData);
-    }
-  }, []);
-
-  const addForm = () => {
-    // إضافة نموذج جديد
-    const newForm = {
-      education: "",
-      specializat: "",
-      esy: "",
-      degree: "",
-      day: "",
-      manth: "",
-      yar: "",
-    };
-    // تحديث الحالة لتضمين النموذج الجديد
-    setQualifications([...qualifications, newForm]);
-  };
-
+  const [qualifications, setQualifications] = useState();
+  console.log(qualifications);
   return (
     <Fragment>
       {qualifications.map((form, index) => (
@@ -72,7 +50,6 @@ const Qualifications = () => {
           />
           <div className={style.qualificBox} id={index} key={index}>
             <span className={style.numberQuali}>{index + 1}</span>
-
             <ParentInput
               forId={`education${index}`}
               label="الجهة التعليمية"
@@ -93,7 +70,6 @@ const Qualifications = () => {
                 placeholder="الجهة التعليمية"
               />
             </ParentInput>
-
             <ParentInput
               forId={`specializat${index}`}
               label="التخصص"
@@ -114,7 +90,6 @@ const Qualifications = () => {
                 placeholder="التخصص"
               />
             </ParentInput>
-
             <ParentInput
               forId={`esy${index}`}
               label="وصف بسيط"
@@ -135,7 +110,6 @@ const Qualifications = () => {
                 placeholder="وصف بسيط"
               />
             </ParentInput>
-
             <ParentInput forId={`degree${index}`} label="الدرجة العلمية">
               <select
                 onChange={(e) =>
@@ -154,7 +128,6 @@ const Qualifications = () => {
                 })}
               </select>
             </ParentInput>
-
             <ParentInput label="تاريخ التخرج" hedinSpan={false}>
               <DateCopy
                 index={index}
@@ -166,9 +139,20 @@ const Qualifications = () => {
         </div>
       ))}
       <UsePages
-        addForm={addForm}
         state={qualifications}
-        nameData="qualifications"
+        setState={setQualifications}
+        nameData={{
+          nameState: "qualifications",
+          nameItemObj: [
+            "education",
+            "specializat",
+            "esy",
+            "degree",
+            "day",
+            "manth1",
+            "yar",
+          ],
+        }}
         b1="أضف مؤهل جديد"
         b2="حفظ المؤهلات"
       />

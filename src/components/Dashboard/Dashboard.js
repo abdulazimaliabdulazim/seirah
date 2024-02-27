@@ -11,8 +11,9 @@ import { getTitlePage } from "../Form/Pages/Qualifications/Home/Qualifications";
 
 const Dashboard = () => {
   getTitlePage();
-  const dateNew = new Date().getDate();
-  const [{ name }, { date }] = useSelector((state) => state.detulsUser);
+  const dateNew = new Date().getDay();
+  const [, { date }] = useSelector((state) => state.detulsUser);
+  const personal = useSelector((state) => state.personal);
 
   return (
     <Fragment>
@@ -21,17 +22,16 @@ const Dashboard = () => {
         <Container>
           <div className={style.detuls}>
             <UserImg
-              srcImg={
-                allSeirah("personal")[0] !== undefined
-                  ? allSeirah("personal")[0].srcImg1
-                  : ""
-              }
+              state={personal !== undefined ? personal : ""}
+              index={0}
               width="60px"
               radius="50%"
+              hidden={false}
             />
             <div className={style.box}>
               <h2>
-                <span>أهلاً</span> {name}🖐
+                <span>أهلاً</span>
+                {personal !== undefined ? personal[0].name : ""}🖐
               </h2>
             </div>
           </div>

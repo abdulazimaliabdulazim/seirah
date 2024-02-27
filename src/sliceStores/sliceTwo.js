@@ -6,18 +6,48 @@ let initState = {
   textPage: "معلومات الشخصية, وبيانات الإتصال الضرورية",
   downloadPdf: "no",
   transformSeirah: "one",
-  personal: "",
+  arr: [],
+  dataAllPages: {},
+  targetSeira: "",
 };
 
 // Get Item In Local Storage
+if (window.localStorage.getItem("targetSeira")) {
+  initState.targetSeira = JSON.parse(
+    window.localStorage.getItem("targetSeira")
+  );
+}
+
+if (window.localStorage.getItem("allSeirs")) {
+  initState.arr = JSON.parse(window.localStorage.getItem("allSeirs"));
+}
+
 initState.detulsUser = JSON.parse(window.localStorage.getItem("detulsUser"));
-initState.textPage = window.localStorage.getItem("textPage");
-initState.transformSeirah = window.localStorage.getItem("transformSeirah");
+if (window.localStorage.getItem("textPage")) {
+  initState.textPage = window.localStorage.getItem("textPage");
+}
+if (window.localStorage.getItem("transformSeirah")) {
+  initState.transformSeirah = window.localStorage.getItem("transformSeirah");
+}
 
 const counterSlice = createSlice({
   name: "counter",
   initialState: initState,
   reducers: {
+    addSeirs(state, action) {
+      // Add Data Al Pages In Reducer (Object)
+      state.targetSeira = action.payload[1];
+      state.arr = action.payload[0];
+      localStorage.setItem(`targetSeira`, JSON.stringify(state.targetSeira));
+      localStorage.setItem(`allSeirs`, JSON.stringify(state.arr));
+    },
+    // Get Data In Pages
+    addDataInRedux(state, action) {
+      const targetSeira = state.targetSeira !== "" ? state.targetSeira : 0;
+      // Add Data Al Pages In Reducer (Object)
+      state.dataAllPages[action.payload[1]] = action.payload[0];
+      state.arr[targetSeira] = state.dataAllPages;
+    },
     // Get Date In Pages
     detulsUser: (state, action) => {
       state.detulsUser = action.payload;

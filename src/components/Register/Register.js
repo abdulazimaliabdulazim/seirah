@@ -14,7 +14,7 @@ import { storePagesActions } from "../../sliceStores/sliceTwo";
 import Container from "../Container/Container";
 
 const Register = () => {
-  const date = new Date().getDate();
+  const date = new Date().getDay();
   const [userDetuls, setUserDetuls] = useState(
     getFormValues("detulsUser", false)
   );

@@ -1,20 +1,17 @@
 import React, { useState } from "react";
 import style from "../Qualifications/Home/Qualifications.module.css";
-import Buttom from "../../Buttom/Buttom";
 import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
-import hendlerData, {
-  getFormValues,
-  sendActionData,
-} from "../hendlerData/hendlerData";
-import { Link } from "react-router-dom";
-import { getTitlePage } from "../Qualifications/Home/Qualifications";
+import {
+  getTitlePage,
+  handleInputChange,
+} from "../Qualifications/Home/Qualifications";
+
+import UsePages from "../UsePage/UsePages";
 
 const Address = () => {
   getTitlePage();
-  const targetSeirah = window.localStorage.getItem("targetSeirah");
-  const [address, setAddress] = useState(
-    getFormValues(targetSeirah !== null ? `address${targetSeirah}` : "address1")
-  );
+  const newForm = { address: "" };
+  const [address, setAddress] = useState([newForm]);
 
   return (
     <div className={style.parent}>
@@ -25,25 +22,31 @@ const Address = () => {
             label="العنوان الوطني"
             paraghrap="تفاصيل العنوان الوطني">
             <input
-              onChange={(e) => hendlerData(e, setAddress)}
+              onChange={(e) =>
+                handleInputChange(
+                  0,
+                  e.target.value,
+                  "address",
+                  address,
+                  setAddress
+                )
+              }
               id="address"
-              value={address.address}
+              value={address[0].address}
               type="text"
               placeholder="العنوان الوطني"
             />
           </ParentInput>
         </div>
-        <Link to="/dashboard/cvs/data/design">
-          <Buttom
-            onClick={() => {
-              sendActionData(
-                targetSeirah !== null ? `address${targetSeirah}` : "address1",
-                address
-              );
-            }}
-            text="حفظ العنوان الوطني"
-          />
-        </Link>
+        <UsePages
+          state={address}
+          setState={setAddress}
+          nameData={{
+            nameState: "address",
+            nameItemObj: ["address"],
+          }}
+          b2="حفظ العنوان الوطني"
+        />
       </div>
     </div>
   );

@@ -62,7 +62,7 @@ export const Yar = ({ index, forms, setForms }) => {
   );
 };
 
-const DateCopy = ({ index, stateDate, setStateDate }) => {
+const DateCopy = ({ index, stateDate, setStateDate, counterData }) => {
   // Day
   const dayEmpty = [];
   const [day] = useState(dayEmpty);
@@ -73,7 +73,6 @@ const DateCopy = ({ index, stateDate, setStateDate }) => {
   const yarEmpty = [];
   const [yar] = useState(yarEmpty);
   for (let i = 1963; i <= 2030; i++) yarEmpty.push(i);
-
   // Function Hendler Date
   const hendlerDate = (state, typeDate, caption) => {
     return (
@@ -85,12 +84,14 @@ const DateCopy = ({ index, stateDate, setStateDate }) => {
             handleInputChange(
               index,
               e.target.value,
-              typeDate,
+              counterData !== undefined
+                ? `${typeDate}${counterData}`
+                : typeDate,
               stateDate,
               setStateDate
             );
           }}
-          value={stateDate[index][typeDate + index]}>
+          value={stateDate[index][`${typeDate}${counterData}`]}>
           {state.map((ele, ind) => (
             <option key={ind}>{ele}</option>
           ))}

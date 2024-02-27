@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { allSeirah } from "../Form/Pages/hendlerData/hendlerData";
 
 const Profile = () => {
-  const [{ name }] = useSelector((state) => state.detulsUser);
+  const personal = useSelector((state) => state.personal);
 
   return (
     <header className={header.profile}>
@@ -27,16 +27,18 @@ const Profile = () => {
           </Link>
         </div>
         <div className={header.name_dash}>
-          <span className={header.full_name}>{name}</span>
-          <span className={header.part_name}>{name.split(" ")[0]}</span>
+          <span className={header.full_name}>
+            {personal !== undefined ? personal[0].name : ""}
+          </span>
+          <span className={header.part_name}>
+            {personal !== undefined ? personal[0].name.split(" ")[0] : ""}
+          </span>
           <UserImg
-            srcImg={
-              allSeirah("personal")[0] !== undefined
-                ? allSeirah("personal")[0].srcImg1
-                : ""
-            }
-            width="40px"
+            state={personal !== undefined ? personal : ""}
+            index={0}
             radius="50%"
+            width="40px"
+            hidden={false}
           />
         </div>
       </Container>

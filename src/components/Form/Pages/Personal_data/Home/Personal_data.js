@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "./Personal_data.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Upload from "./Upload_img/Upload";
-import Buttom from "../../../Buttom/Buttom";
 import ParentInput from "./ParentInput/ParentInput";
 import Checkd from "./Checkd/Checkd";
 import {
@@ -10,15 +9,13 @@ import {
   progress,
   sendActionData,
 } from "../../hendlerData/hendlerData";
-import { useNavigate } from "react-router-dom";
 import {
   getTitlePage,
   handleInputChange,
-  handleSubmit,
 } from "../../Qualifications/Home/Qualifications";
-import { storePagesActions } from "../../../../../sliceStores/sliceTwo";
+import UsePages from "../../UsePage/UsePages";
 
-const Inputs = ({ getState }) => {
+const Inputs = () => {
   const newForm = {
     name: "",
     position: "",
@@ -33,39 +30,9 @@ const Inputs = ({ getState }) => {
     image: "",
   };
   getTitlePage();
-  // const targetSeirah = window.localStorage.getItem("targetSeirah");
   const selector = useSelector((state) => state.value);
-  // const storePersonal = useSelector((state) => state.personal);
-  // console.log(storePersonal);
   const [halth, setHalth] = useState(false);
-  const [personal, setPersonal] = useState([newForm]);
-  useEffect(() => {
-    // قراءة البيانات من localStorage عند تحميل المكون
-    const storedData = JSON.parse(localStorage.getItem("personal"));
-    if (storedData) {
-      setPersonal(storedData);
-    }
-  }, []);
-  // Set Value Progress
-  // progress(personal);
-
-  useEffect(() => {
-    getState(personal);
-  }, [personal, getState]);
-
-  const navigator = useNavigate();
-  // Send Personals Data In Story
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    window.localStorage.setItem("yes", personal[0].position);
-    dispatch(storePagesActions.getPersonalDataOnload(personal));
-  }, [personal, dispatch]);
-
-  const one = JSON.parse(window.localStorage.getItem("one"));
-  console.log(one[0].name);
-  const position = window.localStorage.getItem("yes");
-  console.log(position);
+  const [personal, setPersonal] = useState([]);
 
   return personal.map((form, index) => {
     return (
@@ -229,7 +196,6 @@ const Inputs = ({ getState }) => {
               typeof="text"
             />
           </ParentInput>
-
           <Checkd forID="six" label="الجنس">
             <label>
               <input
@@ -270,7 +236,6 @@ const Inputs = ({ getState }) => {
               <div></div>
             </label>
           </Checkd>
-
           <Checkd forID="stits" label="الحالة الزوجية">
             <label>
               <input
@@ -286,9 +251,9 @@ const Inputs = ({ getState }) => {
                 id="stits"
                 type="radio"
                 name="stits"
-                value={"selector[0]"}
+                value={selector[0]}
               />
-              {"selector[0]"}
+              {selector[0]}
               <div></div>
             </label>
             <label>
@@ -311,7 +276,6 @@ const Inputs = ({ getState }) => {
               <div></div>
             </label>
           </Checkd>
-
           <Checkd forID="statis_health" label="♿️ الحالة الصحية">
             <label onClick={() => setHalth(false)}>
               <input
@@ -352,7 +316,6 @@ const Inputs = ({ getState }) => {
               <div></div>
             </label>
           </Checkd>
-
           {halth && (
             <Checkd forID="health" label="نوع الحالة الصحية">
               <label>
@@ -452,7 +415,6 @@ const Inputs = ({ getState }) => {
               </label>
             </Checkd>
           )}
-
           <Checkd forID="service" label="الخدمة العسكرية">
             <label>
               <input
@@ -492,7 +454,6 @@ const Inputs = ({ getState }) => {
               لا
             </label>
           </Checkd>
-
           <hr />
           <Upload
             text="الصورة الشخصية"
@@ -502,14 +463,26 @@ const Inputs = ({ getState }) => {
             index={0}
           />
           <hr />
-          <Buttom
-            onClick={() => {
-              handleSubmit(personal, "personal");
-              sendActionData();
-              messageSave("تم حفظ البيانات الشخصية");
-              navigator("/dashboard/cvs/data/qualifications");
+          <UsePages
+            state={personal}
+            setState={setPersonal}
+            nameData={{
+              nameState: "personal",
+              nameItemObj: [
+                "name",
+                "position",
+                "email",
+                "phone_number",
+                "date",
+                "personal_website",
+                "country",
+                "nationality",
+                "iam",
+                "progress",
+                "image",
+              ],
             }}
-            text="حفظ البيانات الشخصية"
+            b2="حفظ البيانات الشخصية"
           />
         </div>
       </div>

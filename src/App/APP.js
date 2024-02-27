@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Form from "../components/Form/Form";
 import PersonalData from "../components/Form/Pages/Personal_data/Home/Personal_data";
@@ -25,11 +25,6 @@ import Palestine from "../components/Palestine/Palestine";
 import HomePage from "../components/HomePage/HomePage";
 
 const App = () => {
-  const [personal, setPersonal] = useState([{}]);
-  const getState = (val) => {
-    setPersonal(val);
-  };
-
   return (
     <ContextProvider>
       <Palestine />
@@ -40,13 +35,10 @@ const App = () => {
             path={"dashboard/cvs/data"}
             element={
               <RequireAuth>
-                <Form personal={personal} />
+                <Form />
               </RequireAuth>
             }>
-            <Route
-              path="personal"
-              element={<PersonalData getState={getState} />}
-            />
+            <Route path="personal" element={<PersonalData />} />
             <Route path="qualifications" element={<Qualifications />} />
             <Route path="experiences" element={<Experiences />} />
             <Route path="coursess" element={<Coursess />} />

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import Upload from "../Personal_data/Home/Upload_img/Upload";
 import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
 import {
@@ -14,26 +14,6 @@ import { handleInputChange } from "../Qualifications/Home/Qualifications";
 const Experiences = () => {
   const [experiences, setexpEriences] = useState([]);
 
-  useEffect(() => {
-    // قراءة البيانات من localStorage عند تحميل المكون
-    const storedData = JSON.parse(localStorage.getItem("experiences"));
-    if (storedData) {
-      setexpEriences(storedData);
-    }
-  }, []);
-
-  const addForm = () => {
-    // إضافة نموذج جديد
-    const newForm = {
-      job: "",
-      jobTitle: "",
-      esy: "",
-      image: "",
-    };
-    // تحديث الحالة لتضمين النموذج الجديد
-    setexpEriences([...experiences, newForm]);
-  };
-
   return (
     <Fragment>
       {experiences.map((form, ind) => (
@@ -46,8 +26,7 @@ const Experiences = () => {
             className={style.qualificBox}
             key={ind}>
             <span className={style.numberQuali}>{ind + 1}</span>
-            <Icones index={ind} forms={experiences} setForms={setexpEriences} />
-
+            <Icones index={ind} state={experiences} setState={setexpEriences} />
             <ParentInput
               forId={`job${ind}`}
               label="جهة العمل"
@@ -108,25 +87,18 @@ const Experiences = () => {
                 placeholder="وصف بسيط"
               />
             </ParentInput>
-
-            <ParentInput label="تاريخ الالتحاق" hedinSpan={false}>
-              <DateCopy
-                index={ind}
-                stateDate={experiences}
-                setStateDate={setexpEriences}
-                oneDate={true}
-              />
-            </ParentInput>
-
-            <ParentInput label="تاريخ المغادرة" hedinSpan={false}>
-              <DateCopy
-                index={ind}
-                stateDate={experiences}
-                setStateDate={setexpEriences}
-                oneDate={true}
-              />
-            </ParentInput>
-
+            {["تاريخ الالتحاق", "تاريخ المغادرة"].map((data, index) => {
+              return (
+                <ParentInput key={index} label={data} hedinSpan={false}>
+                  <DateCopy
+                    index={ind}
+                    counterData={index}
+                    stateDate={experiences}
+                    setStateDate={setexpEriences}
+                  />
+                </ParentInput>
+              );
+            })}
             <Upload
               text="شعار المنشأة"
               p="إختياري، يظهر شعار المنشأة في بعض القوالب وليس كلها."
@@ -138,9 +110,12 @@ const Experiences = () => {
         </div>
       ))}
       <UsePages
-        addForm={addForm}
-        nameData={"experiences"}
         state={experiences}
+        setState={setexpEriences}
+        nameData={{
+          nameState: "experiences",
+          nameItemObj: ["job", "jobTitle", "esy", "image"],
+        }}
         b1="أضف خبرة جديدة"
         b2="حفظ الخبرات"
       />

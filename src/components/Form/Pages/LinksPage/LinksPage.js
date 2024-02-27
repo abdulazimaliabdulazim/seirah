@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import style from "../Qualifications/Home/Qualifications.module.css";
 import {
   dargItem,
@@ -7,65 +7,74 @@ import {
   drop,
 } from "../Qualifications/Home/f_drag_drop/drag_drop";
 import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
-import hendlerData, { getFormValues } from "../hendlerData/hendlerData";
 import json from "../JSON_date/data_inputs.json";
 import UsePages, { Icones } from "../UsePage/UsePages";
+import { handleInputChange } from "../Qualifications/Home/Qualifications";
 
 const LinksPage = () => {
-  const targetSeirah = window.localStorage.getItem("targetSeirah");
-  let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3];
-  const [links, setLinks] = useState(
-    getFormValues(targetSeirah !== null ? `links${targetSeirah}` : "links1")
-  );
-  const createqualifi = (ind) => {
-    return (
-      <div key={ind} className={style.parentPages}>
-        <Icones index={ind + 1} state1={links} state2={linksNumber} />
-        <div
-          onDragStart={(e) => dargItem(e.target)}
-          onDragEnd={(e) => dargEnd(e.target)}
-          onDragOver={(e) => dargOver(e.target)}
-          draggable={true}
-          className={style.qualificBox}
-          key={ind}>
-          <span className={style.numberQuali}>{ind + 1}</span>
-          <ParentInput forId={`link${coun[0]++}`} label={"الرابط"}>
-            <input
-              onChange={(e) => hendlerData(e, setLinks)}
-              id={`link${coun[1]++}`}
-              value={links[`link${coun[2]++}`]}
-              type="text"
-              placeholder="الرابط"
-            />
-          </ParentInput>
-          <ParentInput forId={`networck${coun[3]++}`} label={"الشبكة"}>
-            <select
-              id={`networck${coun[4]++}`}
-              onChange={(e) => hendlerData(e, setLinks)}
-              value={links[`networck${coun[5]++}`]}>
-              {json[9].map((option, ind) => {
-                return <option key={ind}>{option}</option>;
-              })}
-            </select>
-          </ParentInput>
-        </div>
-      </div>
-    );
-  };
-  let [linksNumber, setLinksNumber] = useState(
-    getFormValues(
-      targetSeirah !== null ? `linksNumber${targetSeirah}` : "linksNumber1"
-    )
-  );
+  const [links, setLinks] = useState([]);
+
   return (
-    <UsePages
-      state={links}
-      state2={linksNumber}
-      setState2={setLinksNumber}
-      b1={"أضف رابط جديد"}
-      b2={"حفظ الروابط"}>
-      {linksNumber.map((ele, ind) => createqualifi(ind))}
-    </UsePages>
+    <Fragment>
+      {links.map((form, index) => (
+        <div key={index} className={style.parentPages}>
+          <Icones index={index} state={links} setState={setLinks} />
+          <div
+            onDragStart={(e) => dargItem(e.target)}
+            onDragEnd={(e) => dargEnd(e.target)}
+            onDragOver={(e) => dargOver(e.target)}
+            draggable={true}
+            className={style.qualificBox}>
+            <span className={style.numberQuali}>{index + 1}</span>
+            <ParentInput forId={`link${index}`} label="الرابط">
+              <input
+                onChange={(e) =>
+                  handleInputChange(
+                    index,
+                    e.target.value,
+                    "link",
+                    links,
+                    setLinks
+                  )
+                }
+                id={`link${index}`}
+                value={form.link}
+                type="text"
+                placeholder="الرابط"
+              />
+            </ParentInput>
+            <ParentInput forId={`networck${index}`} label="الشبكة">
+              <select
+                id={`networck${index}`}
+                onChange={(e) =>
+                  handleInputChange(
+                    index,
+                    e.target.value,
+                    "networck",
+                    links,
+                    setLinks
+                  )
+                }
+                value={links[`networck${index}`]}>
+                {json[9].map((option, ind) => {
+                  return <option key={ind}>{option}</option>;
+                })}
+              </select>
+            </ParentInput>
+          </div>
+        </div>
+      ))}
+      <UsePages
+        state={links}
+        setState={setLinks}
+        nameData={{
+          nameState: "links",
+          nameItemObj: ["link", "networck"],
+        }}
+        b1="أضف رابط جديد"
+        b2="حفظ الروابط"
+      />
+    </Fragment>
   );
 };
 

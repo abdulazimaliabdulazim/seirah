@@ -1,56 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./style.module.css";
 import Container from "../Container/Container";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Buttom from "../Form/Buttom/Buttom";
 import Icons from "../Icons/Icons";
 import UserImg from "../UserImg/UserImg";
 import Profile from "../Profile/Profile";
 import Progress from "./Progress/Progress";
-import { fetchDateAllSeirah } from "../Form/Pages/hendlerData/hendlerData";
-import { getTitlePage } from "../Form/Pages/Qualifications/Home/Qualifications";
+import {
+  getTitlePage,
+  handleDelete,
+} from "../Form/Pages/Qualifications/Home/Qualifications";
+import { useDispatch, useSelector } from "react-redux";
+import { storePagesActions } from "../../sliceStores/sliceTwo";
+import jsomData from "../Form/Pages/JSON_date/data_inputs.json";
 
 const Cvs = () => {
   getTitlePage();
-  const counViewSe = window.localStorage.getItem("counViewSe");
-  const [stateCoun, setStateCoun] = useState(
-    counViewSe !== null ? JSON.parse(counViewSe) : []
-  );
-  window.localStorage.setItem("counViewSe", JSON.stringify(stateCoun));
-  // Date Seirs All
-  const dataAllFun = () => {
-    const dataAll = [];
-    for (let i = 1; i <= stateCoun.length; i++) {
-      dataAll.push(fetchDateAllSeirah(i));
-    }
-    return dataAll;
-  };
-  // Extract Progress
-  let countProgress = 0;
-  const progressAll = [];
-  const createProgressAll = (num) => {
-    const arrProgress = [];
-    dataAllFun()[num].map((item) =>
-      arrProgress.push(item !== null ? item.progress : "")
-    );
-    const finalProgress = arrProgress
-      .filter((ele) => ele !== undefined)
-      .reduce((one, two) => one + two);
-    progressAll.push(finalProgress);
-    return progressAll;
-  };
-  for (let i = 0; i < stateCoun.length; i++) createProgressAll(i);
-  window.localStorage.setItem("progressAll", JSON.stringify(progressAll));
-  // State Date Seirs All
-  const [seirsAll, setSeirsAll] = useState(dataAllFun());
-  window.localStorage.setItem("countseirah", seirsAll.length);
-  // Navigate
-  const navigat = useNavigate();
-  // Delete seirah
-  const deleteFunc = (indFunc) =>
-    setSeirsAll((preveState) =>
-      preveState.filter((ele, ind) => ind !== indFunc)
-    );
+  const arr = useSelector((state) => state.arr);
+
+  const targetSeira = useSelector((state) => state.targetSeira);
+  const [seirsAll, setSeirsAll] = useState(arr);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(storePagesActions.addSeirs([seirsAll, targetSeira]));
+  }, [seirsAll, dispatch, targetSeira]);
+
+  const obj = {};
+  jsomData[0].map((url) => {
+    return (obj[url.url] = []);
+  });
+
   return (
     <div className={style.cvs}>
       <Profile />
@@ -59,10 +40,7 @@ const Cvs = () => {
           <span>قائمة السير الذاتية</span>
           <Buttom
             onClick={() => {
-              setStateCoun([...stateCoun, 1]);
-              setTimeout(() => {
-                navigat("data/personal");
-              }, 10);
+              setSeirsAll((prevState) => [...prevState, obj]);
             }}>
             أضف سيرة
           </Buttom>
@@ -70,55 +48,54 @@ const Cvs = () => {
         <div className={style.boxingAll}>
           {seirsAll.map((seirh, ind) => (
             <div key={ind} className={style.box}>
-              {window.localStorage.setItem("targetSeirah", ind + 2)}
               <div className={style.parent}>
                 <Link
-                  onClick={() =>
-                    window.localStorage.setItem("targetSeirah", ind + 1)
-                  }
+                  onClick={() => {
+                    dispatch(storePagesActions.addSeirs([seirsAll, ind]));
+                  }}
                   className={style.img}
                   to="data/personal">
                   <UserImg
-                    srcImg={seirh[0] !== null ? seirh[0].srcImg1 : ""}
+                    state={
+                      seirh.personal !== undefined
+                        ? seirh.personal.length >= 1
+                          ? seirh.personal
+                          : ""
+                        : ""
+                    }
+                    index={0}
+                    width="60px"
                     radius="50%"
+                    hidden={false}
                   />
                   <div className={style.col}>
                     <span>السيرة الذاتية الأساسية</span>
-                    <h4>{seirh[0] !== null ? seirh[0].name : ""}</h4>
+                    <h4>
+                      {seirh.personal !== undefined
+                        ? seirh.personal.length >= 1
+                          ? seirh.personal[0].name
+                          : ""
+                        : ""}
+                    </h4>
                   </div>
                 </Link>
-                <Progress progress={progressAll[countProgress++]} />
+                <Progress progress={""} />
                 <div className={style.pareControl}>
-                  <Link
-                    onClick={() =>
-                      window.localStorage.setItem("targetSeirah", ind + 1)
-                    }
-                    to="data/personal"
-                    className={style.control}>
+                  <Link to="data/personal" className={style.control}>
                     <Icons
                       path="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"
                       viewBox="0 0 24 24"
                     />
                     تعديل البيانات
                   </Link>
-                  <Link
-                    onClick={() =>
-                      window.localStorage.setItem("targetSeirah", ind + 1)
-                    }
-                    to="data/design"
-                    className={style.control}>
+                  <Link to="data/design" className={style.control}>
                     <Icons
                       path="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"
                       viewBox="0 0 24 24"
                     />
                     تصميم
                   </Link>
-                  <Link
-                    onClick={() =>
-                      window.localStorage.setItem("targetSeirah", ind + 1)
-                    }
-                    to="data/download-share"
-                    className={style.control}>
+                  <Link to="data/download-share" className={style.control}>
                     <Icons
                       path="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"
                       viewBox="0 0 24 24"
@@ -126,6 +103,7 @@ const Cvs = () => {
                     تحميل
                   </Link>
                   <Link
+                    onClick={() => handleDelete(ind, seirsAll, setSeirsAll)}
                     style={{ cursor: "no-drop" }}
                     to=""
                     className={style.control}>
@@ -146,18 +124,3 @@ const Cvs = () => {
 };
 
 export default Cvs;
-
-// <Link
-//   onClick={() => {
-//     deleteFunc(ind);
-//     setStateCoun(stateCoun.slice(1));
-//     fetchDateAllSeirah(ind + 1, false);
-//   }}
-//   to=""
-//   className={style.control}>
-//   <Icons
-//     path="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"
-//     viewBox="0 0 24 24"
-//   />
-//   حذف السيرة
-// </Link>

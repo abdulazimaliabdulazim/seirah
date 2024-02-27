@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import style from "../Qualifications/Home/Qualifications.module.css";
 import {
   dargItem,
@@ -6,57 +6,57 @@ import {
   dargOver,
 } from "../Qualifications/Home/f_drag_drop/drag_drop";
 import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
-import hendlerData, { getFormValues } from "../hendlerData/hendlerData";
 import UsePages, { Icones } from "../UsePage/UsePages";
+import { handleInputChange } from "../Qualifications/Home/Qualifications";
 
 const Hobbies = () => {
-  const targetSeirah = window.localStorage.getItem("targetSeirah");
-  let coun = [1, 1, 1, 1, 3];
-  const [hobbies, setHobbies] = useState(
-    getFormValues(targetSeirah !== null ? `hobbies${targetSeirah}` : "hobbies1")
-  );
-  const createqualifi = (ind) => {
-    return (
-      <div key={ind} className={style.parentPages}>
-        <Icones index={ind + 1} state1={hobbies} state2={hobbiesNumber} />
-        <div
-          onDragStart={(e) => dargItem(e.target)}
-          onDragEnd={(e) => dargEnd(e.target)}
-          onDragOver={(e) => dargOver(e.target)}
-          draggable={true}
-          className={style.qualificBox}
-          key={ind}>
-          <span className={style.numberQuali}>{ind + 1}</span>
-          <ParentInput
-            forId={`hobbie${coun[0]++}`}
-            label={"الهواية"}
-            paraghrap={"يُفضّل من كلمة إلى 4 كلمات كحد أقصى."}>
-            <input
-              onChange={(e) => hendlerData(e, setHobbies)}
-              id={`hobbie${coun[1]++}`}
-              value={hobbies[`hobbie${coun[2]++}`]}
-              type="text"
-              placeholder="الهواية"
-            />
-          </ParentInput>
-        </div>
-      </div>
-    );
-  };
-  let [hobbiesNumber, setHobbiesNumber] = useState(
-    getFormValues(
-      targetSeirah !== null ? `hobbiesNumber${targetSeirah}` : "hobbiesNumber1"
-    )
-  );
+  const [hobbies, setHobbies] = useState([]);
   return (
-    <UsePages
-      state={hobbies}
-      state2={hobbiesNumber}
-      setState2={setHobbiesNumber}
-      b1={"أضف هواية جديدة"}
-      b2={"حفظ الهويات"}>
-      {hobbiesNumber.map((ele, ind) => createqualifi(ind))}
-    </UsePages>
+    <Fragment>
+      {hobbies.map((form, index) => (
+        <div key={index} className={style.parentPages}>
+          <Icones index={index} state={hobbies} setState={setHobbies} />
+          <div
+            onDragStart={(e) => dargItem(e.target)}
+            onDragEnd={(e) => dargEnd(e.target)}
+            onDragOver={(e) => dargOver(e.target)}
+            draggable={true}
+            className={style.qualificBox}>
+            <span className={style.numberQuali}>{index + 1}</span>
+            <ParentInput
+              forId={`hobbie${index}`}
+              label="الهواية"
+              paraghrap="يُفضّل من كلمة إلى 4 كلمات كحد أقصى.">
+              <input
+                onChange={(e) =>
+                  handleInputChange(
+                    index,
+                    e.target.value,
+                    "hobbie",
+                    hobbies,
+                    setHobbies
+                  )
+                }
+                id={`hobbie${index}`}
+                value={form.hobbie}
+                type="text"
+                placeholder="الهواية"
+              />
+            </ParentInput>
+          </div>
+        </div>
+      ))}
+      <UsePages
+        state={hobbies}
+        setState={setHobbies}
+        nameData={{
+          nameState: "hobbies",
+          nameItemObj: [],
+        }}
+        b1="أضف هواية جديدة"
+        b2="حفظ الهويات"
+      />
+    </Fragment>
   );
 };
 

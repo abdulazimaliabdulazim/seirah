@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import style from "../Qualifications/Home/Qualifications.module.css";
-import DateQualifi from "../Qualifications/Home/DateQualifi/DateQualifi";
 import {
   dargItem,
   dargEnd,
@@ -8,94 +7,107 @@ import {
   drop,
 } from "../Qualifications/Home/f_drag_drop/drag_drop";
 import ParentInput from "../Personal_data/Home/ParentInput/ParentInput";
-import hendlerData, { getFormValues } from "../hendlerData/hendlerData";
-import { Day, Manth, Yar } from "../Qualifications/Home/DateQualifi/DateCopy";
-import json from "../JSON_date/data_inputs.json";
+import DateCopy from "../Qualifications/Home/DateQualifi/DateCopy";
 import UsePages, { Icones } from "../UsePage/UsePages";
+import { handleInputChange } from "../Qualifications/Home/Qualifications";
 
 const Projects = () => {
-  const targetSeirah = window.localStorage.getItem("targetSeirah");
-  let coun = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5];
-  const [projects, setProjects] = useState(
-    getFormValues(
-      targetSeirah !== null ? `projects${targetSeirah}` : "projects1"
-    )
-  );
-  const createqualifi = (ind) => {
-    return (
-      <div
-        onDragStart={(e) => dargItem(e.target)}
-        onDragEnd={(e) => dargEnd(e.target)}
-        onDragOver={(e) => dargOver(e.target)}
-        draggable
-        key={ind}
-        className={style.parentPages}>
-        <Icones index={ind + 1} state1={projects} state2={projectsNumber} />
-        <div className={style.qualificBox} key={ind}>
-          <span className={style.numberQuali}>{ind + 1}</span>
-          {json[6].map((input, ind) => {
-            return (
-              <ParentInput
-                key={ind}
-                forId={
-                  input.id === "name"
-                    ? `${input.id}${coun[1]++}`
-                    : input.id === "link"
-                    ? `${input.id}${coun[2]++}`
-                    : `${input.id}${coun[3]++}`
-                }
-                label={input.label}
-                paraghrap={input.paraghrap}>
-                <input
-                  onChange={(e) => hendlerData(e, setProjects)}
-                  id={
-                    input.id === "name"
-                      ? `${input.id}${coun[4]++}`
-                      : input.id === "link"
-                      ? `${input.id}${coun[5]++}`
-                      : `${input.id}${coun[6]++}`
-                  }
-                  type="text"
-                  placeholder={input.label}
-                  value={
-                    input.id === "name"
-                      ? projects[`${input.id}${coun[7]++}`]
-                      : input.id === "link"
-                      ? projects[`${input.id}${coun[8]++}`]
-                      : projects[`${input.id}${coun[9]++}`]
-                  }
-                />
-              </ParentInput>
-            );
-          })}
-          <DateQualifi forId={coun[13]++} lable={"تاريخ الإنجاز"}>
-            <Day id={`day${coun[14]++}`} state={setProjects} />
-            <Manth id={`manth${coun[15]++}`} state={setProjects} />
-            <Yar id={`yar${coun[16]++}`} state={setProjects} />
-            <span>{projects[`day${coun[10]++}`]}</span>
-            <span>{projects[`manth${coun[11]++}`]}</span>
-            <span>{projects[`yar${coun[12]++}`]}</span>
-          </DateQualifi>
-        </div>
-      </div>
-    );
-  };
-  let [projectsNumber, setProjectsNumber] = useState(
-    getFormValues(
-      targetSeirah !== null
-        ? `projectsNumber${targetSeirah}`
-        : "projectsNumber1"
-    )
-  );
+  const [projects, setProjects] = useState([]);
+
   return (
-    <UsePages
-      state={projects}
-      state2={projectsNumber}
-      setState2={setProjectsNumber}
-      b1={"أضف مشروع جديد"}
-      b2={"حفظ المشروعات"}>
-      {projectsNumber.map((ele, ind) => createqualifi(ind))}
-    </UsePages>
+    <Fragment>
+      {projects.map((form, index) => (
+        <div
+          key={index}
+          onDragStart={(e) => dargItem(e.target)}
+          onDragEnd={(e) => dargEnd(e.target)}
+          onDragOver={(e) => dargOver(e.target)}
+          draggable
+          className={style.parentPages}>
+          <Icones index={index} state={projects} setState={setProjects} />
+          <div className={style.qualificBox} key={index}>
+            <span className={style.numberQuali}>{index + 1}</span>
+            <ParentInput
+              forId={`name${index}`}
+              label="اسم المشروع"
+              paraghrap="إذا كان للمشروع موقع أو صفحة في السوشال ميديا ضع رابطها هنا، (اختياري)">
+              <input
+                onChange={(e) =>
+                  handleInputChange(
+                    index,
+                    e.target.value,
+                    "name",
+                    projects,
+                    setProjects
+                  )
+                }
+                id={`name${index}`}
+                type="text"
+                placeholder="اسم المشروع"
+                value={form.name}
+              />
+            </ParentInput>
+            <ParentInput
+              forId={`link${index}`}
+              label="رابط المشروع"
+              paraghrap="إذا كان للمشروع موقع أو صفحة في السوشال ميديا ضع رابطها هنا، (اختياري)">
+              <input
+                onChange={(e) =>
+                  handleInputChange(
+                    index,
+                    e.target.value,
+                    "link",
+                    projects,
+                    setProjects
+                  )
+                }
+                id={`link${index}`}
+                type="text"
+                placeholder="رابط المشروع"
+                value={form.link}
+              />
+            </ParentInput>
+            <ParentInput
+              forId={`brief${index}`}
+              label="نبذة عن المشروع"
+              paraghrap="نبذة بسيطة عن المشروع أو المنجز (اختياري).">
+              <input
+                onChange={(e) =>
+                  handleInputChange(
+                    index,
+                    e.target.value,
+                    "brief",
+                    projects,
+                    setProjects
+                  )
+                }
+                id={`brief${index}`}
+                type="text"
+                placeholder="نبذة عن المشروع"
+                value={form.brief}
+              />
+            </ParentInput>
+            <ParentInput label="تاريخ الإنجاز" hedinSpan={false}>
+              <DateCopy
+                index={index}
+                stateDate={projects}
+                setStateDate={setProjects}
+              />
+            </ParentInput>
+          </div>
+        </div>
+      ))}
+      <UsePages
+        state={projects}
+        setState={setProjects}
+        nameData={{
+          nameState: "projects",
+          nameItemObj: ["name", "link", "brief"],
+        }}
+        b1="أضف مشروع جديد"
+        b2="حفظ المشروعات"
+      />
+    </Fragment>
   );
 };
 

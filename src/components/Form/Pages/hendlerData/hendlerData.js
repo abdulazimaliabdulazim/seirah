@@ -20,15 +20,12 @@ export const getFormValues = (nameLocal, all = true) => {
   }
 };
 
-export const sendActionData = (nameLocal, dataLocal, nameCoun, count) => {
-  window.localStorage.setItem(nameLocal, JSON.stringify(dataLocal));
-  window.localStorage.setItem(nameCoun, JSON.stringify(count));
+export const sendActionData = () =>
   window.scrollTo({
     top: 0,
     left: 0,
     behavior: "smooth",
   });
-};
 
 const hendlerData = (
   e,

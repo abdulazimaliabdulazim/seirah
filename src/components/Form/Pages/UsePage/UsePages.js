@@ -1,21 +1,17 @@
-import React from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import style from "../Qualifications/Home/Qualifications.module.css";
 import styleBut from "../../Buttom/Buttom.module.css";
 import Buttom from "../../Buttom/Buttom";
-import { useDispatch } from "react-redux";
-import {
-  messageSave,
-  progress,
-  sendActionData,
-} from "../hendlerData/hendlerData";
+import { useDispatch, useSelector } from "react-redux";
+import { messageSave, sendActionData } from "../hendlerData/hendlerData";
 import { useNavigate } from "react-router-dom";
 import { transform } from "../NewTranfrom/NewTranfrom";
 import Icons from "../../../Icons/Icons";
 import {
   getTitlePage,
   handleDelete,
-  handleSubmit,
 } from "../Qualifications/Home/Qualifications";
+import { storePagesActions } from "../../../../sliceStores/sliceTwo";
 
 // Component Icones And Function Delete Col
 export const Icones = ({ index, state, setState }) => {
@@ -40,41 +36,66 @@ export const Icones = ({ index, state, setState }) => {
   );
 };
 
-const UsePages = ({ children, state, b1, b2, addForm, nameData }) => {
+const UsePages = ({ state, b1, b2, nameData, setState }) => {
+  // Page title
   getTitlePage();
-  const pathName = window.location.pathname.split("/");
-  const pathNameFinal = pathName[pathName.length - 1];
-  const targetSeirah =
-    window.localStorage.getItem("targetSeirah") !== null
-      ? window.localStorage.getItem("targetSeirah")
-      : "1";
+  useEffect(() => {
+    // قراءة البيانات من localStorage عند تحميل المكون
+    const storedData = JSON.parse(localStorage.getItem("allSeirs"));
+    if (storedData && storedData.length >= 1) {
+      if (storedData[targetSeira][nameData.nameState] !== undefined) {
+        setState(storedData[targetSeira][nameData.nameState]);
+      }
+    }
+  }, []);
+
+  const targetSeira = useSelector((state) => state.targetSeira);
+  const arr = useSelector((state) => state.arr);
+  const [seirsAll, setSeirsAll] = useState(arr);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(storePagesActions.addSeirs([seirsAll, targetSeira]));
+  }, [targetSeira, dispatch, seirsAll]);
+
+  // إضافة نموذج جديد
+  const addForm = () => {
+    const newForm = {};
+    nameData.nameItemObj.map((item) => {
+      return (newForm[item] = "");
+    });
+
+    console.log(arr);
+
+    // تحديث الحالة لتضمين النموذج الجديد
+    setState(...state, arr[targetSeira][nameData.nameState].concat(newForm));
+  };
+
   const navigate = useNavigate();
   // Progress
   // progress(state);
 
-  const dispatch = useDispatch();
   return (
     <div className={style.parent}>
       <div className={style.box}>
-        {children}
-        <button onClick={addForm} className={`${style.but} ${styleBut.mani}`}>
-          {b1}
-        </button>
-        <hr className={style.hr} />
+        {nameData.nameState !== ("address" && "personal") && (
+          <Fragment>
+            <button
+              onClick={addForm}
+              className={`${style.but} ${styleBut.mani}`}>
+              {b1}
+            </button>
+            <hr className={style.hr} />
+          </Fragment>
+        )}
         <Buttom
           onClick={() => {
-            handleSubmit(state, nameData);
-            sendActionData(
-              targetSeirah !== null
-                ? `${pathNameFinal}${targetSeirah}`
-                : `${pathNameFinal}1`,
-              state,
-              targetSeirah !== null
-                ? `${pathNameFinal}Number${targetSeirah}`
-                : `${pathNameFinal}Number1`
+            dispatch(
+              storePagesActions.addDataInRedux([state, nameData.nameState])
             );
-            transform(navigate, dispatch);
+            sendActionData();
             messageSave(`تم ${b2}`);
+            transform(navigate, dispatch);
           }}
           text={b2}
         />

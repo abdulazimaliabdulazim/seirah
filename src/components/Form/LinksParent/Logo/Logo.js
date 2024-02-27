@@ -5,17 +5,23 @@ import MineHeader from "./MineHeader/MineHeader";
 import UserImg from "../../../UserImg/UserImg";
 import { useSelector } from "react-redux";
 
-const Logo = ({ personalLive }) => {
-  const targetSeirah =
-    window.localStorage.getItem("targetSeirah") !== null
-      ? window.localStorage.getItem("targetSeirah")
-      : "1";
-  const personal = JSON.parse(window.localStorage.getItem("personal"));
+const Logo = () => {
+  const personal = useSelector((state) => state.personal);
 
-  // const reduxPersonal = useSelector((state) => state.personal);
+  const seirsAll = useSelector((state) => state.arr);
 
-  // console.log(reduxPersonal);
+  const targetSeira = useSelector((state) => state.targetSeira);
 
+  const checkdForDataIsNotEmpty = () => {
+    if (seirsAll.length >= 1) {
+      return seirsAll;
+    } else {
+    }
+    console.log();
+    // console.log(1 < 2);
+  };
+
+  checkdForDataIsNotEmpty();
   return (
     <div className={style.parent}>
       <div className={style.child}>
@@ -23,7 +29,10 @@ const Logo = ({ personalLive }) => {
           <div className={style.box}>
             <div className={style.logo}>
               <UserImg
-                state={personalLive}
+                state={`
+                  seirsAll[targetSeira].personal !== undefined
+                    ? seirsAll[targetSeira].personal
+                    : ""`}
                 index={0}
                 radius="12px"
                 width="80px"
@@ -32,14 +41,14 @@ const Logo = ({ personalLive }) => {
             </div>
             <div className={style.detuls}>
               <h1>
-                {personalLive[0].name !== ""
-                  ? personalLive[0].name
-                  : "مستخدم جديد"}
+                {`seirsAll[targetSeira].personal !== undefined
+                  ? seirsAll[targetSeira].personal[0].name
+                  : "مستخدم جديد"`}
               </h1>
               <span>
-                {Array.isArray(personalLive)
-                  ? personalLive[0].position
-                  : "مجهول"}
+                {`seirsAll[targetSeira].personal !== undefined
+                  ? seirsAll[targetSeira].personal[0].position
+                  : "مجهول"`}
               </span>
             </div>
           </div>
